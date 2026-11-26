@@ -458,6 +458,44 @@ main{
 .day-rain{font-size:12px;color:var(--b)}
 .w-note{font-size:12.5px;color:var(--dim)}
 
+/* Dynamic full-site seasonal themes */
+body[data-season="winter"]{
+  --a:#6366f1;--b:#38bdf8;
+  background-image:radial-gradient(680px 360px at 14% -5%,#38bdf828,transparent 70%),radial-gradient(560px 320px at 88% 8%,#818cf820,transparent 70%);
+}
+body[data-season="newyear"]{
+  --a:#10b981;--b:#fbbf24;
+  background-image:radial-gradient(680px 360px at 14% -5%,#10b98128,transparent 70%),radial-gradient(560px 320px at 88% 8%,#f43f5e24,transparent 70%);
+}
+body[data-season="newyear"] .nav-wrap::after{
+  content:"";display:block;height:2px;
+  background:repeating-linear-gradient(90deg,#ff4d6d 0 18px,#ffd166 18px 36px,#22d3ee 36px 54px,#3ddc97 54px 72px);
+  opacity:.8;
+}
+body[data-season="halloween"]{
+  --a:#f97316;--b:#c084fc;
+  background-image:radial-gradient(680px 360px at 14% -5%,#f973162a,transparent 70%),radial-gradient(560px 320px at 88% 8%,#a855f726,transparent 70%);
+}
+body[data-season="feb23"]{
+  --a:#f59e0b;--b:#38bdf8;
+  background-image:radial-gradient(680px 360px at 14% -5%,#f59e0b24,transparent 70%),radial-gradient(560px 320px at 88% 8%,#38bdf822,transparent 70%);
+}
+body[data-season="mar8"]{
+  --a:#ec4899;--b:#c084fc;
+  background-image:radial-gradient(680px 360px at 14% -5%,#ec489928,transparent 70%),radial-gradient(560px 320px at 88% 8%,#f472b622,transparent 70%);
+}
+body[data-season="easter"]{
+  --a:#f472b6;--b:#fde047;
+  background-image:radial-gradient(680px 360px at 14% -5%,#f472b626,transparent 70%),radial-gradient(560px 320px at 88% 8%,#86efac22,transparent 70%);
+}
+body[data-season="may9"]{
+  --a:#ef4444;--b:#fbbf24;
+  background-image:radial-gradient(680px 360px at 14% -5%,#ef444428,transparent 70%),radial-gradient(560px 320px at 88% 8%,#f59e0b24,transparent 70%);
+}
+body[data-season="storm"]{
+  --a:#7c5cff;--b:#22d3ee;
+}
+
 /* Full-page ambient seasonal overlay (snow, petals, sparks) */
 #ambientCanvas{
   position:fixed;inset:0;width:100%;height:100%;
@@ -1105,7 +1143,7 @@ footer{
         </div>
         <div class="ai-settings" id="coderSettings">
           <label>URL сервера (локально или Cloudflare Tunnel https://…/v1):
-            <input id="coderEndpoint" type="text" placeholder="https://247252dad16e50.app.lhr.life/v1" value="https://247252dad16e50.app.lhr.life/v1">
+            <input id="coderEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev/v1" value="https://expend-dazzling-purifier.ngrok-free.dev/v1">
           </label>
           <label>API-токен (необязательно, если включён в LM Studio):
             <input id="coderToken" type="password" placeholder="lm-studio-token (если задан)" value="">
@@ -1525,7 +1563,7 @@ footer{
   </div>
   <div class="ai-settings" id="aiSettings" hidden>
     <label>Адрес API (LM Studio с включённым CORS):
-      <input id="aiEndpoint" type="text" placeholder="https://247252dad16e50.app.lhr.life/v1" value="https://247252dad16e50.app.lhr.life/v1">
+      <input id="aiEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev/v1" value="https://expend-dazzling-purifier.ngrok-free.dev/v1">
     </label>
     <div class="field-row">
       <select id="aiModelSelect" style="flex:1"><option value="">Авто (текущая модель)</option></select>
@@ -1701,7 +1739,7 @@ function mountStormcode() {
   if (!coderOpened) {
     coderOpened = true;
     const saved = getSavedEndpoint();
-    $('coderEndpoint').value = saved || 'https://247252dad16e50.app.lhr.life/v1';
+    $('coderEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev/v1';
     connectCoderLmStudio();
     appendCoderMsg('bot', 'Привет! Я StormCode AI — встроенный в редактор агент (как Claude Code). Нажми «Подключить» выше, чтобы связать меня с твоей скачанной моделью в LM Studio, и я смогу читать, чинить и сразу применять код в редактор ⚡');
   }
@@ -2740,7 +2778,11 @@ const aiHistory = [{ role: 'system', content: AI_SYSTEM_PROMPT }];
 let aiOpenedOnce = false;
 
 function getSavedEndpoint() {
-  try { return localStorage.getItem('storm_ai_url') || ''; } catch { return ''; }
+  try {
+    const v = localStorage.getItem('storm_ai_url') || '';
+    if (v.includes('.lhr.life')) { localStorage.removeItem('storm_ai_url'); return ''; }
+    return v;
+  } catch { return ''; }
 }
 function saveEndpoint(v) {
   try { localStorage.setItem('storm_ai_url', v); } catch {}
@@ -3037,7 +3079,7 @@ function openAiPanel() {
   if (!aiOpenedOnce) {
     aiOpenedOnce = true;
     const saved = getSavedEndpoint();
-    $('aiEndpoint').value = saved || 'https://247252dad16e50.app.lhr.life/v1';
+    $('aiEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev/v1';
     testAiServer();
     appendAiMsg('bot', 'Привет! Я StormAI — твой помощник ⚡\n\nУмею отвечать на вопросы и создавать файлы для скачивания. Чтобы подключить свою локальную нейросеть (LM Studio), нажми ⚙ вверху, укажи адрес сервера и включи Enable CORS — либо нажми «⚡ Демо-файл» ниже, чтобы проверить работу агента прямо сейчас.');
   }
@@ -3091,7 +3133,7 @@ async function sendAiPrompt(text, fromVoice = false) {
     if (model) body.model = model;
     const r = await fetch(base + '/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getAiHeaders(),
       body: JSON.stringify(body)
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -3573,29 +3615,81 @@ function initEventCanvas() {
     }
   }
 
+  function drawStarMini(c, x, y, r, col) {
+    c.fillStyle = col;
+    c.fillRect(x - r, y - 0.8, r * 2, 1.6);
+    c.fillRect(x - 0.8, y - r, 1.6, r * 2);
+  }
+
   function drawAmbient() {
     actx.clearRect(0, 0, AW, AH);
     const ev = activeEvent;
-    if (ev === 'winter' || ev === 'newyear') {
-      ambP.forEach(p => {
-        p.y = (p.y + p.vy) % AH;
-        p.x = (p.x + p.vx + Math.sin(frame * 0.015 + p.ph) * 0.35 + AW) % AW;
-        actx.fillStyle = 'rgba(226,240,255,0.45)';
-        actx.beginPath(); actx.arc(p.x, p.y, p.r, 0, Math.PI * 2); actx.fill();
-      });
-    } else if (ev === 'easter' || ev === 'mar8') {
+    if (ev === 'winter') {
       ambP.forEach((p, i) => {
-        p.y = (p.y + p.vy * 0.8) % AH;
-        p.x = (p.x + Math.sin(frame * 0.02 + p.ph) * 0.6 + AW) % AW;
-        actx.fillStyle = i % 2 === 0 ? 'rgba(249,168,212,0.42)' : 'rgba(253,224,71,0.35)';
-        actx.fillRect(p.x, p.y, 4, 3);
+        p.y = (p.y + p.vy) % AH;
+        p.x = (p.x + p.vx + Math.sin(frame * 0.015 + p.ph) * 0.4 + AW) % AW;
+        if (i % 5 === 0) drawStarMini(actx, p.x, p.y, p.r + 1.5, 'rgba(186,230,253,0.55)');
+        else {
+          actx.fillStyle = 'rgba(226,240,255,0.48)';
+          actx.beginPath(); actx.arc(p.x, p.y, p.r, 0, Math.PI * 2); actx.fill();
+        }
+      });
+    } else if (ev === 'newyear') {
+      const cols = ['rgba(255,209,102,0.55)','rgba(255,77,109,0.48)','rgba(34,211,238,0.5)','rgba(255,255,255,0.55)'];
+      ambP.forEach((p, i) => {
+        p.y = (p.y + p.vy * 0.95) % AH;
+        p.x = (p.x + p.vx + Math.sin(frame * 0.018 + p.ph) * 0.45 + AW) % AW;
+        if (i % 4 === 0) drawStarMini(actx, p.x, p.y, p.r + 1.8, cols[i % cols.length]);
+        else {
+          actx.fillStyle = i % 7 === 0 ? cols[i % cols.length] : 'rgba(235,245,255,0.52)';
+          actx.beginPath(); actx.arc(p.x, p.y, p.r, 0, Math.PI * 2); actx.fill();
+        }
       });
     } else if (ev === 'halloween') {
       ambP.forEach((p, i) => {
         p.y = (p.y - p.vy * 0.55 + AH) % AH;
-        p.x = (p.x + Math.sin(frame * 0.02 + p.ph) * 0.5 + AW) % AW;
-        actx.fillStyle = i % 2 === 0 ? 'rgba(249,115,22,0.38)' : 'rgba(192,132,252,0.35)';
-        actx.beginPath(); actx.arc(p.x, p.y, p.r, 0, Math.PI * 2); actx.fill();
+        p.x = (p.x + Math.sin(frame * 0.02 + p.ph) * 0.65 + AW) % AW;
+        if (i % 9 === 0) {
+          const w = Math.sin(frame * 0.25 + i) * 3;
+          actx.fillStyle = 'rgba(192,132,252,0.55)';
+          actx.fillRect(p.x - 5, p.y + w * 0.4, 4, 2);
+          actx.fillRect(p.x - 1, p.y, 3, 3);
+          actx.fillRect(p.x + 2, p.y + w * 0.4, 4, 2);
+        } else {
+          actx.fillStyle = i % 2 === 0 ? 'rgba(249,115,22,0.45)' : 'rgba(192,132,252,0.38)';
+          actx.beginPath(); actx.arc(p.x, p.y, p.r, 0, Math.PI * 2); actx.fill();
+        }
+      });
+    } else if (ev === 'mar8' || ev === 'easter') {
+      const pCols = ev === 'mar8'
+        ? ['rgba(244,114,182,0.52)','rgba(232,121,249,0.45)','rgba(253,186,116,0.42)']
+        : ['rgba(249,168,212,0.5)','rgba(253,224,71,0.45)','rgba(134,239,172,0.45)','rgba(125,211,252,0.45)'];
+      ambP.forEach((p, i) => {
+        p.y = (p.y + p.vy * 0.78) % AH;
+        p.x = (p.x + Math.sin(frame * 0.022 + p.ph) * 0.8 + AW) % AW;
+        actx.save();
+        actx.translate(p.x, p.y);
+        actx.rotate(frame * 0.02 + p.ph);
+        actx.fillStyle = pCols[i % pCols.length];
+        actx.beginPath(); actx.ellipse(0, 0, p.r + 2.2, p.r * 0.85, 0, 0, Math.PI * 2); actx.fill();
+        actx.restore();
+      });
+    } else if (ev === 'may9' || ev === 'feb23') {
+      const sCols = ev === 'may9'
+        ? ['rgba(251,191,36,0.58)','rgba(239,68,68,0.5)','rgba(255,255,255,0.45)']
+        : ['rgba(251,191,36,0.55)','rgba(56,189,248,0.48)','rgba(255,255,255,0.42)'];
+      ambP.forEach((p, i) => {
+        p.y = (p.y - p.vy * 0.5 + AH) % AH;
+        p.x = (p.x + Math.sin(frame * 0.018 + p.ph) * 0.5 + AW) % AW;
+        drawStarMini(actx, p.x, p.y, p.r + 1.5, sCols[i % sCols.length]);
+      });
+    } else {
+      // Storm mode: electric violet & cyan energy sparks
+      ambP.forEach((p, i) => {
+        p.y = (p.y + p.vy * 0.85) % AH;
+        p.x = (p.x + p.vx * 1.1 + AW) % AW;
+        actx.fillStyle = i % 2 === 0 ? 'rgba(124,92,255,0.42)' : 'rgba(34,211,238,0.42)';
+        actx.fillRect(p.x, p.y, p.r, p.r);
       });
     }
   }
@@ -3652,6 +3746,7 @@ function initEventCanvas() {
 function setEventMode(mode) {
   selectedEventMode = mode;
   activeEvent = mode === 'auto' ? detectAutoSeason() : mode;
+  document.body.dataset.season = activeEvent;
   $('eventBadge').textContent = getEventLabel(activeEvent, mode === 'auto');
   document.querySelectorAll('#eventBar .ev-pill').forEach(b => {
     b.classList.toggle('active', b.dataset.ev === mode);
@@ -3837,7 +3932,7 @@ function computeLineDiff(oldStr, newStr) {
 }
 
 function getAiHeaders() {
-  const h = { 'Content-Type': 'application/json' };
+  const h = { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' };
   const tok = ($('coderToken')?.value || '').trim();
   if (tok) h['Authorization'] = 'Bearer ' + tok;
   return h;
