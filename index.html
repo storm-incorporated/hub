@@ -2,7 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1017">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" id="pwaManifest">
 <title>Storm Incorporated — Главная</title>
 <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,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">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Unbounded:wght@400;700;800&display=swap">
@@ -458,6 +461,91 @@ main{
 .day-rain{font-size:12px;color:var(--b)}
 .w-note{font-size:12.5px;color:var(--dim)}
 
+/* Release 1.2: Light Mode + Custom Accent Presets */
+body.light-mode{
+  --bg:#f3f5fb;--panel:#ffffff;--card:#ffffff;--card-hover:#f7f9ff;
+  --line:#d8dfee;--line-strong:#bac5de;--text:#141a29;--dim:#55607a;
+}
+body.light-mode .nav-wrap{background:#ffffffd9}
+body.light-mode .hero{background:linear-gradient(155deg,#ffffff 0%,#eef2ff 100%);border-color:#c7d2fe;box-shadow:0 16px 40px #1e293b14}
+body.light-mode .quote-card{background:linear-gradient(145deg,#ffffff 0%,#eef2ff 100%)}
+body.light-mode .quote-latin{background:linear-gradient(90deg,#1e1b4b 15%,var(--a) 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.light-mode .quote-pron{color:var(--a)}
+body.light-mode .stat,body.light-mode .w-metric,body.light-mode .cal-day,body.light-mode .task-item,body.light-mode .t-input,body.light-mode .t-area,body.light-mode .t-select,body.light-mode .ai-msg.bot,body.light-mode .ai-chat-item,body.light-mode .ai-settings,body.light-mode .ai-form,body.light-mode .ai-head{background:#f1f4fb;color:#141a29}
+body.light-mode .stat b,body.light-mode .cal-stat b,body.light-mode .w-metric b,body.light-mode .rate-val,body.light-mode .fin-result{color:#0f172a}
+body.light-mode .btn-secondary,body.light-mode .gh-link,body.light-mode .pill{background:#eef2fb;color:#1e293b}
+body.light-mode .ai-panel,body.light-mode .ai-sidebar,body.light-mode .modal{background:#ffffff;color:#141a29}
+body.light-mode .w-cond,body.light-mode .cal-hol-item b,body.light-mode .card h3,body.light-mode .sec-tile b,body.light-mode .section-heading,body.light-mode .tool-panel h3,body.light-mode .game-hud b,body.light-mode .ai-head-info b{color:#0f172a}
+body.light-mode .tag,body.light-mode .count-pill,body.light-mode .ai-file-chip,body.light-mode .ai-src-link,body.light-mode .ext-chip,body.light-mode .swatch-btn,body.light-mode .ai-icon-btn,body.light-mode .ai-mic-btn,body.light-mode .ai-web-btn,body.light-mode .ai-live-btn,body.light-mode .ev-pill{background:#eef2fb;color:#1e293b;border-color:#cbd5e1}
+body.light-mode .ai-skills-menu{background:#ffffff;border-color:#cbd5e1}
+body.light-mode .ai-skills-menu button{color:#141a29}
+body.light-mode .ai-toast{background:#ffffff;color:#141a29}
+body.light-mode .ai-toast-btn{color:#141a29}
+body.light-mode .geo-tip{background:#eef2ff;color:#1e293b}
+body.light-mode .diff-out,body.light-mode .regex-preview,body.light-mode .pass-out,body.light-mode .word-box{background:#f1f5f9;color:#0f172a}
+body.light-mode .pass-out code,body.light-mode .word-target{color:var(--a)}
+body.light-mode .nav-btn.active,body.light-mode .pill.active,body.light-mode .ev-pill.active{color:#0f172a}
+
+.swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.swatch-btn{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;
+  background:#151b29;border:1px solid var(--line);color:var(--text);font-size:12.5px;
+}
+.swatch-btn.active{border-color:var(--a);box-shadow:0 0 0 2px #7c5cff33}
+.swatch-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+
+/* Text Cleaner & Antiplagiarism */
+.diff-out{
+  background:#0a0e17;border:1px solid var(--line);border-radius:11px;
+  padding:12px 14px;font:13.5px/1.6 var(--sans);white-space:pre-wrap;max-height:220px;overflow:auto;
+}
+.diff-out mark{background:#ff6b8138;color:#ffd7de;border-radius:4px;padding:0 2px}
+.wm-badges{display:flex;flex-wrap:wrap;gap:8px}
+
+/* StormArcade (Games) */
+.arcade-wrap{display:flex;flex-direction:column;gap:18px}
+.game-stage{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:20px;display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.game-hud{
+  width:100%;max-width:520px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+}
+.game-canvas{
+  background:#070a12;border:1px solid #7c5cff66;border-radius:12px;
+  display:block;max-width:100%;touch-action:none;
+}
+.dpad{display:grid;grid-template-columns:repeat(3,48px);gap:6px}
+.dpad button{
+  height:42px;border-radius:9px;background:#192136;border:1px solid var(--line-strong);
+  color:#fff;font-size:16px;font-weight:700;
+}
+.dpad button:active{background:var(--a)}
+.bb-board{
+  display:grid;grid-template-columns:repeat(8,clamp(28px,9.2vw,36px));gap:4px;
+  background:#090c14;padding:10px;border-radius:14px;border:1px solid #7c5cff55;
+}
+.bb-cell{
+  width:clamp(28px,9.2vw,36px);height:clamp(28px,9.2vw,36px);border-radius:7px;background:#141a29;border:1px solid #232b40;
+  transition:background .12s,transform .1s;cursor:pointer;
+}
+.bb-cell.filled{border-color:#ffffff33;box-shadow:inset 0 2px 5px #ffffff33}
+.bb-cell.preview{outline:2px dashed var(--b);background:#22d3ee33}
+.bb-tray{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;min-height:92px}
+.bb-piece{
+  padding:10px;border-radius:12px;background:#121725;border:2px solid var(--line);
+  cursor:pointer;display:grid;gap:3px;transition:.14s;
+}
+.bb-piece.sel{border-color:var(--b);box-shadow:0 0 16px #22d3ee44;transform:scale(1.05)}
+.bb-mini{width:16px;height:16px;border-radius:4px}
+.word-box{
+  width:100%;max-width:540px;text-align:center;
+  background:#0a0e17;border:1px solid #7c5cff55;border-radius:16px;padding:24px;
+}
+.word-target{
+  font:700 clamp(24px,4vw,34px) var(--display);color:var(--b);letter-spacing:1px;margin:10px 0 16px;
+}
+
 /* Dynamic full-site seasonal themes */
 body[data-season="winter"]{
   --a:#6366f1;--b:#38bdf8;
@@ -879,7 +967,8 @@ body[data-season="storm"]{
   .ai-sidebar{height:auto;max-height:190px}
 }
 .ai-panel.docked{
-  position:relative;width:100%;height:min(76dvh,740px);
+  position:relative;right:auto;bottom:auto;top:auto;left:auto;
+  width:100%;max-width:none;height:min(76dvh,740px);
   box-shadow:0 16px 40px #00000055;border-radius:18px;
 }
 .ai-web-btn{
@@ -1089,6 +1178,40 @@ footer{
   .w-metrics{grid-template-columns:repeat(2,1fr)}
   .forecast-row{grid-template-columns:1fr}
 }
+
+/* Responsive support for phones & tablets (Portrait & Landscape + Safe Areas) */
+.nav{
+  padding-left:max(14px,env(safe-area-inset-left));
+  padding-right:max(14px,env(safe-area-inset-right));
+}
+main{
+  padding-left:max(14px,env(safe-area-inset-left));
+  padding-right:max(14px,env(safe-area-inset-right));
+}
+.mobile-drawer-extras{
+  display:flex;flex-wrap:wrap;gap:8px;padding-top:8px;margin-top:6px;border-top:1px solid var(--line);
+}
+@media (max-width:960px) and (orientation:portrait){
+  .hero{padding:22px 18px;gap:20px}
+  .event-canvas-wrap{height:220px}
+  .ai-panel.docked{height:min(72dvh,640px)}
+  .ai-sidebar{max-height:165px}
+  .cal-months{grid-template-columns:1fr}
+  .w-search-form{width:100%}
+  .w-search-form input{flex:1;width:auto;min-width:0}
+  .ai-head{flex-wrap:wrap;gap:6px}
+}
+@media (max-height:540px) and (orientation:landscape){
+  .nav{padding-top:6px;padding-bottom:6px}
+  main{padding-top:14px;padding-bottom:28px}
+  .hero{grid-template-columns:1.1fr 1fr;padding:18px 20px;gap:18px;margin-bottom:16px}
+  .event-canvas-wrap{height:185px}
+  .quote-card{padding:16px 20px;margin-bottom:16px}
+  .ai-studio{grid-template-columns:200px 1fr;gap:12px}
+  .ai-sidebar,.ai-panel.docked{height:calc(100dvh - 88px);min-height:240px}
+  .ai-panel{height:calc(100dvh - 84px);bottom:12px}
+  .game-canvas{max-height:calc(100dvh - 180px);width:auto}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -1115,6 +1238,7 @@ footer{
         <input id="searchInput" type="search" placeholder="Поиск… (/)" aria-label="Поиск сервисов">
         <button id="searchClear" class="search-clear" type="button" aria-label="Очистить поиск" hidden>✕</button>
       </div>
+      <button class="gh-link" id="themeOpenBtn" type="button" title="Центр оформления и установка приложения">🎨 Тема</button>
       <button class="gh-link" id="cloudOpenBtn" type="button" title="Личное облако Google Диск">☁️ Облако</button>
       <a class="gh-link" href="https://github.com/storm-incorporated" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
@@ -1317,6 +1441,7 @@ footer{
       <button class="pill" type="button" data-tool="regex">.* Regex</button>
       <button class="pill" type="button" data-tool="base">0x Системы счисления</button>
       <button class="pill" type="button" data-tool="qr">▦ QR-код</button>
+      <button class="pill" type="button" data-tool="text">✍️ Текст и Антиплагиат</button>
     </div>
 
     <div class="tool-panel" id="tool-pass">
@@ -1382,6 +1507,90 @@ footer{
       <div class="qr-stage">
         <div class="qr-box" id="qrBox"></div>
         <div class="w-note">QR-код генерируется полностью локально в браузере без отправки данных на сторонние серверы.</div>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="tool-text" hidden>
+      <h3>Очистка от водяных знаков ИИ, упрощение и антиплагиат</h3>
+      <textarea id="txtMain" class="t-area" placeholder="Вставь сюда текст для проверки на скрытые водяные знаки, ИИ-штампы или упрощения…"></textarea>
+      <div class="field-row">
+        <button class="btn-primary" id="txtScanBtn" type="button" style="padding:8px 14px;font-size:13px">🔍 Проверить на водяные знаки</button>
+        <button class="btn-secondary" id="txtCleanBtn" type="button" style="padding:8px 14px;font-size:13px">🧹 Очистить следы ИИ</button>
+        <button class="btn-secondary" id="txtHumanizeBtn" type="button" style="padding:8px 14px;font-size:13px">✨ Упростить через Шторм AI</button>
+        <button class="btn-secondary" id="txtCopyBtn" type="button" style="padding:8px 14px;font-size:13px">Копировать</button>
+      </div>
+      <div class="wm-badges" id="txtReport"></div>
+
+      <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:4px;display:flex;flex-direction:column;gap:10px">
+        <h3 style="font-size:15.5px">Сравнение на антиплагиат (уникальность между двумя текстами)</h3>
+        <textarea id="txtRef" class="t-area" style="min-height:95px" placeholder="Вставь сюда второй текст / оригинал для сравнения совпадений…"></textarea>
+        <div class="field-row">
+          <button class="btn-primary" id="txtPlagBtn" type="button" style="padding:8px 14px;font-size:13px">📊 Проверить уникальность</button>
+          <span class="count-pill" id="txtPlagScore">Уникальность: —</span>
+        </div>
+        <div class="diff-out" id="txtPlagDiff" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Раздел Игры (StormArcade) -->
+  <section class="arcade-wrap" id="arcadeSection" hidden aria-label="StormArcade — мини-игры">
+    <div class="subtabs" id="arcadeSubtabs" role="tablist">
+      <button class="pill active" type="button" data-game="snake">🐍 Змейка</button>
+      <button class="pill" type="button" data-game="blockblast">🧱 Блок Бласт</button>
+      <button class="pill" type="button" data-game="tetris">🧩 Тетрис</button>
+      <button class="pill" type="button" data-game="words">⌨️ Слова (Спринт)</button>
+    </div>
+
+    <div class="game-stage" id="game-snake">
+      <div class="game-hud">
+        <b>🐍 Неоновая Змейка</b>
+        <span class="count-pill" id="snakeScore">Счёт: 0 · Рекорд: 0</span>
+        <button class="btn-primary" id="snakeStartBtn" type="button" style="padding:7px 14px;font-size:13px">▶ Старт / Заново</button>
+      </div>
+      <canvas id="snakeCanvas" class="game-canvas" width="360" height="360"></canvas>
+      <div class="dpad" aria-label="Управление змейкой">
+        <span></span><button type="button" data-sdir="0,-1">▲</button><span></span>
+        <button type="button" data-sdir="-1,0">◀</button><button type="button" data-sdir="0,1">▼</button><button type="button" data-sdir="1,0">▶</button>
+      </div>
+    </div>
+
+    <div class="game-stage" id="game-blockblast" hidden>
+      <div class="game-hud">
+        <b>🧱 Блок Бласт (8×8)</b>
+        <span class="count-pill" id="bbScore">Счёт: 0 · Рекорд: 0</span>
+        <button class="btn-primary" id="bbResetBtn" type="button" style="padding:7px 14px;font-size:13px">↻ Новая игра</button>
+      </div>
+      <div class="w-note">Выбери фигуру ниже и кликни на клетку поля — заполненные ряды и столбцы взрываются!</div>
+      <div class="bb-board" id="bbBoard"></div>
+      <div class="bb-tray" id="bbTray"></div>
+    </div>
+
+    <div class="game-stage" id="game-tetris" hidden>
+      <div class="game-hud">
+        <b>🧩 Неоновый Тетрис</b>
+        <span class="count-pill" id="tetScore">Счёт: 0 · Линии: 0</span>
+        <button class="btn-primary" id="tetStartBtn" type="button" style="padding:7px 14px;font-size:13px">▶ Старт / Заново</button>
+      </div>
+      <canvas id="tetCanvas" class="game-canvas" width="240" height="440"></canvas>
+      <div class="field-row">
+        <button class="btn-secondary" id="tetLeft" type="button" style="padding:8px 14px">◀</button>
+        <button class="btn-secondary" id="tetRot" type="button" style="padding:8px 14px">↻ Поворот</button>
+        <button class="btn-secondary" id="tetDown" type="button" style="padding:8px 14px">▼</button>
+        <button class="btn-secondary" id="tetRight" type="button" style="padding:8px 14px">▶</button>
+      </div>
+    </div>
+
+    <div class="game-stage" id="game-words" hidden>
+      <div class="game-hud">
+        <b>⌨️ Слова · Спринт (60 сек)</b>
+        <span class="count-pill" id="wordHud">Счёт: 0 · Время: 60с · Рекорд: 0</span>
+        <button class="btn-primary" id="wordStartBtn" type="button" style="padding:7px 14px;font-size:13px">▶ Начать спринт</button>
+      </div>
+      <div class="word-box">
+        <div class="card-meta" id="wordHint">Вводи слово и нажимай Enter или пробел</div>
+        <div class="word-target" id="wordTarget">STORM</div>
+        <input id="wordInput" class="t-input" style="width:100%;max-width:320px;text-align:center;font-size:16px" placeholder="Нажми «Начать спринт»…" disabled autocomplete="off">
       </div>
     </div>
   </section>
@@ -1584,6 +1793,48 @@ footer{
   </div>
 </div>
 
+<!-- Центр оформления и установка приложения (PWA) -->
+<div class="modal-backdrop" id="themeBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="themeModalTitle" style="max-width:500px">
+    <div class="modal-head">
+      <h3 class="modal-title" id="themeModalTitle">🎨 Центр оформления и PWA</h3>
+      <button class="modal-close" id="themeCloseBtn" type="button" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:14px">
+      <div class="field-row" style="justify-content:space-between">
+        <span style="font-weight:600">Режим экрана</span>
+        <div class="filter-bar">
+          <button class="pill active" id="modeDarkBtn" type="button">🌙 Тёмная</button>
+          <button class="pill" id="modeLightBtn" type="button">☀️ Светлая</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:600;margin-bottom:8px">Цветовая схема акцентов</div>
+        <div class="swatch-grid" id="swatchGrid">
+          <button class="swatch-btn active" type="button" data-pal="storm"><span class="swatch-dot" style="background:linear-gradient(135deg,#7c5cff,#22d3ee)"></span>Storm</button>
+          <button class="swatch-btn" type="button" data-pal="ocean"><span class="swatch-dot" style="background:linear-gradient(135deg,#2563eb,#06b6d4)"></span>Океан</button>
+          <button class="swatch-btn" type="button" data-pal="emerald"><span class="swatch-dot" style="background:linear-gradient(135deg,#10b981,#34d399)"></span>Изумруд</button>
+          <button class="swatch-btn" type="button" data-pal="sunset"><span class="swatch-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>Закат</button>
+          <button class="swatch-btn" type="button" data-pal="gold"><span class="swatch-dot" style="background:linear-gradient(135deg,#f59e0b,#fde047)"></span>Золото</button>
+          <button class="swatch-btn" type="button" data-pal="crimson"><span class="swatch-dot" style="background:linear-gradient(135deg,#ef4444,#a855f7)"></span>Неон</button>
+        </div>
+      </div>
+      <div class="field-row" style="justify-content:space-between;padding-top:8px;border-top:1px solid var(--line)">
+        <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13.5px">
+          <input type="checkbox" id="ambientToggle" checked> ✨ Фоновые сезонные эффекты (снег/частицы)
+        </label>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px">
+        <div style="font-weight:600">📲 Установить Storm как приложение (PWA)</div>
+        <div class="field-row">
+          <button class="btn-primary" id="pwaInstallBtn" type="button" style="padding:8px 14px;font-size:13px">📲 Установить на устройство</button>
+          <span class="card-meta" id="pwaHint">Работает на ПК, Android и iPhone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Модальное окно Google Диск (личное облако пользователя) -->
 <div class="modal-backdrop" id="cloudBackdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cloudModalTitle" style="max-width:560px">
@@ -1683,7 +1934,8 @@ const SECTIONS = [
   { id: 'weather',  name: 'Погода',     icon: '🌦️', desc: 'Актуальная погода, давление, качество воздуха, геомагнитная обстановка (Kp) и быстрая сверка.' },
   { id: 'calendar', name: 'Календарь',  icon: '📅', desc: 'Производственный календарь РФ на конец 2026 и весь 2027 год: выходные, праздники и нормы часов.' },
   { id: 'planner',  name: 'Ежедневник', icon: '📝', desc: 'Задачи с приоритетами, прогресс дня, быстрые заметки и мотивирующие цитаты на латыни.' },
-  { id: 'finance',  name: 'Финансы',    icon: '💱', desc: 'StormFinance: живые курсы валют (USD/EUR/RUB) и криптовалют (BTC/ETH/TON) с конвертером.' }
+  { id: 'finance',  name: 'Финансы',    icon: '💱', desc: 'StormFinance: живые курсы валют (USD/EUR/RUB) и криптовалют (BTC/ETH/TON) с конвертером.' },
+  { id: 'arcade',   name: 'Игры',       icon: '🎮', desc: 'StormArcade: Змейка, Блок Бласт 8×8, Тетрис и словесный спринт на скорость.' }
 ];
 
 // === КАТАЛОГ СЕРВИСОВ ===
@@ -1773,6 +2025,18 @@ const SERVICES = [
     url: '',
     desc: 'Живые курсы валют (USD, EUR, CNY, RUB) и криптовалют (BTC, ETH, TON, SOL) с мгновенным конвертером прямо в браузере.',
     tags: ['USD/RUB', 'BTC', 'ETH', 'TON'],
+    plan: []
+  },
+  {
+    id: 'stormarcade',
+    name: 'StormArcade',
+    icon: '🎮',
+    section: 'arcade',
+    status: 'live',
+    internalSection: 'arcade',
+    url: '',
+    desc: 'Мини-игры на перерыв в стиле Storm: Змейка, Блок Бласт 8×8, Тетрис и Словесный спринт.',
+    tags: ['Змейка', 'Блок Бласт', 'Тетрис', 'Слова'],
     plan: []
   },
   {
@@ -1872,6 +2136,11 @@ function getSection(id) {
 }
 
 function setSection(id) {
+  if (state.section === 'arcade' && id !== 'arcade') {
+    if (typeof snakeTimer !== 'undefined') clearInterval(snakeTimer);
+    if (typeof tetTimer !== 'undefined') clearInterval(tetTimer);
+    if (typeof wordTimer !== 'undefined') clearInterval(wordTimer);
+  }
   state.section = SECTIONS.some(s => s.id === id) ? id : 'home';
   if (location.hash !== '#' + state.section) {
     history.replaceState(null, '', '#' + state.section);
@@ -1930,6 +2199,16 @@ function renderNav() {
     mBtn.addEventListener('click', () => setSection(sec.id));
     mobile.append(mBtn);
   });
+  const extras = document.createElement('div');
+  extras.className = 'mobile-drawer-extras';
+  const mTheme = document.createElement('button');
+  mTheme.type = 'button'; mTheme.className = 'pill'; mTheme.textContent = '🎨 Тема / PWA';
+  mTheme.addEventListener('click', () => { closeMobileMenu(); $('themeBackdrop').hidden = false; });
+  const mCloud = document.createElement('button');
+  mCloud.type = 'button'; mCloud.className = 'pill'; mCloud.textContent = '☁️ Облако';
+  mCloud.addEventListener('click', () => { closeMobileMenu(); openCloudModal(); });
+  extras.append(mTheme, mCloud);
+  mobile.append(extras);
 }
 
 function renderSectionsStrip() {
@@ -2485,10 +2764,11 @@ function render() {
   const isPlan = state.section === 'planner';
   const isTools = state.section === 'it' && state.itMode === 'tools';
   const isFin = state.section === 'finance';
+  const isArcade = state.section === 'arcade';
   const isStormAi = state.section === 'stormai';
   const isIde = state.section === 'it' && state.itMode === 'ide';
   const isItNonIde = state.section === 'it' && state.itMode !== 'ide';
-  const isCustom = isWeather || isCal || isPlan || isTools || isFin || isIde || isStormAi;
+  const isCustom = isWeather || isCal || isPlan || isTools || isFin || isArcade || isIde || isStormAi;
   const sec = getSection(state.section);
 
   document.body.classList.toggle('ide-mode', isIde);
@@ -2502,6 +2782,7 @@ function render() {
   $('plannerSection').hidden = !isPlan;
   $('toolsSection').hidden = !isTools;
   $('financeSection').hidden = !isFin;
+  $('arcadeSection').hidden = !isArcade;
   $('stormaiSection').hidden = !isStormAi;
   $('stormcodeSection').hidden = !isIde;
   $('catalogAnchor').hidden = isCustom || (isHome && !isSearching);
@@ -2599,8 +2880,11 @@ $('modalBackdrop').addEventListener('click', e => {
 });
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !$('modalBackdrop').hidden) {
-    closeModal();
+  if (e.key === 'Escape') {
+    if (!$('modalBackdrop').hidden) closeModal();
+    if (!$('themeBackdrop').hidden) $('themeBackdrop').hidden = true;
+    if (!$('cloudBackdrop').hidden) closeCloudModal();
+    if (!$('aiSkillsMenu').hidden) $('aiSkillsMenu').hidden = true;
   } else if (e.key === '/' && document.activeElement !== $('searchInput') && document.activeElement !== $('cityInput') && $('modalBackdrop').hidden) {
     e.preventDefault();
     $('searchInput').focus();
@@ -2742,7 +3026,7 @@ function renderTools() {
   document.querySelectorAll('#toolsSubtabs .pill').forEach(p => {
     p.classList.toggle('active', p.dataset.tool === state.activeTool);
   });
-  ['pass','json','regex','base','qr'].forEach(t => {
+  ['pass','json','regex','base','qr','text'].forEach(t => {
     $('tool-' + t).hidden = state.activeTool !== t;
   });
   if (state.activeTool === 'pass' && $('passOutput').textContent === '—') genPassword();
@@ -4698,6 +4982,414 @@ $('cloudSaveCode').addEventListener('click', async () => {
     $('cloudStatus').textContent = 'Ошибка сохранения кода';
   }
 });
+
+// === ЦЕНТР ОФОРМЛЕНИЯ И PWA ===
+const PALETTES = {
+  storm:   ['#7c5cff', '#22d3ee'],
+  ocean:   ['#2563eb', '#06b6d4'],
+  emerald: ['#10b981', '#34d399'],
+  sunset:  ['#f97316', '#ec4899'],
+  gold:    ['#f59e0b', '#fde047'],
+  crimson: ['#ef4444', '#a855f7']
+};
+let deferredPwaPrompt = null;
+
+function applyThemePrefs(mode, pal, ambOn) {
+  document.body.classList.toggle('light-mode', mode === 'light');
+  $('modeDarkBtn').classList.toggle('active', mode !== 'light');
+  $('modeLightBtn').classList.toggle('active', mode === 'light');
+  if (PALETTES[pal]) {
+    document.body.style.setProperty('--a', PALETTES[pal][0]);
+    document.body.style.setProperty('--b', PALETTES[pal][1]);
+  }
+  document.querySelectorAll('#swatchGrid .swatch-btn').forEach(b => b.classList.toggle('active', b.dataset.pal === pal));
+  $('ambientCanvas').hidden = !ambOn;
+  $('ambientToggle').checked = ambOn;
+  try { localStorage.setItem('storm_theme_v1', JSON.stringify({ mode, pal, ambOn })); } catch {}
+}
+
+function loadThemePrefs() {
+  try {
+    const t = JSON.parse(localStorage.getItem('storm_theme_v1') || '{}');
+    if (t.mode || t.pal || typeof t.ambOn === 'boolean') {
+      applyThemePrefs(t.mode || 'dark', t.pal || 'storm', t.ambOn !== false);
+    }
+  } catch {}
+}
+
+$('themeOpenBtn').addEventListener('click', () => { $('themeBackdrop').hidden = false; });
+$('themeCloseBtn').addEventListener('click', () => { $('themeBackdrop').hidden = true; });
+$('themeBackdrop').addEventListener('click', e => { if (e.target === $('themeBackdrop')) $('themeBackdrop').hidden = true; });
+$('modeDarkBtn').addEventListener('click', () => {
+  const pal = document.querySelector('#swatchGrid .swatch-btn.active')?.dataset.pal || 'storm';
+  applyThemePrefs('dark', pal, $('ambientToggle').checked);
+});
+$('modeLightBtn').addEventListener('click', () => {
+  const pal = document.querySelector('#swatchGrid .swatch-btn.active')?.dataset.pal || 'storm';
+  applyThemePrefs('light', pal, $('ambientToggle').checked);
+});
+$('swatchGrid').addEventListener('click', e => {
+  const b = e.target.closest('.swatch-btn');
+  if (!b) return;
+  applyThemePrefs(document.body.classList.contains('light-mode') ? 'light' : 'dark', b.dataset.pal, $('ambientToggle').checked);
+});
+$('ambientToggle').addEventListener('change', () => {
+  const pal = document.querySelector('#swatchGrid .swatch-btn.active')?.dataset.pal || 'storm';
+  applyThemePrefs(document.body.classList.contains('light-mode') ? 'light' : 'dark', pal, $('ambientToggle').checked);
+});
+
+// Inline PWA manifest
+(function setupPwa() {
+  try {
+    const iconHref = document.querySelector('link[rel="icon"]')?.href || '';
+    const manifest = {
+      name: 'Storm Incorporated',
+      short_name: 'Storm',
+      start_url: '.',
+      display: 'standalone',
+      background_color: '#0d1017',
+      theme_color: '#0d1017',
+      icons: iconHref ? [{ src: iconHref, sizes: '128x128', type: 'image/jpeg' }] : []
+    };
+    const url = URL.createObjectURL(new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' }));
+    $('pwaManifest').href = url;
+  } catch {}
+})();
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPwaPrompt = e;
+  $('pwaHint').textContent = 'Готово к установке в 1 клик!';
+});
+$('pwaInstallBtn').addEventListener('click', async () => {
+  if (deferredPwaPrompt) {
+    deferredPwaPrompt.prompt();
+    await deferredPwaPrompt.userChoice;
+    deferredPwaPrompt = null;
+    $('pwaHint').textContent = 'Запрос установки отправлен ✓';
+  } else {
+    $('pwaHint').textContent = 'iPhone: «Поделиться» → «На экран Домой»; Chrome/Edge: значок ⊕ в адресной строке.';
+  }
+});
+
+// === ТЕКСТ: ВОДЯНЫЕ ЗНАКИ ИИ, ОЧИСТКА, УПРОЩЕНИЕ И АНТИПЛАГИАТ ===
+const AI_CLICHES = [
+  'в современном мире', 'подводя итог', 'необходимо отметить', 'стоит отметить',
+  'ключевым аспектом', 'играет важную роль', 'в заключение', 'таким образом',
+  'неотъемлемой частью', 'широкий спектр', 'глубокое погружение'
+];
+const HOMO_MAP = { 'a':'а','e':'е','o':'о','p':'р','c':'с','x':'х','y':'у','A':'А','E':'Е','O':'О','P':'Р','C':'С','X':'Х','T':'Т','M':'М','H':'Н','K':'К','B':'В' };
+
+function scanTextWatermarks(txt) {
+  const zw = (txt.match(/[\u200B-\u200F\u202A-\u202E\u2060\uFEFF\u00AD]/g) || []).length;
+  const nbsp = (txt.match(/[\u00A0\u202F\u2009]/g) || []).length;
+  const emdash = (txt.match(/[—–]/g) || []).length;
+  const homoglyphs = (txt.match(/[а-яА-ЯёЁ][aeopcxуAEOPCXTMHKB]|[aeopcxуAEOPCXTMHKB][а-яА-ЯёЁ]/g) || []).length;
+  const lower = txt.toLowerCase();
+  const cliches = AI_CLICHES.filter(c => lower.includes(c));
+  const report = $('txtReport');
+  report.replaceChildren();
+  const items = [
+    [`Невидимые знаки (ZW): ${zw}`, zw > 0 ? 'err' : 'ok'],
+    [`Спец-пробелы: ${nbsp}`, nbsp > 0 ? 'warn' : 'ok'],
+    [`Типографские тире: ${emdash}`, 'dim'],
+    [`Смешанные буквы (латиница в кириллице): ${homoglyphs}`, homoglyphs > 0 ? 'err' : 'ok'],
+    [`ИИ-штампы: ${cliches.length}${cliches.length ? ' (' + cliches.slice(0,3).join(', ') + ')' : ''}`, cliches.length > 0 ? 'warn' : 'ok']
+  ];
+  items.forEach(([label, cls]) => {
+    const sp = document.createElement('span');
+    sp.className = 'count-pill';
+    if (cls === 'err') { sp.style.color = '#ff8ea0'; sp.style.borderColor = '#ff6b8166'; }
+    else if (cls === 'warn') { sp.style.color = '#ffe29a'; sp.style.borderColor = '#f5b94266'; }
+    else if (cls === 'ok') { sp.style.color = '#3ddc97'; sp.style.borderColor = '#3ddc9755'; }
+    sp.textContent = label;
+    report.append(sp);
+  });
+}
+
+$('txtScanBtn').addEventListener('click', () => scanTextWatermarks($('txtMain').value));
+$('txtCleanBtn').addEventListener('click', () => {
+  let t = $('txtMain').value;
+  t = t.replace(/[\u200B-\u200F\u202A-\u202E\u2060\uFEFF\u00AD]/g, '');
+  t = t.replace(/[\u00A0\u202F\u2009]/g, ' ');
+  t = t.replace(/[—–]/g, '-').replace(/[“”«»]/g, '"').replace(/[‘’]/g, "'");
+  t = t.replace(/([а-яА-ЯёЁ])([aeopcxAEOPCXTMHKB])|([aeopcxAEOPCXTMHKB])([а-яА-ЯёЁ])/g, (m, a, b, c, d) =>
+    a ? a + (HOMO_MAP[b] || b) : (HOMO_MAP[c] || c) + d
+  );
+  t = t.replace(/[ \t]{2,}/g, ' ').trim();
+  $('txtMain').value = t;
+  scanTextWatermarks(t);
+});
+$('txtCopyBtn').addEventListener('click', () => copyText($('txtMain').value, $('txtCopyBtn')));
+$('txtHumanizeBtn').addEventListener('click', () => {
+  const txt = $('txtMain').value.trim();
+  if (!txt) return;
+  setSection('stormai');
+  sendAiPrompt('Перепиши этот текст простым, живым, естественным человеческим языком без нейросетевых штампов и канцеляризмов, сохранив смысл:\n\n' + txt);
+});
+
+$('txtPlagBtn').addEventListener('click', () => {
+  const t1 = $('txtMain').value.trim(), t2 = $('txtRef').value.trim();
+  if (!t1 || !t2) { $('txtPlagScore').textContent = 'Вставь оба текста'; return; }
+  const norm = s => s.toLowerCase().replace(/[^a-zа-яё0-9\s]/gi, ' ').split(/\s+/).filter(Boolean);
+  const w1 = norm(t1), w2 = norm(t2);
+  const k = Math.min(3, w1.length, w2.length) || 1;
+  const sh2 = new Set();
+  for (let i = 0; i <= w2.length - k; i++) sh2.add(w2.slice(i, i + k).join(' '));
+  let matched = 0, total = Math.max(1, w1.length - k + 1);
+  const hitIdx = new Set();
+  for (let i = 0; i <= w1.length - k; i++) {
+    if (sh2.has(w1.slice(i, i + k).join(' '))) {
+      matched++;
+      for (let j = i; j < i + k; j++) hitIdx.add(j);
+    }
+  }
+  const sim = Math.round((matched / total) * 100);
+  const uniq = Math.max(0, 100 - sim);
+  $('txtPlagScore').textContent = `Уникальность: ${uniq}% · Совпадения: ${sim}%`;
+  const diff = $('txtPlagDiff');
+  diff.hidden = false;
+  diff.innerHTML = w1.map((w, i) => hitIdx.has(i) ? `<mark>${escapeHtml(w)}</mark>` : escapeHtml(w)).join(' ');
+});
+
+// === STORMARCADE (ЗМЕЙКА, БЛОК БЛАСТ, ТЕТРИС, СЛОВА) ===
+let activeGame = 'snake';
+$('arcadeSubtabs').addEventListener('click', e => {
+  const b = e.target.closest('.pill');
+  if (!b) return;
+  activeGame = b.dataset.game;
+  document.querySelectorAll('#arcadeSubtabs .pill').forEach(p => p.classList.toggle('active', p.dataset.game === activeGame));
+  ['snake','blockblast','tetris','words'].forEach(g => $('game-' + g).hidden = activeGame !== g);
+  if (activeGame === 'blockblast' && !$('bbBoard').childElementCount) initBlockBlast();
+});
+
+// 1. SNAKE
+let snakeTimer = null, snakeDir = [1,0], snakeNext = [1,0], snakeBody = [], snakeFood = [10,10], snakePts = 0;
+function startSnake() {
+  clearInterval(snakeTimer);
+  const c = $('snakeCanvas'), ctx = c.getContext('2d'), N = 18, S = 20;
+  snakeBody = [[9,9],[8,9],[7,9]]; snakeDir = [1,0]; snakeNext = [1,0]; snakePts = 0;
+  const best = () => { try { return +localStorage.getItem('storm_snake_best') || 0; } catch { return 0; } };
+  const placeFood = () => { snakeFood = [Math.floor(Math.random()*N), Math.floor(Math.random()*N)]; };
+  placeFood();
+  const draw = () => {
+    ctx.fillStyle = '#070a12'; ctx.fillRect(0,0,c.width,c.height);
+    ctx.fillStyle = '#ff4d6d'; ctx.fillRect(snakeFood[0]*S+3, snakeFood[1]*S+3, S-6, S-6);
+    snakeBody.forEach(([x,y], i) => {
+      ctx.fillStyle = i === 0 ? '#22d3ee' : '#7c5cff';
+      ctx.fillRect(x*S+2, y*S+2, S-4, S-4);
+    });
+    $('snakeScore').textContent = `Счёт: ${snakePts} · Рекорд: ${Math.max(best(), snakePts)}`;
+  };
+  draw();
+  snakeTimer = setInterval(() => {
+    snakeDir = snakeNext;
+    const h = [snakeBody[0][0] + snakeDir[0], snakeBody[0][1] + snakeDir[1]];
+    if (h[0]<0 || h[1]<0 || h[0]>=N || h[1]>=N || snakeBody.some(p => p[0]===h[0] && p[1]===h[1])) {
+      clearInterval(snakeTimer);
+      try { if (snakePts > best()) localStorage.setItem('storm_snake_best', String(snakePts)); } catch {}
+      $('snakeScore').textContent = `Игра окончена! Счёт: ${snakePts} · Рекорд: ${Math.max(best(), snakePts)}`;
+      return;
+    }
+    snakeBody.unshift(h);
+    if (h[0]===snakeFood[0] && h[1]===snakeFood[1]) { snakePts += 10; placeFood(); }
+    else snakeBody.pop();
+    draw();
+  }, 115);
+}
+$('snakeStartBtn').addEventListener('click', startSnake);
+document.querySelectorAll('[data-sdir]').forEach(b => b.addEventListener('click', () => {
+  const [dx,dy] = b.dataset.sdir.split(',').map(Number);
+  if (dx !== -snakeDir[0] || dy !== -snakeDir[1]) snakeNext = [dx,dy];
+}));
+
+// 2. BLOCK BLAST 8x8
+const BB_SHAPES = [
+  [[0,0]], [[0,0],[1,0]], [[0,0],[0,1]], [[0,0],[1,0],[2,0]], [[0,0],[0,1],[0,2]],
+  [[0,0],[1,0],[0,1],[1,1]], [[0,0],[1,0],[2,0],[1,1]], [[0,0],[0,1],[1,1]], [[0,0],[1,0],[1,1],[2,1]]
+];
+const BB_COLS = ['#7c5cff','#22d3ee','#3ddc97','#f59e0b','#ff4d6d','#ec4899'];
+let bbGrid = [], bbTray = [], bbSel = 0, bbPts = 0;
+
+function initBlockBlast() {
+  bbGrid = Array.from({length:8}, () => Array(8).fill(''));
+  bbPts = 0; bbSel = 0;
+  refillBbTray(); renderBlockBlast();
+}
+function refillBbTray() {
+  bbTray = Array.from({length:3}, () => ({
+    cells: BB_SHAPES[Math.floor(Math.random()*BB_SHAPES.length)],
+    col: BB_COLS[Math.floor(Math.random()*BB_COLS.length)]
+  }));
+  bbSel = 0;
+}
+function canPlaceBb(piece, r0, c0) {
+  return piece && piece.cells.every(([dc,dr]) => {
+    const r = r0 + dr, c = c0 + dc;
+    return r >= 0 && c >= 0 && r < 8 && c < 8 && !bbGrid[r][c];
+  });
+}
+function renderBlockBlast() {
+  const board = $('bbBoard'); board.replaceChildren();
+  let best = 0; try { best = +localStorage.getItem('storm_bb_best') || 0; } catch {}
+  $('bbScore').textContent = `Счёт: ${bbPts} · Рекорд: ${Math.max(best, bbPts)}`;
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'bb-cell' + (bbGrid[r][c] ? ' filled' : '');
+      if (bbGrid[r][c]) cell.style.background = bbGrid[r][c];
+      cell.addEventListener('click', () => {
+        const piece = bbTray[bbSel];
+        if (!piece || !canPlaceBb(piece, r, c)) return;
+        piece.cells.forEach(([dc,dr]) => { bbGrid[r+dr][c+dc] = piece.col; });
+        bbPts += piece.cells.length * 5;
+        const fullRows = [], fullCols = [];
+        for (let i = 0; i < 8; i++) {
+          if (bbGrid[i].every(Boolean)) fullRows.push(i);
+          if (bbGrid.every(row => row[i])) fullCols.push(i);
+        }
+        fullRows.forEach(ri => bbGrid[ri].fill(''));
+        fullCols.forEach(ci => bbGrid.forEach(row => row[ci] = ''));
+        bbPts += (fullRows.length + fullCols.length) * 50;
+        try { if (bbPts > best) localStorage.setItem('storm_bb_best', String(bbPts)); } catch {}
+        bbTray[bbSel] = null;
+        if (bbTray.every(x => !x)) refillBbTray();
+        else bbSel = bbTray.findIndex(Boolean);
+        renderBlockBlast();
+      });
+      board.append(cell);
+    }
+  }
+  const tray = $('bbTray'); tray.replaceChildren();
+  bbTray.forEach((p, idx) => {
+    if (!p) return;
+    const maxC = Math.max(...p.cells.map(x => x[0])) + 1;
+    const maxR = Math.max(...p.cells.map(x => x[1])) + 1;
+    const box = document.createElement('div');
+    box.className = 'bb-piece' + (idx === bbSel ? ' sel' : '');
+    box.style.gridTemplateColumns = `repeat(${maxC}, 16px)`;
+    for (let rr = 0; rr < maxR; rr++) {
+      for (let cc = 0; cc < maxC; cc++) {
+        const d = document.createElement('div');
+        d.className = 'bb-mini';
+        const has = p.cells.some(([x,y]) => x===cc && y===rr);
+        d.style.background = has ? p.col : 'transparent';
+        box.append(d);
+      }
+    }
+    box.addEventListener('click', () => { bbSel = idx; renderBlockBlast(); });
+    tray.append(box);
+  });
+}
+$('bbResetBtn').addEventListener('click', initBlockBlast);
+
+// 3. TETRIS
+const TET_SHAPES = [
+  [[1,1,1,1]], [[1,1],[1,1]], [[0,1,0],[1,1,1]], [[1,0,0],[1,1,1]],
+  [[0,0,1],[1,1,1]], [[1,1,0],[0,1,1]], [[0,1,1],[1,1,0]]
+];
+const TET_COLS = ['#22d3ee','#fde047','#a855f7','#3b82f6','#f97316','#3ddc97','#ff4d6d'];
+let tetTimer = null, tetBoard = [], tetCur = null, tetPts = 0, tetLines = 0;
+function tetValid(shape, x, y) {
+  return shape.every((row, r) => row.every((v, c) => !v || (y+r>=0 && y+r<22 && x+c>=0 && x+c<12 && !tetBoard[y+r][x+c])));
+}
+function drawTetris() {
+  const c = $('tetCanvas'), ctx = c.getContext('2d'), S = 20;
+  ctx.fillStyle = '#070a12'; ctx.fillRect(0,0,c.width,c.height);
+  tetBoard.forEach((row, r) => row.forEach((col, colIdx) => {
+    if (col) { ctx.fillStyle = col; ctx.fillRect(colIdx*S+1, r*S+1, S-2, S-2); }
+  }));
+  if (tetCur) {
+    ctx.fillStyle = tetCur.col;
+    tetCur.sh.forEach((row, r) => row.forEach((v, colIdx) => {
+      if (v) ctx.fillRect((tetCur.x+colIdx)*S+1, (tetCur.y+r)*S+1, S-2, S-2);
+    }));
+  }
+  $('tetScore').textContent = `Счёт: ${tetPts} · Линии: ${tetLines}`;
+}
+function spawnTet() {
+  const i = Math.floor(Math.random()*TET_SHAPES.length);
+  tetCur = { sh: TET_SHAPES[i].map(r => r.slice()), col: TET_COLS[i], x: 4, y: 0 };
+  if (!tetValid(tetCur.sh, tetCur.x, tetCur.y)) {
+    clearInterval(tetTimer);
+    $('tetScore').textContent = `Игра окончена! Счёт: ${tetPts} · Линии: ${tetLines}`;
+  }
+}
+function stepTet(dx = 0, dy = 1) {
+  if (!tetCur) return;
+  if (tetValid(tetCur.sh, tetCur.x + dx, tetCur.y + dy)) { tetCur.x += dx; tetCur.y += dy; }
+  else if (dy === 1) {
+    tetCur.sh.forEach((row, r) => row.forEach((v, c) => { if (v && tetCur.y+r>=0) tetBoard[tetCur.y+r][tetCur.x+c] = tetCur.col; }));
+    for (let r = 21; r >= 0; r--) {
+      if (tetBoard[r].every(Boolean)) { tetBoard.splice(r, 1); tetBoard.unshift(Array(12).fill('')); tetLines++; tetPts += 100; r++; }
+    }
+    spawnTet();
+  }
+  drawTetris();
+}
+function rotTet() {
+  if (!tetCur) return;
+  const rSh = tetCur.sh[0].map((_, i) => tetCur.sh.map(row => row[i]).reverse());
+  if (tetValid(rSh, tetCur.x, tetCur.y)) { tetCur.sh = rSh; drawTetris(); }
+}
+function startTetris() {
+  clearInterval(tetTimer);
+  tetBoard = Array.from({length:22}, () => Array(12).fill(''));
+  tetPts = 0; tetLines = 0;
+  spawnTet(); drawTetris();
+  tetTimer = setInterval(() => stepTet(0, 1), 360);
+}
+$('tetStartBtn').addEventListener('click', startTetris);
+$('tetLeft').addEventListener('click', () => stepTet(-1, 0));
+$('tetRight').addEventListener('click', () => stepTet(1, 0));
+$('tetDown').addEventListener('click', () => stepTet(0, 1));
+$('tetRot').addEventListener('click', rotTet);
+
+// Keyboard support for Snake & Tetris when inside Arcade
+document.addEventListener('keydown', e => {
+  if (state.section !== 'arcade') return;
+  if (activeGame === 'snake') {
+    const map = { ArrowUp:[0,-1], KeyW:[0,-1], ArrowDown:[0,1], KeyS:[0,1], ArrowLeft:[-1,0], KeyA:[-1,0], ArrowRight:[1,0], KeyD:[1,0] };
+    if (map[e.code]) { e.preventDefault(); const [dx,dy]=map[e.code]; if (dx!==-snakeDir[0]||dy!==-snakeDir[1]) snakeNext=[dx,dy]; }
+  } else if (activeGame === 'tetris') {
+    if (e.code === 'ArrowLeft') { e.preventDefault(); stepTet(-1, 0); }
+    else if (e.code === 'ArrowRight') { e.preventDefault(); stepTet(1, 0); }
+    else if (e.code === 'ArrowDown') { e.preventDefault(); stepTet(0, 1); }
+    else if (e.code === 'ArrowUp' || e.code === 'Space') { e.preventDefault(); rotTet(); }
+  }
+});
+
+// 4. WORD SPRINT (Слова)
+const WORD_POOL = ['алгоритм','компилятор','нейросеть','переменная','матрица','функции','терминал','интерфейс','сервер','облако','код','шторм','синтаксис','массив','рекурсия','модуль','данные','проект','система','логика','цикл','класс','объект','поток','память','скорость','вектор','график','архив','туннель','шифрование','база','индекс','погода','космос'];
+let wordTimer = null, wordSec = 60, wordPts = 0, curWord = 'STORM';
+function nextWord() { curWord = WORD_POOL[Math.floor(Math.random()*WORD_POOL.length)]; $('wordTarget').textContent = curWord; }
+$('wordStartBtn').addEventListener('click', () => {
+  clearInterval(wordTimer);
+  wordSec = 60; wordPts = 0;
+  $('wordInput').disabled = false; $('wordInput').value = ''; $('wordInput').placeholder = 'Печатай слово…'; $('wordInput').focus();
+  nextWord();
+  const best = () => { try { return +localStorage.getItem('storm_word_best') || 0; } catch { return 0; } };
+  const upd = () => $('wordHud').textContent = `Счёт: ${wordPts} · Время: ${wordSec}с · Рекорд: ${Math.max(best(), wordPts)}`;
+  upd();
+  wordTimer = setInterval(() => {
+    wordSec--;
+    upd();
+    if (wordSec <= 0) {
+      clearInterval(wordTimer);
+      $('wordInput').disabled = true;
+      try { if (wordPts > best()) localStorage.setItem('storm_word_best', String(wordPts)); } catch {}
+      $('wordTarget').textContent = `Финиш! ${wordPts} слов`;
+    }
+  }, 1000);
+});
+$('wordInput').addEventListener('input', () => {
+  if ($('wordInput').value.trim().toLowerCase() === curWord.toLowerCase()) {
+    wordPts++;
+    $('wordInput').value = '';
+    nextWord();
+  }
+});
+
+loadThemePrefs();
 
 // Init
 const initialHash = location.hash.replace('#', '');
