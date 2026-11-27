@@ -2440,6 +2440,33 @@ body.light-mode .side-item.active{color:#0f172a}
 body.light-mode .search-box input{background:#f1f5f9 !important;color:#0f172a !important;border-color:#cbd5e1 !important}
 body.light-mode .side-toggle-btn{background:#f1f5f9 !important;color:#0f172a !important;border-color:#cbd5e1 !important}
 
+
+/* === KARATEL VOICE CAST STUDIO === */
+.kr-v-modal{position:fixed;inset:0;z-index:120;background:rgba(4,6,12,.76);backdrop-filter:blur(10px);display:grid;place-items:center;padding:14px}
+.kr-v-modal[hidden]{display:none!important}
+.kr-v-card{width:min(740px,100%);max-height:86dvh;overflow-y:auto;background:rgba(14,18,30,.96);border:1px solid rgba(124,92,255,.45);border-radius:18px;padding:16px 18px;box-shadow:0 24px 64px rgba(0,0,0,.7);display:flex;flex-direction:column;gap:10px;color:#eef2ff;font:13.5px var(--sans)}
+.kr-v-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px}
+.kr-v-head b{font:700 16px var(--display)}
+.kr-v-head button,.kr-v-test{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:9px;padding:5px 10px;cursor:pointer;font-size:12.5px}
+.kr-v-head button:hover,.kr-v-test:hover{border-color:#22d3ee;background:rgba(34,211,238,.18)}
+.kr-v-stat{font:12.5px var(--mono);color:#93c5fd;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.25);border-radius:10px;padding:8px 11px;line-height:1.45}
+.kr-v-mode-row label{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:#cbd5e1}
+.kr-v-mode-row select,.kr-v-apibox input,.kr-v-sel,.kr-v-api{background:#090d17;color:#eef2ff;border:1px solid rgba(148,163,184,.25);border-radius:9px;padding:6px 9px;font:12.5px var(--sans)}
+.kr-v-apibox{display:flex;flex-wrap:wrap;gap:7px}
+.kr-v-apibox input{flex:1;min-width:150px}
+.kr-v-list{display:flex;flex-direction:column;gap:7px}
+.kr-v-row{display:grid;grid-template-columns:122px minmax(140px,1fr) 118px 118px 36px;gap:8px;align-items:center;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.kr-v-who b{display:block;font-size:13px}
+.kr-v-who small{display:block;font-size:11px;color:#94a3b8}
+.kr-v-sl{display:flex;align-items:center;gap:4px;font:11.5px var(--mono);color:#cbd5e1}
+.kr-v-sl input{width:54px;accent-color:#7c5cff}
+.kr-v-sl span{min-width:28px;text-align:right;color:#22d3ee}
+@media (max-width:720px){
+  .kr-v-row{grid-template-columns:1fr 1fr;gap:6px}
+  .kr-v-who{grid-column:1/-1}
+  .kr-v-sel,.kr-v-api{grid-column:1/-1}
+}
+
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -2566,13 +2593,13 @@ body.light-mode .side-toggle-btn{background:#f1f5f9 !important;color:#0f172a !im
       <h2 id="bannerTitle">Раздел IT</h2>
       <p id="bannerDesc">Инструменты для разработки, компиляции кода и повседневных задач программиста.</p>
     </div>
-    <div class="it-bar-left"><button class="btn-primary" id="bannerBackIdeBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>⚡ Вернуться в Stormcode + ИИ</button><button class="btn-secondary" id="bannerItToolsBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>🧰 Утилиты</button><button class="btn-secondary" id="bannerItLabBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>🧪 Наука и Лаборатория</button><button class="btn-secondary" id="backHomeBtn" type="button">← На главную</button></div>
+    <div class="it-bar-left"><button class="btn-primary" id="bannerBackIdeBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>⚡ Вернуться в Stormcode + ИИ</button><button class="btn-secondary" id="bannerItToolsBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>🧰 Утилиты</button><button class="btn-secondary" id="bannerItDrawBtn" type="button" style="padding:8px 14px;font-size:13px" hidden>📐 Чертежи ГОСТ</button><button class="btn-secondary" id="backHomeBtn" type="button">← На главную</button></div>
   </section>
 
   <!-- Отдельный раздел «Штормовая» (полноэкранный ИИ-чат) -->
   
   <!-- Раздел «Рабочее пространство» (StormWorkspace — модульные связанные виджеты) -->
-  <section class="ws-wrap" id="workspaceSection" hidden aria-label="Рабочее пространство — конструктор проектов из виджетов">
+  <section class="ws-wrap" id="workspaceSection" hidden aria-label="StormLab — настраиваемое рабочее пространство под себя">
     <div class="ws-topbar">
       <div class="ws-proj-row" id="wsProjTabs" role="tablist" aria-label="Проекты"></div>
       <div class="lab-controls">
@@ -3862,7 +3889,8 @@ GTA 5
     <div class="modal-body" style="display:flex;flex-direction:column;gap:10px">
       <p style="margin:0;color:var(--dim);font-size:13.5px">Быстрая карта всех возможностей сайта — нажми на любой раздел, чтобы сразу туда перейти:</p>
       <div class="ai-files" id="guideList">
-        <div class="ai-file-chip"><span><b>💻 IT</b> — компилятор Stormcode, ИИ-кодер, утилиты, антиплагиат</span><button type="button" data-gsec="it">Открыть</button></div>
+        <div class="ai-file-chip"><span><b>🧪 StormLab</b> — настраиваемое рабочее пространство с виджетами в 1 клик</span><button type="button" data-gsec="workspace">Открыть</button></div>
+        <div class="ai-file-chip"><span><b>💻 IT</b> — Stormcode + ИИ-кодер, Чертежи ГОСТ, Блок-схемы, PDF/Фото, Отчёт ГОСТ, Diff, Сниппеты</span><button type="button" data-gsec="it">Открыть</button></div>
         <div class="ai-file-chip"><span><b>🧠 Шторм AI</b> — чат с ИИ, поиск в интернете, голос, создание файлов</span><button type="button" data-gsec="stormai">Открыть</button></div>
         <div class="ai-file-chip"><span><b>🌦️ Погода</b> — прогноз, качество воздуха, магнитные бури</span><button type="button" data-gsec="weather">Открыть</button></div>
         <div class="ai-file-chip"><span><b>📅 Календарь</b> — рабочие дни и праздники РФ, нормы часов</span><button type="button" data-gsec="calendar">Открыть</button></div>
@@ -5431,9 +5459,9 @@ function render() {
 
   $('bannerBackIdeBtn').hidden = !isItNonIde;
   $('bannerItToolsBtn').hidden = !(state.section === 'it' && state.itMode === 'catalog');
-  $('bannerItLabBtn').hidden = !(state.section === 'it' && state.itMode === 'tools');
+  $('bannerItDrawBtn').hidden = !(state.section === 'it' && state.itMode === 'tools');
   if (!isHome) {
-    $('bannerTitle').textContent = isTools ? '🧰 IT · StormTools (Утилиты)' : isFlow ? '🔀 IT · Блок-схемы' : isDraw ? '📐 IT · Чертежи ГОСТ' : isMath ? '∑ IT · StormMath' : (state.section === 'it' ? '🧪 IT · Наука и лаборатория' : `${sec.icon} Раздел «${sec.name}»`);
+    $('bannerTitle').textContent = isTools ? '🧰 IT · StormTools (Утилиты)' : isFlow ? '🔀 IT · Блок-схемы' : isDraw ? '📐 IT · Чертежи ГОСТ' : isMath ? '∑ IT · StormMath' : (state.section === 'it' ? '💻 Раздел IT' : `${sec.icon} Раздел «${sec.name}»`);
     $('bannerDesc').textContent = sec.desc;
     $('catalogTitle').textContent = state.section === 'it' ? 'Инструменты и лаборатория IT' : `Сервисы раздела «${sec.name}»`;
   } else {
@@ -7761,7 +7789,7 @@ $('dailyNotes').addEventListener('input', () => {
 $('itTabTools').addEventListener('click', () => { state.itMode = 'tools'; setSection('it'); });
 $('bannerBackIdeBtn').addEventListener('click', () => { state.itMode = 'ide'; setSection('it'); });
 $('bannerItToolsBtn').addEventListener('click', () => { state.itMode = 'tools'; setSection('it'); });
-$('bannerItLabBtn').addEventListener('click', () => { state.itMode = 'catalog'; setSection('it'); });
+$('bannerItDrawBtn').addEventListener('click', () => { state.itMode = 'draw'; setSection('it'); });
 $('coderSettingsToggle').addEventListener('click', () => { $('coderSettings').hidden = !$('coderSettings').hidden; });
 
 async function connectCoderLmStudio() {
@@ -13120,69 +13148,212 @@ renderQuickHub();
   const hash = n => { const x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); };
 
   const SPEAKER_COLORS = { M: '#7fd8ff', E: '#f6c453', F: '#ff9f5a', I: '#f5d061', G: '#ff6b6b', O: '#cbd5e1' };
+  const VOICE_ROLES = [
+    { key: '',  label: 'Рассказчик', hint: 'спокойный киношный', sample: 'Ночь опустилась на столицу, и тени сомкнулись вокруг кузницы.' },
+    { key: 'M', label: 'Маркус',     hint: 'уверенный герой',    sample: 'Я не отступлю. Мы доведём это дело до конца.' },
+    { key: 'E', label: 'Эриан',      hint: 'живой, молодой',     sample: 'Маркус, ты серьёзно собрался идти туда прямо сейчас?' },
+    { key: 'F', label: 'Отец',       hint: 'низкий, суровый',    sample: 'Сталь помнит каждый удар молота. Не забывай, кто ты.' },
+    { key: 'I', label: 'Император',  hint: 'глубокий, властный', sample: 'Империя не просит верности. Она её требует.' },
+    { key: 'G', label: 'Генерал',    hint: 'резкий, командный',  sample: 'Всем подразделениям занять позиции! Огонь по готовности!' },
+    { key: 'O', label: 'Мастер',     hint: 'рабочий, ровный',    sample: 'Сплав готов. Осталось закалить клинок и проверить баланс.' }
+  ];
   const VOICE_PROFILES = {
-    '': { pitch: 0.90, rate: 0.96, slot: 0, pref: 'narr'  }, // Рассказчик — спокойный киношный
-    M:  { pitch: 1.00, rate: 1.05, slot: 1, pref: 'male'  }, // Маркус — уверенный, собранный
-    E:  { pitch: 1.22, rate: 1.09, slot: 2, pref: 'young' }, // Эриан — более высокий, живой
-    F:  { pitch: 0.72, rate: 0.88, slot: 3, pref: 'deep'  }, // Отец — низкий, хрипловатый
-    I:  { pitch: 0.64, rate: 0.83, slot: 4, pref: 'deep'  }, // Император — глубокий, властный
-    G:  { pitch: 0.80, rate: 1.12, slot: 5, pref: 'deep'  }, // Генерал — резкий, командный
-    O:  { pitch: 1.08, rate: 0.98, slot: 6, pref: 'male'  }  // Мастер — нейтральный рабочий
+    '': { pitch: 0.94, rate: 0.96, slot: 0, pref: 'narr',  apiVoice: 'onyx'  }, // Рассказчик — ровный, киношный
+    M:  { pitch: 1.00, rate: 1.02, slot: 1, pref: 'male',  apiVoice: 'echo'  }, // Маркус — уверенный
+    E:  { pitch: 1.12, rate: 1.05, slot: 2, pref: 'young', apiVoice: 'nova'  }, // Эриан — живой, чуть выше
+    F:  { pitch: 0.84, rate: 0.91, slot: 3, pref: 'deep',  apiVoice: 'fable' }, // Отец — ниже, спокойный
+    I:  { pitch: 0.78, rate: 0.87, slot: 4, pref: 'deep',  apiVoice: 'ash'   }, // Император — глубокий, весомый
+    G:  { pitch: 0.88, rate: 1.07, slot: 5, pref: 'deep',  apiVoice: 'alloy' }, // Генерал — чёткий, командный
+    O:  { pitch: 1.04, rate: 0.98, slot: 6, pref: 'male',  apiVoice: 'sage'  }  // Мастер — нейтральный
   };
+  const KR_VOICE_STORE = 'storm_kr_voices_v3';
+  let krVoiceCfg = { mode: 'browser', apiUrl: 'http://localhost:8880/v1/audio/speech', apiKey: '', apiModel: 'tts-1', roles: {} };
+  try {
+    const saved = JSON.parse(localStorage.getItem(KR_VOICE_STORE) || 'null');
+    if (saved && typeof saved === 'object') {
+      krVoiceCfg = { ...krVoiceCfg, ...saved, roles: { ...(saved.roles || {}) } };
+    }
+  } catch {}
+  function saveKrVoiceCfg() {
+    try { localStorage.setItem(KR_VOICE_STORE, JSON.stringify(krVoiceCfg)); } catch {}
+  }
 
-  // ---------- озвучка (Web Speech API, разные голоса для персонажей) ----------
+  // ---------- продвинутая многоголосая озвучка (Neural / OS Voices + просодия + TTS API) ----------
+  let krAudioEl = null, krAudioUrl = '', krChunkTimer = 0, krKeepAlive = 0, krAbort = null;
+  function scoreRuVoice(v) {
+    const n = (v.name || '').toLowerCase();
+    let sc = 0;
+    if (/online|natural|neural|wavenet|studio/i.test(n)) sc += 60;
+    if (/dmitry|svetlana|dariya|pavel|yuri|maxim|irina|milena|katya|elena|anna|tatiana/i.test(n)) sc += 25;
+    if (/microsoft|apple|yandex|rhvoice|silero/i.test(n)) sc += 15;
+    // Google русский в Chrome часто игнорирует pitch — ставим ниже локальных/нейро-голосов, если есть выбор
+    if (/google русский/i.test(n)) sc -= 12;
+    if (v.localService) sc += 5;
+    return sc;
+  }
   function refreshVoices() {
     if (!window.speechSynthesis) return;
     const all = speechSynthesis.getVoices() || [];
-    ruVoices = all.filter(v => /^ru/i.test(v.lang));
+    ruVoices = all
+      .filter(v => /^ru/i.test(v.lang) || /russian|русск/i.test(v.name || ''))
+      .sort((a, b) => scoreRuVoice(b) - scoreRuVoice(a));
+    if (typeof renderKrVoiceCast === 'function' && $id('krVoiceModal') && !$id('krVoiceModal').hidden) {
+      renderKrVoiceCast();
+    }
   }
   if (window.speechSynthesis) {
     refreshVoices();
     speechSynthesis.onvoiceschanged = refreshVoices;
+    setTimeout(refreshVoices, 400);
+    setTimeout(refreshVoices, 1500);
+  }
+  function getRoleConf(whoKey) {
+    const k = whoKey || '';
+    const base = VOICE_PROFILES[k] || VOICE_PROFILES[''];
+    const custom = (krVoiceCfg.roles && krVoiceCfg.roles[k]) || {};
+    return {
+      voiceName: custom.voiceName || '',
+      pitch: Number.isFinite(+custom.pitch) ? +custom.pitch : base.pitch,
+      rate:  Number.isFinite(+custom.rate)  ? +custom.rate  : base.rate,
+      apiVoice: custom.apiVoice || base.apiVoice,
+      pref: base.pref,
+      slot: base.slot
+    };
   }
   function pickVoice(whoKey) {
     if (!ruVoices.length) refreshVoices();
     if (!ruVoices.length) return null;
-    const prof = VOICE_PROFILES[whoKey || ''] || VOICE_PROFILES[''];
-    const byName = rx => ruVoices.find(v => rx.test(v.name));
-    if (ruVoices.length >= 3) {
-      // Распределяем разные доступные голоса системы по ролям
-      if (prof.pref === 'deep') return byName(/dmitry|pavel|yuri|maxim|aleks/i) || ruVoices[prof.slot % ruVoices.length];
-      if (prof.pref === 'young') return byName(/irina|svetlana|milena|katya|elena|anna/i) || ruVoices[prof.slot % ruVoices.length];
-      return ruVoices[prof.slot % ruVoices.length];
+    const conf = getRoleConf(whoKey);
+    if (conf.voiceName) {
+      const exact = ruVoices.find(v => v.name === conf.voiceName);
+      if (exact) return exact;
     }
-    if (ruVoices.length === 2) {
-      return (prof.pref === 'young' || whoKey === 'E' || whoKey === '') ? ruVoices[1] : ruVoices[0];
+    const maleRx = /dmitry|pavel|yuri|maxim|aleks|sergey|boris|igor|artem|evgeny|male|муж/i;
+    const femRx  = /svetlana|dariya|irina|milena|katya|elena|anna|tatiana|alyona|female|жен/i;
+    const males = ruVoices.filter(v => maleRx.test(v.name));
+    const fems  = ruVoices.filter(v => femRx.test(v.name));
+    if (conf.pref === 'young' && fems.length) return fems[conf.slot % fems.length];
+    if ((conf.pref === 'deep' || conf.pref === 'male') && males.length) return males[conf.slot % males.length];
+    if (conf.pref === 'narr' && males.length) return males[0];
+    return ruVoices[conf.slot % ruVoices.length];
+  }
+  function splitExpressiveChunks(text) {
+    const clean = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!clean) return [];
+    const parts = clean.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [clean];
+    const out = [];
+    for (const raw of parts) {
+      const s = raw.trim();
+      if (!s) continue;
+      if (s.length <= 155) { out.push(s); continue; }
+      const sub = s.split(/(?<=,|;|:)\s+/);
+      let buf = '';
+      for (const piece of sub) {
+        if ((buf + ' ' + piece).trim().length > 145 && buf) { out.push(buf.trim()); buf = piece; }
+        else buf = (buf ? buf + ' ' : '') + piece;
+      }
+      if (buf.trim()) out.push(buf.trim());
     }
-    return ruVoices[0];
+    return out;
   }
   function stopSpeech() {
     speechSeq++;
     isSpeaking = false;
+    clearTimeout(krChunkTimer); krChunkTimer = 0;
+    clearInterval(krKeepAlive); krKeepAlive = 0;
+    if (krAbort) { try { krAbort.abort(); } catch {} krAbort = null; }
+    if (krAudioEl) { try { krAudioEl.pause(); krAudioEl.src = ''; } catch {} }
+    if (krAudioUrl) { try { URL.revokeObjectURL(krAudioUrl); } catch {} krAudioUrl = ''; }
     const eq = $id('krEq');
     if (eq) eq.hidden = true;
     try { window.speechSynthesis && speechSynthesis.cancel(); } catch {}
     updateAudioDuck();
   }
-  function speakBeat(b) {
-    stopSpeech();
-    speakEndedAt = 0;
-    if (!voiceOn || !window.speechSynthesis || !root || root.hidden) return;
-    const raw = b.card
-      ? (b.end ? b.text : `Глава ${b.c + 1}. ${b.text}`)
-      : b.text.replace(/^—\s*/, '').replace(/\s*—\s*/g, ', ');
-    if (!raw.trim()) return;
-    const mySeq = speechSeq;
+  function speakBrowserText(raw, whoKey, mySeq, isTest) {
+    if (!window.speechSynthesis) return;
+    if (!ruVoices.length) refreshVoices();
+    const conf = getRoleConf(whoKey);
+    const v = pickVoice(whoKey);
+    const chunks = splitExpressiveChunks(raw);
+    if (!chunks.length) return;
+    let idx = 0;
+    const finishAll = () => {
+      if (mySeq !== speechSeq) return;
+      clearInterval(krKeepAlive); krKeepAlive = 0;
+      isSpeaking = false;
+      if (!isTest) speakEndedAt = bt;
+      const eq = $id('krEq'); if (eq) eq.hidden = true;
+      updateAudioDuck();
+    };
+    const nextChunk = () => {
+      if (mySeq !== speechSeq) return;
+      if (idx >= chunks.length) { finishAll(); return; }
+      const seg = chunks[idx++];
+      let pitchMod = 0, rateMod = 1;
+      if (/!/.test(seg)) { pitchMod += 0.05; rateMod *= 1.04; }
+      else if (/\?/.test(seg)) { pitchMod += 0.06; rateMod *= 1.01; }
+      else if (/…|\.\.\./.test(seg)) { pitchMod -= 0.04; rateMod *= 0.93; }
+      try {
+        const utt = new SpeechSynthesisUtterance(seg);
+        utt.lang = (v && v.lang) || 'ru-RU';
+        if (v) utt.voice = v;
+        utt.pitch = Math.min(1.26, Math.max(0.72, conf.pitch + pitchMod));
+        utt.rate = Math.min(1.45, Math.max(0.78, conf.rate * rateMod * (isTest ? 1 : speedMult)));
+        utt.volume = 1;
+        utt.onstart = () => {
+          if (mySeq !== speechSeq) return;
+          isSpeaking = true;
+          const eq = $id('krEq'); if (eq) eq.hidden = false;
+          updateAudioDuck();
+        };
+        const onChunkEnd = () => {
+          if (mySeq !== speechSeq) return;
+          if (idx < chunks.length) {
+            krChunkTimer = setTimeout(nextChunk, /…|\.\.\./.test(seg) ? 290 : 175);
+          } else {
+            finishAll();
+          }
+        };
+        utt.onend = onChunkEnd;
+        utt.onerror = onChunkEnd;
+        speechSynthesis.speak(utt);
+      } catch {
+        finishAll();
+      }
+    };
+    // Fix Chrome 15-sec speechSynthesis pause bug
+    krKeepAlive = setInterval(() => {
+      if (mySeq !== speechSeq) { clearInterval(krKeepAlive); return; }
+      try { if (speechSynthesis.speaking && !speechSynthesis.paused) { speechSynthesis.pause(); speechSynthesis.resume(); } } catch {}
+    }, 10000);
+    nextChunk();
+  }
+  async function speakApiText(raw, whoKey, mySeq, isTest) {
+    const conf = getRoleConf(whoKey);
+    const url = (krVoiceCfg.apiUrl || '').trim();
+    if (!url) { speakBrowserText(raw, whoKey, mySeq, isTest); return; }
     try {
-      const utt = new SpeechSynthesisUtterance(raw);
-      utt.lang = 'ru-RU';
-      const prof = VOICE_PROFILES[b.who || ''] || VOICE_PROFILES[''];
-      const v = pickVoice(b.who || '');
-      if (v) utt.voice = v;
-      utt.pitch = prof.pitch;
-      utt.rate = Math.min(1.5, Math.max(0.75, prof.rate * speedMult));
-      utt.volume = 1;
-      utt.onstart = () => {
+      krAbort = new AbortController();
+      const headers = { 'Content-Type': 'application/json' };
+      if ((krVoiceCfg.apiKey || '').trim()) headers['Authorization'] = 'Bearer ' + krVoiceCfg.apiKey.trim();
+      const res = await fetch(url, {
+        method: 'POST',
+        headers,
+        signal: krAbort.signal,
+        body: JSON.stringify({
+          model: (krVoiceCfg.apiModel || 'tts-1').trim(),
+          input: raw,
+          voice: conf.apiVoice || 'onyx',
+          speed: Math.min(1.5, Math.max(0.75, conf.rate * (isTest ? 1 : speedMult)))
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const blob = await res.blob();
+      if (mySeq !== speechSeq) return;
+      krAudioUrl = URL.createObjectURL(blob);
+      if (!krAudioEl) krAudioEl = new Audio();
+      krAudioEl.src = krAudioUrl;
+      krAudioEl.onplay = () => {
         if (mySeq !== speechSeq) return;
         isSpeaking = true;
         const eq = $id('krEq'); if (eq) eq.hidden = false;
@@ -13191,14 +13362,139 @@ renderQuickHub();
       const done = () => {
         if (mySeq !== speechSeq) return;
         isSpeaking = false;
-        speakEndedAt = bt;
+        if (!isTest) speakEndedAt = bt;
         const eq = $id('krEq'); if (eq) eq.hidden = true;
         updateAudioDuck();
       };
-      utt.onend = done;
-      utt.onerror = done;
-      speechSynthesis.speak(utt);
-    } catch {}
+      krAudioEl.onended = done;
+      krAudioEl.onerror = () => { if (mySeq === speechSeq) speakBrowserText(raw, whoKey, mySeq, isTest); };
+      await krAudioEl.play();
+    } catch {
+      if (mySeq === speechSeq) speakBrowserText(raw, whoKey, mySeq, isTest);
+    }
+  }
+  function speakTestRole(whoKey) {
+    stopSpeech();
+    const mySeq = speechSeq;
+    const role = VOICE_ROLES.find(r => r.key === (whoKey || '')) || VOICE_ROLES[0];
+    if (krVoiceCfg.mode === 'api') speakApiText(role.sample, whoKey, mySeq, true);
+    else speakBrowserText(role.sample, whoKey, mySeq, true);
+  }
+  let krPreloadEl = null;
+  function speakMp3OrFallback(idx, raw, whoKey, mySeq) {
+    const file = 'audio/karatel/b' + String(idx).padStart(3, '0') + '.mp3';
+    if (!krAudioEl) krAudioEl = new Audio();
+    let fellBack = false;
+    const fallback = () => {
+      if (fellBack || mySeq !== speechSeq) return;
+      fellBack = true;
+      speakBrowserText(raw, whoKey, mySeq, false);
+    };
+    krAudioEl.onplay = () => {
+      if (mySeq !== speechSeq) return;
+      isSpeaking = true;
+      const eq = $id('krEq'); if (eq) eq.hidden = false;
+      updateAudioDuck();
+      if (idx + 1 < beats.length) {
+        if (!krPreloadEl) krPreloadEl = new Audio();
+        krPreloadEl.preload = 'auto';
+        krPreloadEl.src = 'audio/karatel/b' + String(idx + 1).padStart(3, '0') + '.mp3';
+      }
+    };
+    krAudioEl.onended = () => {
+      if (mySeq !== speechSeq) return;
+      isSpeaking = false;
+      speakEndedAt = bt;
+      const eq = $id('krEq'); if (eq) eq.hidden = true;
+      updateAudioDuck();
+    };
+    krAudioEl.onerror = fallback;
+    try {
+      krAudioEl.src = file;
+      krAudioEl.playbackRate = Math.min(1.6, Math.max(0.75, speedMult));
+      const p = krAudioEl.play();
+      if (p && typeof p.catch === 'function') p.catch(fallback);
+    } catch {
+      fallback();
+    }
+  }
+  function speakBeat(b) {
+    stopSpeech();
+    speakEndedAt = 0;
+    if (!voiceOn || !root || root.hidden) return;
+    const raw = b.card
+      ? (b.end ? b.text : `Глава ${b.c + 1}. ${b.text}`)
+      : b.text.replace(/^—\s*/, '').replace(/\s*—\s*/g, ', ');
+    if (!raw.trim()) return;
+    const mySeq = speechSeq;
+    if (krVoiceCfg.mode === 'mp3') speakMp3OrFallback(i, raw, b.who || '', mySeq);
+    else if (krVoiceCfg.mode === 'api') speakApiText(raw, b.who || '', mySeq, false);
+    else speakBrowserText(raw, b.who || '', mySeq, false);
+  }
+
+  function renderKrVoiceCast() {
+    const body = $id('krVoiceCastBody');
+    if (!body) return;
+    refreshVoices();
+    const stat = $id('krVoiceStat');
+    if (stat) {
+      stat.textContent = ruVoices.length >= 2
+        ? `Найдено русских голосов: ${ruVoices.length} · назначены по ролям`
+        : ruVoices.length === 1
+          ? `В браузере только 1 русский голос (${ruVoices[0].name}) — персонажи различаются тоном и темпом. Для разных нейро-голосов открой сайт в Microsoft Edge или подключи TTS API ниже.`
+          : 'Русские системные голоса не найдены — подключи TTS API ниже или открой в Edge/Chrome.';
+    }
+    const modeSel = $id('krTtsMode');
+    if (modeSel) modeSel.value = krVoiceCfg.mode;
+    const apiBox = $id('krTtsApiBox');
+    if (apiBox) apiBox.hidden = krVoiceCfg.mode !== 'api';
+    if ($id('krTtsApiUrl')) $id('krTtsApiUrl').value = krVoiceCfg.apiUrl || '';
+    if ($id('krTtsApiKey')) $id('krTtsApiKey').value = krVoiceCfg.apiKey || '';
+    if ($id('krTtsApiModel')) $id('krTtsApiModel').value = krVoiceCfg.apiModel || 'tts-1';
+
+    body.replaceChildren();
+    VOICE_ROLES.forEach(role => {
+      const conf = getRoleConf(role.key);
+      const row = document.createElement('div');
+      row.className = 'kr-v-row';
+      const opts = ['<option value="">Авто (' + (pickVoice(role.key)?.name?.slice(0, 28) || 'системный') + ')</option>']
+        .concat(ruVoices.map(v => `<option value="${v.name.replace(/"/g, '&quot;')}"${conf.voiceName === v.name ? ' selected' : ''}>${v.name}</option>`))
+        .join('');
+      row.innerHTML = `
+        <div class="kr-v-who"><b style="color:${SPEAKER_COLORS[role.key] || '#e2e8f0'}">${role.label}</b><small>${role.hint}</small></div>
+        <select class="kr-v-sel" data-rk="${role.key}" ${krVoiceCfg.mode === 'api' ? 'hidden' : ''}>${opts}</select>
+        <input class="kr-v-api" data-rk="${role.key}" type="text" value="${conf.apiVoice}" placeholder="voice id (onyx, ru-RU-DmitryNeural)" ${krVoiceCfg.mode === 'api' ? '' : 'hidden'}>
+        <label class="kr-v-sl">Тон <input type="range" min="0.5" max="1.5" step="0.02" value="${conf.pitch}" data-rk="${role.key}" data-prop="pitch"><span>${conf.pitch.toFixed(2)}</span></label>
+        <label class="kr-v-sl">Темп <input type="range" min="0.75" max="1.35" step="0.02" value="${conf.rate}" data-rk="${role.key}" data-prop="rate"><span>${conf.rate.toFixed(2)}</span></label>
+        <button type="button" class="kr-v-test" data-test="${role.key}">▶</button>
+      `;
+      body.append(row);
+    });
+    body.querySelectorAll('.kr-v-sel').forEach(sel => {
+      sel.onchange = () => {
+        const k = sel.dataset.rk;
+        krVoiceCfg.roles[k] = { ...(krVoiceCfg.roles[k] || {}), voiceName: sel.value };
+        saveKrVoiceCfg();
+      };
+    });
+    body.querySelectorAll('.kr-v-api').forEach(inp => {
+      inp.onchange = () => {
+        const k = inp.dataset.rk;
+        krVoiceCfg.roles[k] = { ...(krVoiceCfg.roles[k] || {}), apiVoice: inp.value.trim() };
+        saveKrVoiceCfg();
+      };
+    });
+    body.querySelectorAll('input[type="range"]').forEach(rng => {
+      rng.oninput = () => {
+        const k = rng.dataset.rk, p = rng.dataset.prop;
+        rng.nextElementSibling.textContent = (+rng.value).toFixed(2);
+        krVoiceCfg.roles[k] = { ...(krVoiceCfg.roles[k] || {}), [p]: +rng.value };
+        saveKrVoiceCfg();
+      };
+    });
+    body.querySelectorAll('.kr-v-test').forEach(btn => {
+      btn.onclick = () => speakTestRole(btn.dataset.test);
+    });
   }
 
   // ---------- кисти и эффекты ----------
@@ -14236,6 +14532,7 @@ renderQuickHub();
   <button id="krAuto" type="button" class="on">⏸ Пауза</button>
   <button id="krSpeed" type="button" title="Скорость кино и речи">1×</button>
   <button id="krVoice" type="button" class="on" title="Многоголосая озвучка повествования и диалогов (V)">🗣️ Озвучка</button>
+  <button id="krVoiceCastBtn" type="button" title="Настройка голосов персонажей и TTS API">🎭 Голоса</button>
   <button id="krSound" type="button" class="on" title="Музыка и звуки окружения">🔊 Звуки</button>
   <button id="krCinemaBtn" type="button" class="on" title="Кино-полосы и автоскрытие панели (C)">🎞 Кино</button>
   <button id="krFs" type="button" title="Полноэкранный режим (F)">⛶ Экран</button>
@@ -14243,7 +14540,34 @@ renderQuickHub();
 <div id="krCard"></div>
 <div id="krBox" aria-live="polite"><div class="kr-who-row"><span id="krWho"></span><span class="kr-eq" id="krEq" hidden><i></i><i></i><i></i></span></div><div id="krText"></div></div>
 <div class="kr-nav"><button id="krPrev" type="button">← Назад</button><button id="krNext" type="button">Дальше →</button></div>
-<div class="kr-line" id="krBar"></div>`;
+<div class="kr-line" id="krBar"></div>
+<div id="krVoiceModal" class="kr-v-modal" hidden>
+  <div class="kr-v-card">
+    <div class="kr-v-head">
+      <b>🎭 Студия озвучки · Каратель</b>
+      <div style="display:flex;gap:6px">
+        <button id="krVoiceReset" type="button">↺ Сброс</button>
+        <button id="krVoiceClose" type="button">✕</button>
+      </div>
+    </div>
+    <div id="krVoiceStat" class="kr-v-stat">Загрузка голосов…</div>
+    <div class="kr-v-mode-row">
+      <label>Движок озвучки:
+        <select id="krTtsMode">
+          <option value="browser">🎙️ Встроенная озвучка (автоподбор голосов)</option>
+          <option value="mp3">🎧 Локальные MP3 (папка audio/karatel)</option>
+          <option value="api">🤖 Внешний Neural TTS API (/v1/audio/speech)</option>
+        </select>
+      </label>
+    </div>
+    <div id="krTtsApiBox" class="kr-v-apibox" hidden>
+      <input id="krTtsApiUrl" type="text" placeholder="URL (напр. http://localhost:8880/v1/audio/speech)">
+      <input id="krTtsApiModel" type="text" placeholder="Модель (tts-1 / kokoro / silero)" style="max-width:130px">
+      <input id="krTtsApiKey" type="password" placeholder="API Key (если нужен)" style="max-width:140px">
+    </div>
+    <div id="krVoiceCastBody" class="kr-v-list"></div>
+  </div>
+</div>`;
     document.body.append(root);
     cv = $id('krCv'); g = cv.getContext('2d');
     STORY.forEach((ch, c) => $id('krChap').add(new Option(`Глава ${c + 1}. ${ch.title}`, c)));
@@ -14265,6 +14589,18 @@ renderQuickHub();
       if (voiceOn) speakBeat(beats[i]); else stopSpeech();
       bumpUi();
     };
+    $id('krVoiceCastBtn').onclick = () => {
+      const m = $id('krVoiceModal');
+      m.hidden = !m.hidden;
+      if (!m.hidden) { renderKrVoiceCast(); clearTimeout(uiTimer); root.classList.remove('kr-idle'); }
+    };
+    $id('krVoiceClose').onclick = () => { $id('krVoiceModal').hidden = true; stopSpeech(); bumpUi(); };
+    $id('krVoiceModal').onclick = e => { if (e.target === $id('krVoiceModal')) { $id('krVoiceModal').hidden = true; stopSpeech(); bumpUi(); } };
+    $id('krVoiceReset').onclick = () => { krVoiceCfg.roles = {}; saveKrVoiceCfg(); renderKrVoiceCast(); };
+    $id('krTtsMode').onchange = e => { krVoiceCfg.mode = e.target.value; saveKrVoiceCfg(); renderKrVoiceCast(); };
+    $id('krTtsApiUrl').onchange = e => { krVoiceCfg.apiUrl = e.target.value.trim(); saveKrVoiceCfg(); };
+    $id('krTtsApiKey').onchange = e => { krVoiceCfg.apiKey = e.target.value.trim(); saveKrVoiceCfg(); };
+    $id('krTtsApiModel').onchange = e => { krVoiceCfg.apiModel = e.target.value.trim(); saveKrVoiceCfg(); };
     $id('krSound').onclick = e => {
       sound = !sound;
       if (sound) { audio(); ac && ac.resume(); playSfx('step'); }
