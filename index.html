@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d1017">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://accounts.google.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:; connect-src 'self' https: wss: http://localhost:* http://127.0.0.1:*; frame-src 'self' https: blob: data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/ https://cdnjs.cloudflare.com/ajax/libs/ https://accounts.google.com/gsi/client https://unpkg.com/peerjs@1.5.4/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:; connect-src 'self' https: wss: http://localhost:* http://127.0.0.1:*; frame-src 'self' https: blob: data:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" id="pwaManifest">
 <title>Storm Incorporated — Главная</title>
@@ -1977,6 +1977,59 @@ body:not([data-fx="off"])[data-season="easter"] .hero h1 span{background:linear-
   .ws-widget.wide{grid-column:span 2}
 }
 
+
+/* телефон: вкладки одной строкой с прокруткой вбок */
+@media (max-width:760px){
+  .it-bar,.it-suite-bar{flex-direction:column;align-items:stretch;gap:6px;padding:8px}
+  .it-bar-left,.it-suite-tabs,.it-suite-bar > *{flex-wrap:nowrap;overflow-x:auto;min-width:0;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .it-bar-left > *,.it-suite-tabs > *,.it-suite-bar > * > *{flex:0 0 auto;white-space:nowrap}
+  .section-banner{padding:10px 12px;margin-bottom:10px;gap:8px}
+  .section-banner h2{font-size:17px;margin:0}
+  .section-banner p{display:none}
+  .section-banner button{padding:6px 10px;font-size:12px}
+}
+/* скрытая вкладка: CSS-анимации на паузе */
+html.tab-hidden *,html.tab-hidden *::before,html.tab-hidden *::after{animation-play-state:paused !important}
+
+/* рабочая среда проекта */
+.st-switch{display:flex;gap:6px}
+.st,.st-main{display:flex;flex-direction:column;gap:10px}
+.st[hidden]{display:none}
+.st-head,.st-box{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.st-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px}
+.st-head #stGoal{flex:1;min-width:200px}
+.st-in{background:#0a0e17;color:#e2e8f0;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:13px var(--sans)}
+.st-date{font-size:12px;color:var(--dim)}
+.st-prog{font-size:12px;color:var(--dim);min-width:150px}
+.st-prog i{display:block;height:6px;border-radius:9px;background:#1d263b;overflow:hidden;margin-top:4px}
+.st-prog b{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));transition:width .2s}
+.st-main{display:grid;grid-template-columns:190px minmax(0,1fr) 250px;align-items:stretch}
+.st-box{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.st-title{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--line);font:600 12.5px var(--sans);color:#f1f5f9}
+.st-btn{background:#141a29;color:#cbd5e1;border:1px solid var(--line);border-radius:8px;padding:4px 9px;font:500 12px var(--sans);cursor:pointer}
+.st-btn:hover{border-color:var(--b);color:#fff}
+.st-run{background:linear-gradient(135deg,var(--a),#2563eb);color:#fff;border:0}
+#stList{flex:1;padding:6px;overflow:auto}
+.st-file{display:flex;gap:4px;align-items:center;border-radius:8px}
+.st-file button{background:none;border:0;color:#cbd5e1;cursor:pointer;padding:6px 7px;font:12.5px var(--mono)}
+.st-file button:first-child{flex:1;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-file.active{background:rgba(124,92,255,.22)}
+.st-foot{display:flex;flex-wrap:wrap;gap:5px;padding:7px;border-top:1px solid var(--line)}
+#stCode{height:46vh;min-height:260px;resize:vertical;border:0;background:#090c14;color:#e2e8f0;padding:12px;font:13px/1.6 var(--mono);white-space:pre;tab-size:4}
+#stStdin{margin:6px;resize:vertical;font-family:var(--mono)}
+#stOut{margin:0;padding:10px 12px;min-height:90px;max-height:220px;overflow:auto;background:#07090f;color:#cbd5e1;font:12.5px/1.5 var(--mono);white-space:pre-wrap;word-break:break-word}
+#stView{border:0;background:#fff;height:300px;width:100%}
+#stView[hidden]{display:none}
+#stTaskForm{padding:7px}
+#stTaskIn{width:100%}
+#stBoard{padding:0 7px 7px;overflow:auto;max-height:70vh}
+.st-col{margin:6px 0 4px;font-size:11.5px;color:var(--dim);text-transform:uppercase}
+.st-task{display:flex;gap:5px;align-items:center;padding:6px 8px;margin-bottom:5px;border-radius:9px;background:#0d1220;border:1px solid #1d263b;font-size:12.5px}
+.st-task span{flex:1;word-break:break-word}
+.st-note{font-size:11.5px;color:var(--dim)}
+body.light-mode .st-in,body.light-mode #stCode,body.light-mode .st-task,body.light-mode .st-btn:not(.st-run){background:#fff;color:#0f172a}
+body.light-mode .st-title,body.light-mode .st-file button{color:#0f172a}
+@media (max-width:980px){.st-main{grid-template-columns:minmax(0,1fr)}.st-center{order:1}.st-files{order:0;max-height:210px}.st-tasks{order:2}}
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -2022,7 +2075,7 @@ body:not([data-fx="off"])[data-season="easter"] .hero h1 span{background:linear-
       <div class="hero-brand-row">
         <img class="hero-emblem" src="data:image/jpeg;base64,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" alt="Storm Incorporated">
         <div>
-          <div class="eyebrow" style="margin:0 0 4px"><span class="dot-live"></span> Storm Incorporated · Release v1.3.1</div>
+          <div class="eyebrow" style="margin:0 0 4px"><span class="dot-live"></span> Storm Incorporated</div>
           <div style="font:500 12.5px var(--mono);color:var(--dim)">storm-incorporated.github.io</div>
         </div>
       </div>
@@ -2119,6 +2172,46 @@ body:not([data-fx="off"])[data-season="easter"] .hero h1 span{background:linear-
         <button class="btn-secondary" id="wsNewProjBtn" type="button" title="Создать новый проект">＋ Проект</button>
         <button class="btn-secondary" id="wsExportBtn" type="button" title="Экспорт проекта в JSON">⬇ JSON</button>
       </div>
+    </div>
+
+    <div class="st-switch" role="group" aria-label="Режим пространства">
+      <button class="pill" id="stModeProj" type="button">🛠 Проект</button>
+      <button class="pill" id="stModeWid" type="button">🧩 Виджеты</button>
+    </div>
+
+    <div class="st" id="stRoot">
+      <div class="st-head">
+        <input id="stGoal" class="st-in" placeholder="Цель проекта: что должно получиться?" aria-label="Цель проекта" maxlength="200">
+        <label class="st-date">Срок <input id="stDue" class="st-in" type="date"></label>
+        <div class="st-prog"><span id="stProgText"></span><i><b id="stProgBar"></b></i></div>
+      </div>
+      <div class="st-main">
+        <aside class="st-box st-files">
+          <div class="st-title">Файлы <button class="st-btn" id="stNew" type="button" title="Новый файл">＋</button></div>
+          <div id="stList"></div>
+          <div class="st-foot">
+            <button class="st-btn" id="stDown" type="button">⬇ Файл</button>
+            <button class="st-btn" id="stImportBtn" type="button">⬆ Проект</button>
+            <input id="stImport" type="file" accept=".json,application/json" hidden>
+          </div>
+        </aside>
+        <div class="st-box st-center">
+          <div class="st-title"><span id="stName"></span>
+            <span><button class="st-btn" id="stAi" type="button">🧠 Спросить ИИ</button> <button class="st-btn st-run" id="stRun" type="button">▶ Запустить</button></span>
+          </div>
+          <textarea id="stCode" spellcheck="false" aria-label="Редактор файла"></textarea>
+          <div class="st-title">Результат <button class="st-btn" id="stClear" type="button">Очистить</button></div>
+          <textarea id="stStdin" class="st-in" rows="1" placeholder="Входные данные для программы (по значению на строку)"></textarea>
+          <pre id="stOut"></pre>
+          <iframe id="stView" sandbox="allow-scripts" title="Предпросмотр проекта" hidden></iframe>
+        </div>
+        <aside class="st-box st-tasks">
+          <div class="st-title">Задачи проекта</div>
+          <form id="stTaskForm"><input id="stTaskIn" class="st-in" placeholder="Новая задача и Enter" maxlength="160" aria-label="Новая задача"></form>
+          <div id="stBoard"></div>
+        </aside>
+      </div>
+      <div class="st-note">Всё сохраняется в этом браузере. Код (кроме HTML) выполняется на сервере Wandbox: не вставляйте пароли и ключи.</div>
     </div>
 
     <div class="ws-picker" id="wsPickerPanel" hidden>
@@ -3281,7 +3374,7 @@ GTA 5
 <div class="modal-backdrop" id="guideBackdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle" style="max-width:600px;max-height:84dvh;overflow-y:auto">
     <div class="modal-head">
-      <h3 class="modal-title" id="guideModalTitle">🗺️ Гид по Storm · Release v1.3.1</h3>
+      <h3 class="modal-title" id="guideModalTitle">🗺️ Гид по Storm</h3>
       <button class="modal-close" id="guideCloseBtn" type="button" aria-label="Закрыть">&times;</button>
     </div>
     <div class="modal-body" style="display:flex;flex-direction:column;gap:10px">
@@ -3314,6 +3407,7 @@ GTA 5
       <button class="modal-close" id="themeCloseBtn" type="button" aria-label="Закрыть">&times;</button>
     </div>
     <div class="modal-body" style="display:flex;flex-direction:column;gap:14px">
+      <button class="btn-secondary" id="obOpen" type="button">🧭 Выбрать мои разделы</button>
       <div class="field-row" style="justify-content:space-between">
         <span style="font-weight:600">Режим экрана</span>
         <div class="filter-bar">
@@ -3359,6 +3453,14 @@ GTA 5
     </div>
     <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
       <p style="margin:0;color:var(--dim);font-size:13.5px">Каждый пользователь входит в свой Google-аккаунт и сохраняет проекты, код из Stormcode и задачи Ежедневника прямо на свой Google Диск — чужие файлы никто не видит.</p>
+      <div class="w-note">
+        <b>💾 Копия в файл:</b> задачи, заметки, проекты, настройки и сохранения игр. Токены и адрес ИИ в файл не попадают.
+        <div class="field-row" style="margin-top:8px">
+          <button class="btn-primary" id="bkSave" type="button">⬇ Скачать копию</button>
+          <button class="btn-secondary" id="bkLoad" type="button">⬆ Восстановить</button>
+          <input id="bkFile" type="file" accept=".json,application/json" hidden>
+        </div>
+      </div>
       <div id="cloudAuthBox" style="display:flex;flex-direction:column;gap:8px">
         <input id="cloudClientId" type="hidden" value="812355802928-cfhdufvffqpr4r90jk2qjkg369ruj1ev.apps.googleusercontent.com">
         <div class="field-row">
@@ -3767,13 +3869,21 @@ function closeMobileMenu() {
   $('menuToggle').setAttribute('aria-expanded', 'false');
 }
 
+// разделы, выбранные пользователем (главная показывается всегда)
+function secOn(id) {
+  try {
+    const v = JSON.parse(localStorage.getItem('storm_sections_v1') || 'null');
+    return !Array.isArray(v) || id === 'home' || v.includes(id);
+  } catch { return true; }
+}
+
 function renderNav() {
   const desktop = $('navLinks');
   const mobile = $('mobileDrawer');
   desktop.replaceChildren();
   mobile.replaceChildren();
 
-  SECTIONS.forEach(sec => {
+  SECTIONS.filter(sec => secOn(sec.id)).forEach(sec => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'nav-btn' + (state.section === sec.id ? ' active' : '');
@@ -3801,7 +3911,7 @@ function renderNav() {
 function renderSectionsStrip() {
   const container = $('sectionsGrid');
   container.replaceChildren();
-  SECTIONS.filter(s => s.id !== 'home' && s.id !== 'stormcode').forEach(sec => {
+  SECTIONS.filter(s => s.id !== 'home' && s.id !== 'stormcode' && secOn(s.id)).forEach(sec => {
     const count = SERVICES.filter(item => item.section === sec.id).length;
     const liveCount = SERVICES.filter(item => item.section === sec.id && item.status === 'live').length;
     const tile = document.createElement('button');
@@ -5693,6 +5803,9 @@ let activeEvent = detectAutoSeason();
 
 function initEventCanvas() {
   const canvas = $('eventCanvas');
+  let sceneVisible = true;
+  if ('IntersectionObserver' in window) new IntersectionObserver(en => { sceneVisible = en[en.length - 1].isIntersecting; }).observe(canvas);
+  document.addEventListener('visibilitychange', () => document.documentElement.classList.toggle('tab-hidden', document.hidden));
   const ctx = canvas.getContext('2d');
   const amb = $('ambientCanvas');
   const actx = amb.getContext('2d');
@@ -6361,7 +6474,7 @@ function initEventCanvas() {
     if (document.hidden || window.stormFxEnabled === false || activeEvent === 'off') { actx.clearRect(0, 0, AW, AH); setTimeout(() => requestAnimationFrame(loop), 450); return; }
     frame++;
     drawAmbient();
-    if (!$('heroSection').hidden) {
+    if (!$('heroSection').hidden && sceneVisible) {
       if (activeEvent === 'newyear') {
         drawSuperNewYear(frame);
         snow.forEach(f => {
@@ -7158,6 +7271,7 @@ function startSnake() {
   };
   draw();
   snakeTimer = setInterval(() => {
+    if (document.hidden) return;
     snakeDir = snakeNext;
     const h = [snakeBody[0][0] + snakeDir[0], snakeBody[0][1] + snakeDir[1]];
     if (h[0]<0 || h[1]<0 || h[0]>=N || h[1]>=N || snakeBody.some(p => p[0]===h[0] && p[1]===h[1])) {
@@ -9045,7 +9159,7 @@ function toggleVnMusic() {
     idx++;
   };
   playNote();
-  vnMusicInt = setInterval(playNote, 1350);
+  vnMusicInt = setInterval(() => { if (!document.hidden) playNote(); }, 1350);
 }
 
 function vnCharSvg(charId, mood = 'calm') {
@@ -10008,6 +10122,7 @@ function initStormFlow() {
     $('sfSortPlayBtn').textContent = '⏸ Пауза';
     const ms = Math.max(15, 315 - +$('sfSortSpeed').value);
     sfSortTimer = setInterval(() => {
+      if (document.hidden) return;
       if (sortIdx < sortSteps.length - 1) { sortIdx++; drawSortFrame(); }
       else stopStormFlowAnims();
     }, ms);
@@ -10104,6 +10219,7 @@ function initStormFlow() {
     gStepIdx = 0; $('sfGraphLog').replaceChildren();
     $('sfGraphPlayBtn').textContent = '⏸ Пауза';
     sfGraphTimer = setInterval(() => {
+      if (document.hidden) return;
       if (gStepIdx >= gSteps.length) { stopStormFlowAnims(); return; }
       const st = gSteps[gStepIdx++];
       gVisited = st.vis; gActive = st.active; gDist = st.dist;
@@ -10579,7 +10695,7 @@ function initStormLab() {
     if (slTmTimer) { stopStormLabAnims(); return; }
     if (tmHalted) resetTm();
     $('slTmPlayBtn').textContent = '⏸ Пауза';
-    slTmTimer = setInterval(stepTm, 260);
+    slTmTimer = setInterval(() => { if (!document.hidden) stepTm(); }, 260);
   });
   $('slTmRules').value = TM_PRESETS.inc.rules;
   resetTm();
@@ -11337,7 +11453,7 @@ renderQuickHub();
       const list = document.createElement('div'); list.className = 'side-list';
       g.ids.forEach(id => {
         const sec = SECTIONS.find(s => s.id === id);
-        if (!sec) return;
+        if (!sec || !secOn(sec.id)) return;
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'side-item' + (state.section === sec.id ? ' active' : '');
@@ -11954,7 +12070,185 @@ renderQuickHub();
     }
   }
 
+  // ===== РАБОЧАЯ СРЕДА ОДНОГО ПРОЕКТА =====
+  const ST_LANG = { py: 'Python', js: 'JavaScript', cpp: 'C++', c: 'C', java: 'Java', cs: 'C#', go: 'Go', rs: 'Rust', php: 'PHP', rb: 'Ruby', ts: 'TypeScript' };
+  let stMode = 'proj', stShown = null, stCompilers = null, stRunId = 0;
+  try { stMode = localStorage.getItem('storm_ws_mode') || 'proj'; } catch {}
+  const stId = () => 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  const stExt = n => n.split('.').pop().toLowerCase();
+
+  function studio() {
+    const p = curProj();
+    if (!p.studio || !Array.isArray(p.studio.files)) {
+      const first = { py: 'main.py', js: 'main.js', cpp: 'main.cpp' }[p.codeLang] || 'main.py';
+      p.studio = { goal: '', due: '', tasks: [], files: [
+        { id: stId(), name: 'README.md', text: '# ' + p.name + '\n\nЧто делаем, зачем и как проверить.\n' },
+        { id: stId(), name: first, text: p.codeText || 'print("Привет, проект!")\n' }
+      ] };
+      p.studio.active = p.studio.files[1].id;
+    }
+    return p.studio;
+  }
+  const stFile = () => { const st = studio(); return st.files.find(f => f.id === st.active) || st.files[0]; };
+  function stEl(tag, cls, text) { const e = document.createElement(tag); e.className = cls; if (text) e.textContent = text; return e; }
+  function stButton(text, title, fn) {
+    const b = stEl('button', 'st-btn', text); b.type = 'button'; b.title = title; b.setAttribute('aria-label', title); b.onclick = fn; return b;
+  }
+
+  function stFiles() {
+    const st = studio(), cur = stFile();
+    $('stList').replaceChildren(...st.files.map(f => {
+      const row = stEl('div', 'st-file' + (f === cur ? ' active' : ''));
+      const open = stEl('button', '', f.name); open.type = 'button';
+      open.onclick = () => { st.active = f.id; saveWs(); stFiles(); };
+      const del = stEl('button', '', '×'); del.type = 'button'; del.title = 'Удалить файл';
+      del.onclick = () => {
+        if (st.files.length < 2 || !confirm('Удалить файл ' + f.name + '?')) return;
+        st.files = st.files.filter(x => x !== f); saveWs(); stFiles();
+      };
+      row.append(open, del);
+      return row;
+    }));
+    $('stName').textContent = cur ? cur.name : '';
+    $('stCode').value = cur ? cur.text : '';
+    $('stStdin').hidden = !ST_LANG[stExt(cur ? cur.name : '')];
+  }
+
+  function stTasks() {
+    const st = studio(), cols = ['Сделать', 'В работе', 'Готово'];
+    const nodes = [];
+    cols.forEach((title, c) => {
+      const list = st.tasks.filter(t => t.col === c);
+      nodes.push(stEl('div', 'st-col', title + ' · ' + list.length));
+      list.forEach(t => {
+        const row = stEl('div', 'st-task'); row.append(stEl('span', '', t.text));
+        if (c > 0) row.append(stButton('←', 'Вернуть назад', () => { t.col--; saveWs(); stTasks(); }));
+        if (c < 2) row.append(stButton('→', 'Дальше', () => { t.col++; saveWs(); stTasks(); }));
+        row.append(stButton('×', 'Удалить задачу', () => { st.tasks = st.tasks.filter(x => x !== t); saveWs(); stTasks(); }));
+        nodes.push(row);
+      });
+    });
+    $('stBoard').replaceChildren(...nodes);
+    const done = st.tasks.filter(t => t.col === 2).length, all = st.tasks.length;
+    $('stProgText').textContent = all ? `Готово ${done} из ${all}` : 'Добавьте задачи';
+    $('stProgBar').style.width = (all ? Math.round(done / all * 100) : 0) + '%';
+  }
+
+  function renderStudio() {
+    const proj = stMode === 'proj';
+    $('stRoot').hidden = !proj;
+    $('wsGrid').hidden = proj;
+    $('wsAddWidgetToggle').hidden = $('wsTemplateSel').hidden = proj;
+    if (proj) $('wsPickerPanel').hidden = true;
+    $('stModeProj').classList.toggle('active', proj);
+    $('stModeWid').classList.toggle('active', !proj);
+    if (!proj) return;
+    const st = studio();
+    if (stShown !== curProj().id) {
+      stShown = curProj().id; stRunId++;
+      $('stOut').textContent = 'Нажмите «Запустить» (Ctrl+Enter).';
+      $('stView').hidden = true; $('stView').srcdoc = ''; $('stStdin').value = '';
+    }
+    $('stGoal').value = st.goal || ''; $('stDue').value = st.due || '';
+    stFiles(); stTasks();
+  }
+
+  // HTML-проект: подставляем локальные style.css и script.js внутрь страницы
+  function stPage(html) {
+    const find = n => studio().files.find(f => f.name === n.replace(/^\.\//, ''));
+    return '<meta charset="utf-8">' + html
+      .replace(/<link[^>]+href=["']([^"']+\.css)["'][^>]*>/gi, (m, n) => find(n) ? '<style>' + find(n).text + '</style>' : m)
+      .replace(/<script[^>]+src=["']([^"']+\.js)["'][^>]*>\s*<\/script>/gi, (m, n) => find(n) ? '<script>' + find(n).text.replace(/<\/script/gi, '<\\/script') + '<\/script>' : m);
+  }
+
+  async function stRun() {
+    const f = stFile(), ext = stExt(f.name), run = ++stRunId;
+    const page = ['html', 'htm', 'css'].includes(ext) ? (ext === 'css' ? studio().files.find(x => /\.html?$/i.test(x.name)) : f) : null;
+    $('stView').hidden = !page;
+    if (page) { $('stView').srcdoc = stPage(page.text); $('stOut').textContent = 'Предпросмотр: ' + page.name; return; }
+    const lang = ST_LANG[ext];
+    if (!lang) { $('stOut').textContent = 'Этот файл не запускается. Выберите файл с кодом или HTML.'; return; }
+    $('stOut').textContent = 'Выполняется…';
+    const ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), 60000);
+    try {
+      if (!stCompilers) {
+        const r = await fetch('https://wandbox.org/api/list.json', { signal: ctrl.signal });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        stCompilers = await r.json();
+      }
+      const list = stCompilers.filter(c => c.language === lang);
+      const comp = list.find(c => !c.name.includes('head')) || list[0];
+      if (!comp) throw new Error('нет компилятора для ' + lang);
+      const r = await fetch('https://wandbox.org/api/compile.json', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctrl.signal,
+        body: JSON.stringify({ compiler: comp.name, code: f.text, stdin: $('stStdin').value })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+      if (run !== stRunId) return;
+      $('stOut').textContent = [d.compiler_message, d.program_message].filter(Boolean).join('\n') + '\n[код выхода ' + d.status + ']';
+    } catch (e) {
+      if (run === stRunId) $('stOut').textContent = 'Не удалось запустить: ' + (e.name === 'AbortError' ? 'сервер не ответил' : e.message);
+    } finally { clearTimeout(timer); }
+  }
+
+  function stSetMode(m) { stMode = m; try { localStorage.setItem('storm_ws_mode', m); } catch {} renderWsGrid(); }
+  $('stModeProj').onclick = () => stSetMode('proj');
+  $('stModeWid').onclick = () => stSetMode('wid');
+  $('stGoal').oninput = e => { studio().goal = e.target.value; saveWs(); };
+  $('stDue').oninput = e => { studio().due = e.target.value; saveWs(); };
+  $('stCode').oninput = e => { stFile().text = e.target.value; saveWs(); };
+  $('stCode').onkeydown = e => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); stRun(); }
+    else if (e.key === 'Tab' && !e.shiftKey) {
+      e.preventDefault();
+      e.target.setRangeText('    ', e.target.selectionStart, e.target.selectionEnd, 'end');
+      e.target.dispatchEvent(new Event('input'));
+    }
+  };
+  $('stNew').onclick = () => {
+    const name = (prompt('Имя файла (например: app.py, index.html, style.css):') || '').trim().slice(0, 60);
+    if (!name) return;
+    const st = studio();
+    let f = st.files.find(x => x.name === name);
+    if (!f) st.files.push(f = { id: stId(), name, text: '' });
+    st.active = f.id; saveWs(); stFiles();
+  };
+  $('stTaskForm').onsubmit = e => {
+    e.preventDefault();
+    const text = $('stTaskIn').value.trim();
+    if (!text) return;
+    studio().tasks.push({ id: stId(), text, col: 0 });
+    $('stTaskIn').value = ''; saveWs(); stTasks();
+  };
+  $('stRun').onclick = stRun;
+  $('stClear').onclick = () => { stRunId++; $('stOut').textContent = ''; $('stView').hidden = true; $('stView').srcdoc = ''; };
+  $('stAi').onclick = () => {
+    const f = stFile();
+    window.stormWsBus.sendToStormAi('Цель: ' + (studio().goal || 'не указана') + '\nПомоги с файлом ' + f.name + ':\n' + f.text.slice(0, 3000));
+  };
+  $('stDown').onclick = () => {
+    const f = stFile(), a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([f.text], { type: 'text/plain' })); a.download = f.name; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  $('stImportBtn').onclick = () => $('stImport').click();
+  $('stImport').onchange = async e => {
+    const file = e.target.files[0]; e.target.value = '';
+    if (!file) return;
+    try {
+      const raw = JSON.parse(await file.text()), d = raw.project || raw, st = d.studio;
+      const files = st.files.filter(f => typeof f.name === 'string' && typeof f.text === 'string').map(f => ({ id: stId(), name: f.name.slice(0, 60), text: f.text }));
+      if (!files.length) throw new Error();
+      const tasksIn = (Array.isArray(st.tasks) ? st.tasks : []).filter(t => typeof t.text === 'string').map(t => ({ id: stId(), text: t.text.slice(0, 160), col: [0, 1, 2].includes(t.col) ? t.col : 0 }));
+      const p = { id: 'p' + Date.now(), name: String(d.name || 'Импорт').slice(0, 32), notes: String(d.notes || ''), codeLang: 'py', codeText: '', mathExpr: '', widgets: [],
+        studio: { goal: String(st.goal || ''), due: String(st.due || ''), files, active: files[0].id, tasks: tasksIn } };
+      wsState.projects.push(p); wsState.activeId = p.id; saveWs(); renderProjTabs(); renderWsGrid();
+    } catch { alert('Это не похоже на экспорт проекта с рабочей средой.'); }
+  };
+
   function renderWsGrid() {
+    renderStudio();
     const grid = $('wsGrid'); if (!grid) return;
     const p = curProj();
     grid.replaceChildren();
@@ -12044,8 +12338,94 @@ renderQuickHub();
     renderProjTabs();
     renderWsGrid();
   };
+  // если страницу открыли или обновили сразу на «Пространстве», запускаем его после загрузки
+  setTimeout(() => { if (state.section === 'workspace') window.initWorkspaceHub(); }, 0);
 })();
 </script>
 
+<script>
+// на телефоне активная вкладка сама прокручивается в видимую часть ряда
+(function () {
+  function center(el) {
+    var row = el.parentElement;
+    if (!row || !el.offsetParent || row.scrollWidth <= row.clientWidth) return;
+    var a = el.getBoundingClientRect(), b = row.getBoundingClientRect();
+    row.scrollLeft += a.left - b.left - (b.width - a.width) / 2;
+  }
+  function all() { document.querySelectorAll('.it-bar .pill.active, .it-bar-left .pill.active, .it-suite-bar .pill.active').forEach(center); }
+  document.addEventListener('click', function () { setTimeout(all, 60); });
+  addEventListener('hashchange', function () { setTimeout(all, 60); });
+})();
+</script>
+
+<div class="modal-backdrop" id="obBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="obTitle" style="max-width:480px;max-height:86dvh;overflow-y:auto">
+    <div class="modal-head"><h3 class="modal-title" id="obTitle">👋 Что вам нужно?</h3></div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
+      <p style="margin:0;color:var(--dim);font-size:13.5px">Отметьте разделы для меню. Изменить выбор можно в окне «🎨 Тема».</p>
+      <div id="obList" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+      <button class="btn-primary" id="obSave" type="button">Готово</button>
+      <button class="btn-secondary" id="obAll" type="button">Показать всё</button>
+    </div>
+  </div>
+</div>
+<div id="offNote" hidden style="position:fixed;left:50%;transform:translateX(-50%);bottom:8px;z-index:120;background:#3a2a0a;color:#fde68a;border:1px solid #f59e0b88;border-radius:999px;padding:5px 12px;font-size:12px;white-space:nowrap">📴 Нет интернета</div>
+<script>
+(function () {
+  // --- первый запуск: выбор разделов ---
+  const KEY = 'storm_sections_v1';
+  const list = () => SECTIONS.filter(s => s.id !== 'home' && s.id !== 'stormcode');
+  function openPick() {
+    $('themeBackdrop').hidden = true;
+    $('obList').replaceChildren(...list().map(sec => {
+      const l = document.createElement('label'); l.className = 'pill';
+      l.style.cssText = 'display:flex;gap:8px;align-items:center;cursor:pointer';
+      const c = document.createElement('input'); c.type = 'checkbox'; c.value = sec.id; c.checked = secOn(sec.id);
+      l.append(c, sec.icon + ' ' + sec.name);
+      return l;
+    }));
+    $('obBackdrop').hidden = false;
+  }
+  function apply(ids) {
+    try { localStorage.setItem(KEY, JSON.stringify(ids)); } catch {}
+    $('obBackdrop').hidden = true;
+    renderNav(); renderSectionsStrip();
+  }
+  $('obOpen').onclick = openPick;
+  $('obSave').onclick = () => apply([...$('obList').querySelectorAll('input:checked')].map(c => c.value));
+  $('obAll').onclick = () => apply(list().map(s => s.id));
+  try { if (!localStorage.getItem(KEY) && !location.hash.includes('room=')) openPick(); } catch {}
+
+  // --- резервная копия ---
+  const allowed = k => k.startsWith('storm_') && !/tok|secret|ai_url|gdrive/i.test(k);
+  $('bkSave').onclick = () => {
+    const data = {};
+    try { Object.keys(localStorage).filter(allowed).forEach(k => data[k] = localStorage.getItem(k)); } catch {}
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify({ app: 'storm', date: new Date().toISOString(), data }, null, 1)], { type: 'application/json' }));
+    a.download = 'storm-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  $('bkLoad').onclick = () => $('bkFile').click();
+  $('bkFile').onchange = async e => {
+    const file = e.target.files[0]; e.target.value = '';
+    if (!file) return;
+    try {
+      const b = JSON.parse(await file.text());
+      const items = Object.entries(b.data || {}).filter(([k, v]) => allowed(k) && typeof v === 'string');
+      if (b.app !== 'storm' || !items.length) throw new Error('это не резервная копия Storm');
+      if (!confirm('Восстановить копию? Данные в этом браузере будут заменены. Загружайте только свои файлы.')) return;
+      items.forEach(([k, v]) => localStorage.setItem(k, v));
+      location.reload();
+    } catch (err) { alert('Не удалось восстановить: ' + err.message); }
+  };
+
+  // --- офлайн ---
+  const net = () => { $('offNote').hidden = navigator.onLine; };
+  addEventListener('online', net); addEventListener('offline', net); net();
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
+})();
+</script>
 </body>
 </html>
