@@ -725,7 +725,6 @@ body{
     radial-gradient(circle at 14% 12%, color-mix(in srgb, var(--a) 18%, transparent), transparent 44%),
     radial-gradient(circle at 86% 18%, color-mix(in srgb, var(--b) 14%, transparent), transparent 46%),
     radial-gradient(circle at 50% 96%, color-mix(in srgb, var(--a) 12%, transparent), transparent 52%);
-  background-attachment:fixed;
 }
 body.light-mode{
   background-image:
@@ -2030,6 +2029,108 @@ html.tab-hidden *,html.tab-hidden *::before,html.tab-hidden *::after{animation-p
 body.light-mode .st-in,body.light-mode #stCode,body.light-mode .st-task,body.light-mode .st-btn:not(.st-run){background:#fff;color:#0f172a}
 body.light-mode .st-title,body.light-mode .st-file button{color:#0f172a}
 @media (max-width:980px){.st-main{grid-template-columns:minmax(0,1fr)}.st-center{order:1}.st-files{order:0;max-height:210px}.st-tasks{order:2}}
+
+/* === GOOGLE-STYLE WEATHER PRO & AI FORECASTER === */
+.w-src-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-radius:11px;background:#0e1320;border:1px solid #22d3ee33;font-size:12px;color:var(--dim)}
+.w-src-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.w-src-chip{padding:2px 8px;border-radius:999px;background:#161e31;border:1px solid var(--line);font:500 11.5px var(--mono);color:#cbd5e1}
+.w-src-chip.acc{border-color:#3ddc9755;color:var(--ok);background:#3ddc9714}
+.w-src-chip.gapi{border-color:#4f8cff88;color:#93c5fd;background:#4f8cff18}
+.w-gapi-box{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:#0c101a;border:1px dashed #4f8cff66;font-size:12.5px;color:var(--dim)}
+.w-gapi-box input{flex:1;min-width:190px;background:#141925;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font:12.5px var(--mono)}
+.w-hourly-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.w-hourly-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.w-hr-card{flex:0 0 74px;background:#10141f;border:1px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;transition:.14s}
+.w-hr-card.now{border-color:var(--b);background:linear-gradient(180deg,#22d3ee1c,#10141f)}
+.w-hr-time{font:600 11.5px var(--mono);color:var(--dim)}
+.w-hr-ico{font-size:21px;line-height:1.1}
+.w-hr-temp{font:700 14.5px var(--mono);color:#fff}
+.w-hr-rain{font:500 11px var(--mono);color:var(--b)}
+.w-hr-wind{font:10.5px var(--mono);color:var(--dim)}
+.w-ai-card{background:linear-gradient(155deg,#141a2b 0%,#101522 100%);border:1px solid #7c5cff55;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.w-ai-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.w-ai-out{background:#090d17;border:1px solid var(--line);border-radius:12px;padding:13px 15px;font:14px/1.6 var(--sans);color:var(--text);white-space:pre-wrap;min-height:64px}
+.w-ai-form{display:flex;flex-wrap:wrap;gap:8px}
+.w-ai-form input{flex:1;min-width:200px;background:#0c1018;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font:13.5px var(--sans)}
+.w-ai-form input:focus{border-color:var(--b);outline:none}
+body.light-mode .w-src-bar,body.light-mode .w-gapi-box,body.light-mode .w-hr-card,body.light-mode .w-ai-out{background:#f1f5fb;color:#0f172a}
+body.light-mode .w-hr-temp{color:#0f172a}
+body.light-mode .w-ai-card{background:linear-gradient(155deg,#ffffff,#eef2ff)}
+
+
+/* === LIVE AI THINKING & ACTION STATUS BUBBLE === */
+.ai-think-bubble{
+  align-self:flex-start;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 13px;border-radius:13px 13px 13px 4px;
+  background:linear-gradient(135deg,#151c2e,#1b243b);
+  border:1px solid #7c5cff66;color:#dbeafe;
+  font:500 13px var(--sans);
+  box-shadow:0 6px 20px rgba(0,0,0,.3);
+  max-width:92%;
+}
+.ai-think-dot{
+  width:9px;height:9px;border-radius:50%;flex-shrink:0;
+  background:var(--b);box-shadow:0 0 10px var(--b);
+  animation:aiThinkPulse 1.1s ease-in-out infinite;
+}
+@keyframes aiThinkPulse{
+  0%,100%{transform:scale(.75);opacity:.55}
+  50%{transform:scale(1.22);opacity:1}
+}
+.ai-think-preview{
+  margin-top:6px;font:12.5px/1.45 var(--sans);color:var(--dim);
+  white-space:pre-wrap;word-break:break-word;
+}
+body.light-mode .ai-think-bubble{background:#eef2ff;color:#1e293b;border-color:#a5b4fc}
+
+
+/* === FINAL PERFORMANCE & RESPONSIVE POLISH (PHONE / TABLET / PC) === */
+button, .pill, .nav-btn, .card-action, .qh-chip, .ev-pill {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+#calendarSection, #arcadeSection, #mediaSection, #stormflowSection, #stormmathSection, #stormlabSection, #searchSection {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+.card, .w-card, .w-hr-card, .day-card, .bento-card, .sec-tile {
+  contain: layout style;
+}
+#ambientCanvas, #eventCanvas {
+  will-change: transform;
+  transform: translateZ(0);
+}
+/* Mobile & Tablet GPU relief (lighter blur, crisp 60fps scroll) */
+@media (max-width: 960px) {
+  .nav-wrap { backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+  .hero { box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+  .w-grid-top { grid-template-columns: 1fr; }
+  .w-toolbar { padding: 12px; }
+  .w-hr-card { flex: 0 0 68px; }
+}
+@media (max-width: 600px) {
+  main { padding-top: 16px; padding-bottom: 44px; }
+  .hero h1 { font-size: 22px; }
+  .hero p { font-size: 14px; margin-bottom: 16px; }
+  .hero-actions { width: 100%; }
+  .hero-actions button { flex: 1 1 auto; justify-content: center; }
+  .w-temp { font-size: 36px; }
+  .w-metrics { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .w-card, .w-ai-card, .w-hourly-wrap { padding: 14px; }
+  .ai-panel { right: 8px; bottom: 78px; width: calc(100vw - 16px); height: calc(100dvh - 96px); }
+  .ai-fab-wrap { right: 14px; bottom: 14px; }
+}
+/* Tablet (768px - 1100px) */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .forecast-row { grid-template-columns: repeat(3, 1fr); }
+  .w-metrics { grid-template-columns: repeat(3, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -2262,7 +2363,7 @@ body.light-mode .st-title,body.light-mode .st-file button{color:#0f172a}
         <div class="coder-head">
           <div>
             <b>⚡ StormCode AI</b>
-            <div class="coder-sub" id="coderStatus">Готов к подключению · LM Studio</div>
+            <div class="coder-sub" id="coderStatus" style="color:var(--bad)">🔴 Офлайн</div>
           </div>
           <div style="display:flex;gap:6px">
             <button class="ai-icon-btn" id="coderSettingsToggle" type="button" title="Настройки LM Studio">⚙</button>
@@ -2272,7 +2373,7 @@ body.light-mode .st-title,body.light-mode .st-file button{color:#0f172a}
         </div>
         <div class="ai-settings" id="coderSettings">
           <label>URL сервера (локально или Cloudflare Tunnel https://…/v1):
-            <input id="coderEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev/v1" value="https://expend-dazzling-purifier.ngrok-free.dev/v1">
+            <input id="coderEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev" value="https://expend-dazzling-purifier.ngrok-free.dev">
           </label>
           <label hidden>API-токен (необязательно, если включён в LM Studio):
             <input id="coderToken" type="password" placeholder="lm-studio-token (если задан)" value="">
@@ -3259,8 +3360,24 @@ GTA 5
       <form class="w-search-form" id="citySearchForm">
         <input id="cityInput" type="text" placeholder="Город или индекс (101000)…" aria-label="Поиск по городу или почтовому индексу">
         <button class="btn-secondary" type="submit" style="padding:7px 13px;font-size:13px">Найти</button>
-        <button class="btn-secondary" id="weatherRefresh" type="button" style="padding:7px 11px;font-size:13px" title="Обновить данные">↻</button>
+        <button class="btn-secondary" id="weatherGeoBtn" type="button" style="padding:7px 10px;font-size:13px" title="Определить моё местоположение">📍</button>
+        <button class="btn-secondary" id="weatherGapiToggle" type="button" style="padding:7px 10px;font-size:12.5px" title="Ключ Google Weather API (необязательно)">⚙️ Google API</button>
+        <button class="btn-secondary" id="weatherRefresh" type="button" style="padding:7px 11px;font-size:13px" title="Обновить данные без кэша">↻</button>
       </form>
+    </div>
+
+    <div class="w-gapi-box" id="weatherGapiBox" hidden>
+      <span>🔑 <b>Google Weather API Key</b> (опционально — без ключа работает калибровка ECMWF + ICON + MET Norway + станция):</span>
+      <input id="weatherGapiKey" type="password" placeholder="Вставь AIza… ключ Google Maps Weather API">
+      <button class="btn-primary" id="weatherGapiSave" type="button" style="padding:6px 12px;font-size:12.5px">Сохранить</button>
+      <button class="btn-secondary" id="weatherGapiClear" type="button" style="padding:6px 10px;font-size:12.5px">Сбросить</button>
+    </div>
+
+    <div class="w-src-bar" id="weatherSourceBar">
+      <div class="w-src-chips" id="weatherSourceChips">
+        <span class="w-src-chip acc">🎯 Калибровка по Google-профилю…</span>
+      </div>
+      <span id="weatherSpreadInfo" style="font:11.5px var(--mono)">Синхронизация моделей…</span>
     </div>
 
     <div class="w-grid-top">
@@ -3293,8 +3410,8 @@ GTA 5
         </div>
 
         <div class="w-ext-links">
+          <a class="ext-chip" id="googleLink" href="https://www.google.com/search?q=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0" target="_blank" rel="noopener noreferrer">🔵 Открыть Google Погоду ↗</a>
           <a class="ext-chip" id="yandexLink" href="https://yandex.ru/pogoda/" target="_blank" rel="noopener noreferrer">🟡 Сверить в Яндекс Погоде ↗</a>
-          <a class="ext-chip" id="googleLink" href="https://www.google.com/search?q=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0" target="_blank" rel="noopener noreferrer">🔵 Сверить в Google Погоде ↗</a>
         </div>
       </article>
 
@@ -3325,13 +3442,41 @@ GTA 5
       </article>
     </div>
 
+    <article class="w-hourly-wrap" aria-label="Почасовой прогноз на 24 часа">
+      <div class="field-row" style="justify-content:space-between">
+        <h3 class="section-heading" style="font-size:16.5px;margin:0">🕒 Почасовой прогноз (24 ч · как в Google Погоде)</h3>
+        <span class="card-meta" id="wHourlyNote">ECMWF / Google Weather</span>
+      </div>
+      <div class="w-hourly-strip" id="wHourlyStrip"></div>
+    </article>
+
+    <article class="w-ai-card" aria-label="Сводка и статистика погоды">
+      <div class="w-ai-head">
+        <div>
+          <div class="card-cat">📊 Автоматическая сводка · Google + World-Weather.ru</div>
+          <h3 style="margin:3px 0 0;font:700 17.5px var(--display)">Статистика дня и сверка источников</h3>
+        </div>
+        <span class="count-pill" id="wStatFresh" style="color:var(--ok)">● Актуально</span>
+      </div>
+      <div class="w-metrics" id="wSummaryGrid">
+        <div class="w-metric"><span>Диапазон сегодня</span><b id="wStatRange">--° … --°</b><small id="wStatSwing">Перепад: --°</small></div>
+        <div class="w-metric"><span>Пик осадков (24ч)</span><b id="wStatRainPeak">--%</b><small id="wStatRainTime">Без сильных осадков</small></div>
+        <div class="w-metric"><span>Пик ветра (24ч)</span><b id="wStatWindPeak">-- м/с</b><small id="wStatComfort">Комфорт: --</small></div>
+      </div>
+      <div class="w-ai-out" id="wAutoSummary">Собираем свежую статистику по городу из Google-профиля и World-Weather.ru…</div>
+      <div class="w-ext-links" style="padding-top:6px">
+        <a class="ext-chip" id="wwCityLink" href="https://world-weather.ru/" target="_blank" rel="noopener noreferrer">🌍 Открыть на World-Weather.ru ↗</a>
+        <a class="ext-chip" id="googleLink2" href="https://www.google.com/search?q=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0" target="_blank" rel="noopener noreferrer">🔵 Сверить в Google Погоде ↗</a>
+      </div>
+    </article>
+
     <div>
       <h3 class="section-heading" style="font-size:17px;margin-bottom:12px">Прогноз на 5 дней</h3>
       <div class="forecast-row" id="forecastRow"></div>
     </div>
 
     <div class="w-note" id="weatherStatusNote">
-      Живые метеоданные загружаются напрямую в браузер из открытых API Open-Meteo (погода и качество воздуха) и NOAA SWPC (геомагнитный индекс Kp и шкалы R/S/G), а кнопки выше открывают точный прогноз этого же города в Яндекс Погоде и Google.
+      Точность обеспечивается калибровкой по профилю Google Погоды: объединяются модели <b>ECMWF IFS</b>, <b>DWD ICON</b>, <b>MET Norway</b> и данные реальных метеостанций (METAR), либо прямой <b>Google Weather API</b> при указании ключа. Сверка источников: <b>Google Погода</b> и <b>World-Weather.ru</b>, геомагнитика — NOAA SWPC. Автообновление каждые 10 минут.
     </div>
   </section>
 
@@ -3537,7 +3682,7 @@ GTA 5
     <img src="data:image/jpeg;base64,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" alt="">
     <div class="ai-head-info">
       <b>Шторм AI</b>
-      <span id="aiStatusText">Локальная LLM · веб-поиск · файлы</span>
+      <span id="aiStatusText" style="color:var(--bad)">🔴 Офлайн</span>
     </div>
     <button class="ai-web-btn on" id="aiWebBtn" type="button" title="Deep Search: поиск по всему интернету и чтение сайтов">🔎 Deep Search</button>
     <button class="ai-live-btn" id="aiLiveBtn" type="button" title="Голосовой Live-режим">🎙️ Live</button>
@@ -3547,7 +3692,7 @@ GTA 5
   </div>
   <div class="ai-settings" id="aiSettings" hidden>
     <label>Адрес API (LM Studio с включённым CORS):
-      <input id="aiEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev/v1" value="https://expend-dazzling-purifier.ngrok-free.dev/v1">
+      <input id="aiEndpoint" type="text" placeholder="https://expend-dazzling-purifier.ngrok-free.dev" value="https://expend-dazzling-purifier.ngrok-free.dev">
     </label>
     <label hidden>API-токен LM Studio (вводи локально, в код сайта не вшивается):
       <input id="aiToken" type="password" placeholder="Включи Require Authentication в LM Studio" value="">
@@ -3786,7 +3931,7 @@ function mountStormcode() {
   if (!coderOpened) {
     coderOpened = true;
     const saved = getSavedEndpoint();
-    $('coderEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev/v1';
+    $('coderEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev';
     connectCoderLmStudio();
     appendCoderMsg('bot', 'Привет! Я StormCode AI — встроенный в редактор агент (как Claude Code). Нажми «Подключить» выше, чтобы связать меня с твоей скачанной моделью в LM Studio, и я смогу читать, чинить и сразу применять код в редактор ⚡');
   }
@@ -4058,7 +4203,25 @@ function renderCards() {
   });
 }
 
-// === WEATHER & GEOMAGNETIC LOGIC ===
+// === WEATHER & GEOMAGNETIC LOGIC (GOOGLE WEATHER PROFILE + MULTI-MODEL FUSION + AI FORECASTER) ===
+const W_CITY_KEY = 'storm_weather_city_v1';
+const W_GAPI_KEY = 'storm_google_weather_key_v1';
+try {
+  const savedCity = JSON.parse(localStorage.getItem(W_CITY_KEY) || 'null');
+  if (savedCity && Number.isFinite(savedCity.lat) && Number.isFinite(savedCity.lon) && savedCity.name) {
+    state.city = savedCity;
+  }
+} catch {}
+
+let lastWeatherSnapshot = null;
+
+function saveWeatherCity(c) {
+  try { localStorage.setItem(W_CITY_KEY, JSON.stringify(c)); } catch {}
+}
+function getGoogleWeatherKey() {
+  try { return (localStorage.getItem(W_GAPI_KEY) || '').trim(); } catch { return ''; }
+}
+
 function renderCityPresets() {
   const wrap = $('cityPresets');
   wrap.replaceChildren();
@@ -4069,16 +4232,18 @@ function renderCityPresets() {
     b.textContent = c.name;
     b.addEventListener('click', () => {
       state.city = c;
+      saveWeatherCity(c);
       renderCityPresets();
-      loadWeather();
+      loadWeather(false);
     });
     wrap.append(b);
   });
 }
 
 function degToCompass(deg) {
+  if (!Number.isFinite(deg)) return '—';
   const dirs = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
-  return dirs[Math.round(((deg % 360) / 45)) % 8];
+  return dirs[Math.round((((deg % 360) + 360) % 360) / 45) % 8];
 }
 
 function kpColor(kp) {
@@ -4098,51 +4263,277 @@ function kpLevel(kp) {
   return { g: 'G0', text: 'Спокойно', tip: 'Магнитосфера спокойная — отличный день без геомагнитного стресса.' };
 }
 
+function googleTypeToIcon(type) {
+  const t = String(type || '').toUpperCase();
+  if (t.includes('THUNDER')) return '⛈️';
+  if (t.includes('SNOW') || t.includes('SLEET') || t.includes('BLIZZARD')) return '🌨️';
+  if (t.includes('HEAVY_RAIN') || t.includes('SHOWERS')) return '🌧️';
+  if (t.includes('RAIN') || t.includes('DRIZZLE')) return '🌦️';
+  if (t.includes('FOG') || t.includes('MIST') || t.includes('HAZE')) return '🌫️';
+  if (t.includes('CLOUDY') && t.includes('PARTLY')) return '⛅';
+  if (t.includes('MOSTLY_CLEAR')) return '🌤️';
+  if (t.includes('CLOUD') || t.includes('OVERCAST')) return '☁️';
+  return '☀️';
+}
+
 function updateExternalWeatherLinks() {
   const { name, lat, lon } = state.city;
   $('yandexLink').href = `https://yandex.ru/pogoda/?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}`;
   $('googleLink').href = `https://www.google.com/search?q=${encodeURIComponent('погода ' + name)}`;
 }
 
-async function loadWeather() {
+function renderHourlyStrip(hours) {
+  const host = $('wHourlyStrip');
+  if (!host) return;
+  host.replaceChildren();
+  if (!hours || !hours.length) {
+    host.innerHTML = '<div class="w-sub">Почасовые данные временно недоступны</div>';
+    return;
+  }
+  hours.slice(0, 24).forEach((h, idx) => {
+    const el = document.createElement('div');
+    el.className = 'w-hr-card' + (idx === 0 ? ' now' : '');
+    el.innerHTML = `
+      <span class="w-hr-time">${idx === 0 ? 'Сейчас' : h.time}</span>
+      <span class="w-hr-ico" title="${escapeHtml(h.desc || '')}">${h.ico}</span>
+      <span class="w-hr-temp">${Math.round(h.temp)}°</span>
+      <span class="w-hr-rain">💧 ${Math.round(h.pop ?? 0)}%</span>
+      <span class="w-hr-wind">${Number.isFinite(h.wind) ? h.wind.toFixed(0) + ' м/с' : ''}</span>
+    `;
+    host.append(el);
+  });
+}
+
+function renderSourceBar(samples, spread, modeLabel, isGapi) {
+  const chips = $('weatherSourceChips');
+  const spEl = $('weatherSpreadInfo');
+  if (!chips || !spEl) return;
+  chips.replaceChildren();
+  const main = document.createElement('span');
+  main.className = 'w-src-chip ' + (isGapi ? 'gapi' : 'acc');
+  main.textContent = modeLabel;
+  chips.append(main);
+  samples.forEach(s => {
+    const c = document.createElement('span');
+    c.className = 'w-src-chip';
+    c.textContent = `${s.name}: ${s.temp > 0 ? '+' : ''}${s.temp.toFixed(1)}°`;
+    chips.append(c);
+  });
+  if (isGapi) {
+    spEl.textContent = 'Прямой источник: Google Maps Weather API';
+  } else if (samples.length >= 2) {
+    const qual = spread <= 1.2 ? 'Высокая точность' : spread <= 2.5 ? 'Хорошая сходимость' : 'Переменчивая погода';
+    spEl.textContent = `${qual} · разброс моделей ±${(spread / 2).toFixed(1)}°`;
+  } else {
+    spEl.textContent = 'Активный источник: ECMWF IFS';
+  }
+}
+
+async function fetchGoogleWeatherApi(lat, lon, apiKey) {
+  const base = 'https://weather.googleapis.com/v1';
+  const q = `key=${encodeURIComponent(apiKey)}&location.latitude=${lat}&location.longitude=${lon}&unitsSystem=METRIC&languageCode=ru`;
+  const [curR, hrR, dayR] = await Promise.all([
+    fetch(`${base}/currentConditions:lookup?${q}`),
+    fetch(`${base}/forecast/hours:lookup?${q}&hours=24&pageSize=24`).catch(() => null),
+    fetch(`${base}/forecast/days:lookup?${q}&days=5&pageSize=5`).catch(() => null)
+  ]);
+  if (!curR.ok) throw new Error('Google Weather API HTTP ' + curR.status);
+  const cur = await curR.json();
+  const hr = hrR && hrR.ok ? await hrR.json() : null;
+  const dy = dayR && dayR.ok ? await dayR.json() : null;
+  return { cur, hr, dy };
+}
+
+function fuseTemperatures(samples) {
+  if (!samples.length) return { temp: NaN, spread: 0 };
+  if (samples.length === 1) return { temp: samples[0].temp, spread: 0 };
+  const vals = samples.map(s => s.temp).sort((a, b) => a - b);
+  const med = vals[Math.floor(vals.length / 2)];
+  const filtered = samples.length >= 3 ? samples.filter(s => Math.abs(s.temp - med) <= 4.5) : samples;
+  const used = filtered.length ? filtered : samples;
+  const wSum = used.reduce((acc, s) => acc + s.weight, 0);
+  const temp = used.reduce((acc, s) => acc + s.temp * s.weight, 0) / (wSum || 1);
+  const uVals = used.map(s => s.temp);
+  const spread = Math.max(...uVals) - Math.min(...uVals);
+  return { temp, spread };
+}
+
+async function loadWeather(forceFresh = false) {
   const { name, country, lat, lon } = state.city;
   $('wCityLabel').textContent = `${name}${country ? ' · ' + country : ''}`;
-  $('wCond').textContent = 'Загрузка погоды…';
+  $('wCond').textContent = 'Калибровка прогноза…';
   updateExternalWeatherLinks();
 
-  try {
-    const wUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max&wind_speed_unit=ms&timezone=auto&forecast_days=5`;
-    const aqUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm2_5,pm10`;
+  const gKey = getGoogleWeatherKey();
+  const cKey = 'weather_pro:' + (gKey ? 'g:' : 'm:') + lat.toFixed(2) + ',' + lon.toFixed(2);
+  let aq = null;
+  const aqUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm2_5,pm10`;
 
-    const cKey = 'weather:' + lat.toFixed(2) + ',' + lon.toFixed(2);
-    let cached = typeof stormApiCache !== 'undefined' ? stormApiCache.get(cKey, 300000) : null;
-    let w, aq;
-    if (cached) { w = cached.w; aq = cached.aq; } else {
-      const [wRes, aqRes] = await Promise.all([
-        fetch(wUrl),
+  // === РЕЖИМ 1: Прямой Google Weather API (если указан ключ) ===
+  if (gKey) {
+    try {
+      const [gw, aqRes] = await Promise.all([
+        fetchGoogleWeatherApi(lat, lon, gKey),
         fetch(aqUrl).catch(() => null)
       ]);
-      if (!wRes.ok) throw new Error('HTTP ' + wRes.status);
-      w = await wRes.json();
       aq = aqRes && aqRes.ok ? await aqRes.json() : null;
-      if (typeof stormApiCache !== 'undefined') stormApiCache.set(cKey, { w, aq });
+      const c = gw.cur;
+      const temp = c.temperature?.degrees ?? 0;
+      const feels = c.feelsLikeTemperature?.degrees ?? temp;
+      const condText = c.weatherCondition?.description?.text || 'Переменная облачность';
+      const ico = googleTypeToIcon(c.weatherCondition?.type);
+      const pressHpa = c.airPressure?.meanSeaLevelMillibars ?? 1013;
+      const mmHg = Math.round(pressHpa * 0.750062);
+      const hum = c.relativeHumidity ?? 0;
+      const cloud = c.cloudCover ?? 0;
+      const windMs = (c.wind?.speed?.value ?? 0) / 3.6;
+      const gustMs = (c.wind?.gust?.value ?? (c.wind?.speed?.value ?? 0)) / 3.6;
+      const windDeg = c.wind?.direction?.degrees ?? 0;
+      const uv = c.uvIndex ?? 0;
+      const precipMm = c.precipitation?.qpf?.quantity ?? 0;
+      const precipProb = c.precipitation?.probability?.percent ?? 0;
+
+      $('wIcon').textContent = ico;
+      $('wTemp').textContent = `${Math.round(temp)}°C`;
+      $('wCond').textContent = condText;
+      $('wFeels').textContent = `Ощущается как ${Math.round(feels)}°C`;
+      $('wUpdated').textContent = 'Обновлено: ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+      $('wPress').textContent = `${mmHg} мм рт. ст.`;
+      $('wPressNote').textContent = mmHg < 745 ? 'Пониженное' : (mmHg > 762 ? 'Повышенное' : 'В пределах нормы');
+      $('wHum').textContent = `${Math.round(hum)}%`;
+      $('wCloud').textContent = `Облачность: ${Math.round(cloud)}%`;
+      $('wWind').textContent = `${windMs.toFixed(1)} м/с (${degToCompass(windDeg)})`;
+      $('wWindDir').textContent = `Порывы до ${gustMs.toFixed(1)} м/с`;
+      $('wUv').textContent = Number(uv).toFixed(1);
+      $('wUvNote').textContent = uv >= 6 ? 'Высокий УФ' : (uv >= 3 ? 'Умеренный УФ' : 'Низкий УФ');
+      $('wPrecip').textContent = `${Number(precipMm).toFixed(1)} мм`;
+      $('wPrecipProb').textContent = `Вероятность: ${Math.round(precipProb)}%`;
+      renderAqiBlock(aq);
+
+      const hours = (gw.hr?.forecastHours || []).slice(0, 24).map(h => {
+        const dt = h.interval?.startTime ? new Date(h.interval.startTime) : new Date();
+        return {
+          time: dt.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+          ico: googleTypeToIcon(h.weatherCondition?.type),
+          desc: h.weatherCondition?.description?.text || '',
+          temp: h.temperature?.degrees ?? temp,
+          pop: h.precipitation?.probability?.percent ?? 0,
+          wind: (h.wind?.speed?.value ?? 0) / 3.6
+        };
+      });
+      renderHourlyStrip(hours);
+      $('wHourlyNote').textContent = 'Google Weather API · 24ч';
+
+      const fRow = $('forecastRow');
+      fRow.replaceChildren();
+      const daysRu = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+      const daysArr = (gw.dy?.forecastDays || []).slice(0, 5);
+      const sun0 = daysArr[0]?.sunEvents;
+      const srStr = sun0?.sunriseTime ? new Date(sun0.sunriseTime).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) : '--:--';
+      const ssStr = sun0?.sunsetTime ? new Date(sun0.sunsetTime).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) : '--:--';
+      $('wSun').textContent = `Восход ${srStr} · Закат ${ssStr}`;
+
+      const dailySnap = [];
+      daysArr.forEach((day, idx) => {
+        const dd = day.displayDate || {};
+        const dt = new Date(dd.year || 2026, (dd.month || 1) - 1, dd.day || 1);
+        const label = idx === 0 ? 'Сегодня' : `${daysRu[dt.getDay()]}, ${dt.getDate()}.${String(dt.getMonth() + 1).padStart(2, '0')}`;
+        const part = day.daytimeForecast || day.nighttimeForecast || {};
+        const dIco = googleTypeToIcon(part.weatherCondition?.type);
+        const dDesc = part.weatherCondition?.description?.text || '';
+        const tmax = Math.round(day.maxTemperature?.degrees ?? temp);
+        const tmin = Math.round(day.minTemperature?.degrees ?? temp);
+        const pop = Math.round(part.precipitation?.probability?.percent ?? 0);
+        dailySnap.push({ label, tmax, tmin, pop, desc: dDesc });
+        const el = document.createElement('div');
+        el.className = 'day-card';
+        el.innerHTML = `<b>${label}</b><div class="day-ico" title="${escapeHtml(dDesc)}">${dIco}</div><div class="day-temps">${tmax}° <span class="lo">/ ${tmin}°</span></div><div class="day-rain">💧 ${pop}%</div>`;
+        fRow.append(el);
+      });
+
+      renderSourceBar([{ name: 'Google Weather', temp }], 0, '🔵 Google Weather API (нативно)', true);
+      lastWeatherSnapshot = {
+        city: name, country, source: 'Google Weather API', temp, feels, condText, mmHg, hum, cloud,
+        windMs, gustMs, windDir: degToCompass(windDeg), uv, precipMm, precipProb,
+        aqi: aq?.current?.european_aqi ?? null, pm25: aq?.current?.pm2_5 ?? null,
+        hours: hours.slice(0, 12), days: dailySnap, samples: [{ name: 'Google Weather', temp }]
+      };
+      updateWeatherSummaryStats(lastWeatherSnapshot);
+      return;
+    } catch (e) {
+      // Если ключ неверный или квота исчерпана — мягко откатываемся на мульти-модельную калибровку
+      $('wCond').textContent = 'Google API недоступен, включаем калибровку…';
+    }
+  }
+
+  // === РЕЖИМ 2: Google-профиль (ECMWF IFS + ICON + MET Norway + METAR Станция) ===
+  try {
+    let cached = (!forceFresh && typeof stormApiCache !== 'undefined') ? stormApiCache.get(cKey, 300000) : null;
+    let ecmwf, iconMod, metNo, wttr;
+    if (cached) {
+      ({ ecmwf, iconMod, metNo, wttr, aq } = cached);
+    } else {
+      const commonParams = `latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max&wind_speed_unit=ms&timezone=auto&forecast_days=5`;
+      const ecmwfUrl = `https://api.open-meteo.com/v1/forecast?${commonParams}&models=ecmwf_ifs025`;
+      const iconUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,precipitation,weather_code&models=icon_seamless&timezone=auto`;
+      const metNoUrl = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}`;
+      const wttrUrl = `https://wttr.in/${lat.toFixed(3)},${lon.toFixed(3)}?format=j1`;
+
+      const [ecRes, icRes, mnRes, wtRes, aqRes] = await Promise.all([
+        fetch(ecmwfUrl).catch(() => null),
+        fetch(iconUrl).catch(() => null),
+        fetch(metNoUrl).catch(() => null),
+        fetch(wttrUrl).catch(() => null),
+        fetch(aqUrl).catch(() => null)
+      ]);
+
+      ecmwf = ecRes && ecRes.ok ? await ecRes.json() : null;
+      if (!ecmwf) {
+        const fbRes = await fetch(`https://api.open-meteo.com/v1/forecast?${commonParams}`);
+        if (!fbRes.ok) throw new Error('HTTP ' + fbRes.status);
+        ecmwf = await fbRes.json();
+      }
+      iconMod = icRes && icRes.ok ? await icRes.json() : null;
+      metNo = mnRes && mnRes.ok ? await mnRes.json() : null;
+      wttr = wtRes && wtRes.ok ? await wtRes.json() : null;
+      aq = aqRes && aqRes.ok ? await aqRes.json() : null;
+
+      if (typeof stormApiCache !== 'undefined') stormApiCache.set(cKey, { ecmwf, iconMod, metNo, wttr, aq });
     }
 
-    const c = w.current;
-    const d = w.daily;
+    const c = ecmwf.current;
+    const d = ecmwf.daily;
+    const samples = [];
+    if (Number.isFinite(c?.temperature_2m)) samples.push({ name: 'ECMWF', temp: c.temperature_2m, weight: 0.36 });
+    if (Number.isFinite(iconMod?.current?.temperature_2m)) samples.push({ name: 'ICON', temp: iconMod.current.temperature_2m, weight: 0.22 });
+
+    const mnInst = metNo?.properties?.timeseries?.[0]?.data?.instant?.details;
+    if (Number.isFinite(mnInst?.air_temperature)) samples.push({ name: 'MET Norway', temp: mnInst.air_temperature, weight: 0.22 });
+
+    const wtCur = wttr?.current_condition?.[0];
+    const wtTemp = wtCur ? parseFloat(wtCur.temp_C) : NaN;
+    if (Number.isFinite(wtTemp)) samples.push({ name: 'Станция', temp: wtTemp, weight: 0.20 });
+
+    const { temp: fusedTemp, spread } = fuseTemperatures(samples);
+    const temp = Number.isFinite(fusedTemp) ? fusedTemp : c.temperature_2m;
+    const deltaCal = temp - (c.temperature_2m ?? temp);
+    const feels = (c.apparent_temperature ?? temp) + deltaCal;
+
     const [ico, condText] = WMO[c.weather_code] || ['🌡️', 'Переменная погода'];
-    const mmHg = Math.round(c.surface_pressure * 0.750062);
+    const pressRaw = Number.isFinite(mnInst?.air_pressure_at_sea_level) ? mnInst.air_pressure_at_sea_level : c.surface_pressure;
+    const mmHg = Math.round(pressRaw * 0.750062);
 
     $('wIcon').textContent = ico;
-    $('wTemp').textContent = `${Math.round(c.temperature_2m)}°C`;
+    $('wTemp').textContent = `${Math.round(temp)}°C`;
     $('wCond').textContent = condText;
-    $('wFeels').textContent = `Ощущается как ${Math.round(c.apparent_temperature)}°C`;
+    $('wFeels').textContent = `Ощущается как ${Math.round(feels)}°C`;
     $('wSun').textContent = `Восход ${(d.sunrise[0] || '').slice(11, 16) || '--:--'} · Закат ${(d.sunset[0] || '').slice(11, 16) || '--:--'}`;
     $('wUpdated').textContent = 'Обновлено: ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
     $('wPress').textContent = `${mmHg} мм рт. ст.`;
     $('wPressNote').textContent = mmHg < 745 ? 'Пониженное' : (mmHg > 762 ? 'Повышенное' : 'В пределах нормы');
-    $('wHum').textContent = `${Math.round(c.relative_humidity_2m)}%`;
+    const humVal = Number.isFinite(mnInst?.relative_humidity) ? (mnInst.relative_humidity + c.relative_humidity_2m) / 2 : c.relative_humidity_2m;
+    $('wHum').textContent = `${Math.round(humVal)}%`;
     $('wCloud').textContent = `Облачность: ${Math.round(c.cloud_cover)}%`;
     $('wWind').textContent = `${c.wind_speed_10m.toFixed(1)} м/с (${degToCompass(c.wind_direction_10m)})`;
     $('wWindDir').textContent = `Порывы до ${c.wind_gusts_10m.toFixed(1)} м/с`;
@@ -4153,36 +4544,77 @@ async function loadWeather() {
 
     $('wPrecip').textContent = `${(c.precipitation || 0).toFixed(1)} мм`;
     $('wPrecipProb').textContent = `Вероятность: ${d.precipitation_probability_max?.[0] ?? 0}%`;
+    renderAqiBlock(aq);
 
-    if (aq && aq.current && aq.current.european_aqi != null) {
-      const aqi = Math.round(aq.current.european_aqi);
-      $('wAqi').textContent = `${aqi} (${aqi <= 20 ? 'отлично' : aqi <= 40 ? 'хорошо' : aqi <= 60 ? 'умеренно' : 'загрязнён'})`;
-      $('wPm').textContent = `PM2.5: ${Math.round(aq.current.pm2_5 ?? 0)} · PM10: ${Math.round(aq.current.pm10 ?? 0)}`;
-    } else {
-      $('wAqi').textContent = 'н/д';
-      $('wPm').textContent = 'Нет данных AQI';
+    renderSourceBar(samples, spread, `🎯 Google-профиль (${samples.length} ист.)`, false);
+
+    // Почасовой прогноз (следующие 24 часа, с учётом калибровочной поправки на ближайшие 6 часов)
+    const hr = ecmwf.hourly || {};
+    const nowIsoHour = (c.time || '').slice(0, 13);
+    let startH = (hr.time || []).findIndex(t => t.slice(0, 13) >= nowIsoHour);
+    if (startH < 0) startH = 0;
+    const hours = [];
+    for (let k = startH; k < Math.min(startH + 24, (hr.time || []).length); k++) {
+      const decay = Math.max(0, 1 - (k - startH) / 6);
+      const [hIco, hDesc] = WMO[hr.weather_code?.[k]] || ['🌡️', ''];
+      hours.push({
+        time: (hr.time[k] || '').slice(11, 16),
+        ico: hIco,
+        desc: hDesc,
+        temp: (hr.temperature_2m?.[k] ?? temp) + deltaCal * decay,
+        pop: hr.precipitation_probability?.[k] ?? 0,
+        wind: hr.wind_speed_10m?.[k] ?? c.wind_speed_10m
+      });
     }
+    renderHourlyStrip(hours);
+    $('wHourlyNote').textContent = 'ECMWF IFS + калибровка · 24ч';
 
     const fRow = $('forecastRow');
     fRow.replaceChildren();
     const daysRu = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+    const dailySnap = [];
     d.time.forEach((iso, idx) => {
       const dt = new Date(iso + 'T12:00:00');
       const label = idx === 0 ? 'Сегодня' : `${daysRu[dt.getDay()]}, ${dt.getDate()}.${String(dt.getMonth() + 1).padStart(2, '0')}`;
       const [dIco, dDesc] = WMO[d.weather_code[idx]] || ['🌡️', ''];
+      const tmax = Math.round(d.temperature_2m_max[idx] + (idx === 0 ? deltaCal * 0.5 : 0));
+      const tmin = Math.round(d.temperature_2m_min[idx] + (idx === 0 ? deltaCal * 0.5 : 0));
+      const pop = d.precipitation_probability_max[idx] ?? 0;
+      dailySnap.push({ label, tmax, tmin, pop, desc: dDesc });
       const el = document.createElement('div');
       el.className = 'day-card';
       el.innerHTML = `
         <b>${label}</b>
         <div class="day-ico" title="${dDesc}">${dIco}</div>
-        <div class="day-temps">${Math.round(d.temperature_2m_max[idx])}° <span class="lo">/ ${Math.round(d.temperature_2m_min[idx])}°</span></div>
-        <div class="day-rain">💧 ${d.precipitation_probability_max[idx] ?? 0}%</div>
+        <div class="day-temps">${tmax}° <span class="lo">/ ${tmin}°</span></div>
+        <div class="day-rain">💧 ${pop}%</div>
       `;
       fRow.append(el);
     });
+
+    lastWeatherSnapshot = {
+      city: name, country, source: `Калибровка (${samples.map(s => s.name).join(' + ')})`,
+      temp, feels, condText, mmHg, hum: Math.round(humVal), cloud: Math.round(c.cloud_cover),
+      windMs: c.wind_speed_10m, gustMs: c.wind_gusts_10m, windDir: degToCompass(c.wind_direction_10m),
+      uv, precipMm: c.precipitation || 0, precipProb: d.precipitation_probability_max?.[0] ?? 0,
+      aqi: aq?.current?.european_aqi ?? null, pm25: aq?.current?.pm2_5 ?? null,
+      hours: hours.slice(0, 24), days: dailySnap, samples
+    };
+    updateWeatherSummaryStats(lastWeatherSnapshot);
   } catch (e) {
     $('wCond').textContent = 'Не удалось загрузить погоду';
-    $('wFeels').textContent = 'Проверьте подключение к интернету или сверьте через Яндекс / Google ниже.';
+    $('wFeels').textContent = 'Проверьте подключение к интернету или сверьте через Google / Яндекс ниже.';
+  }
+}
+
+function renderAqiBlock(aq) {
+  if (aq && aq.current && aq.current.european_aqi != null) {
+    const aqi = Math.round(aq.current.european_aqi);
+    $('wAqi').textContent = `${aqi} (${aqi <= 20 ? 'отлично' : aqi <= 40 ? 'хорошо' : aqi <= 60 ? 'умеренно' : 'загрязнён'})`;
+    $('wPm').textContent = `PM2.5: ${Math.round(aq.current.pm2_5 ?? 0)} · PM10: ${Math.round(aq.current.pm10 ?? 0)}`;
+  } else {
+    $('wAqi').textContent = 'н/д';
+    $('wPm').textContent = 'Нет данных AQI';
   }
 }
 
@@ -4231,6 +4663,7 @@ async function loadGeomagnetic() {
     $('geoKp').style.color = kpColor(kpVal);
     $('geoKp').style.borderColor = kpColor(kpVal);
     $('geoTip').textContent = `${lvl.g} · ${lvl.text}. ${lvl.tip}`;
+    if (lastWeatherSnapshot) updateWeatherSummaryStats(lastWeatherSnapshot);
 
     if (scaleRes && scaleRes.ok) {
       const sc = await scaleRes.json();
@@ -4266,10 +4699,128 @@ async function loadGeomagnetic() {
   }
 }
 
-async function loadAllWeather() {
+// === АВТОМАТИЧЕСКАЯ СТАТИСТИКА (GOOGLE + WORLD-WEATHER.RU) ===
+const WW_SLUGS = {
+  'москва': 'moscow',
+  'санкт-петербург': 'saint_petersburg',
+  'казань': 'kazan',
+  'сочи': 'sochi',
+  'новосибирск': 'novosibirsk',
+  'екатеринбург': 'yekaterinburg',
+  'нижний новгород': 'nizhny_novgorod',
+  'краснодар': 'krasnodar',
+  'воскресенск': 'voskresensk',
+  'виноградово': 'voskresensk'
+};
+
+function getWorldWeatherUrl(cityName) {
+  const key = String(cityName || '').trim().toLowerCase();
+  const slug = WW_SLUGS[key];
+  if (slug) return `https://world-weather.ru/pogoda/russia/${slug}/`;
+  return `https://world-weather.ru/search/?q=${encodeURIComponent(cityName || 'Москва')}`;
+}
+
+function updateWeatherSummaryStats(snap) {
+  if (!snap) return;
+  const hrs = snap.hours || [];
+  const temps = hrs.map(h => h.temp).filter(Number.isFinite);
+  const tMin = temps.length ? Math.round(Math.min(...temps, snap.temp)) : Math.round(snap.temp);
+  const tMax = temps.length ? Math.round(Math.max(...temps, snap.temp)) : Math.round(snap.temp);
+  const swing = Math.max(0, tMax - tMin);
+
+  let maxPop = Math.round(snap.precipProb || 0), peakRainTime = 'в течение дня';
+  let maxWind = snap.windMs || 0;
+  hrs.forEach(h => {
+    if ((h.pop || 0) > maxPop) { maxPop = Math.round(h.pop); peakRainTime = 'около ' + h.time; }
+    if ((h.wind || 0) > maxWind) maxWind = h.wind;
+  });
+
+  const t = Math.round(snap.temp), fl = Math.round(snap.feels);
+  const outfit = t <= -10 ? 'тёплый пуховик, шапка, шарф и перчатки'
+    : t <= 0 ? 'тёплая куртка, шапка и закрытая обувь'
+    : t <= 9 ? 'куртка/ветровка с капюшоном и кофта'
+    : t <= 17 ? 'лёгкая куртка или худи'
+    : t <= 23 ? 'футболка, на вечер лёгкая кофта'
+    : 'лёгкая одежда и вода с собой';
+
+  const comfort = Math.abs(t - fl) >= 5 ? 'Ощущается заметно холоднее'
+    : (maxPop >= 55 ? 'Сыро, нужен зонт' : (t >= 14 && t <= 24 ? 'Комфортная погода' : 'Одевайтесь по сезону'));
+
+  if ($('wStatRange')) $('wStatRange').textContent = `${tMin}° … ${tMax}°`;
+  if ($('wStatSwing')) $('wStatSwing').textContent = `Перепад за 24ч: ${swing}°`;
+  if ($('wStatRainPeak')) $('wStatRainPeak').textContent = `${maxPop}%`;
+  if ($('wStatRainTime')) $('wStatRainTime').textContent = maxPop >= 30 ? `Пик ${peakRainTime}` : 'Осадки маловероятны';
+  if ($('wStatWindPeak')) $('wStatWindPeak').textContent = `${maxWind.toFixed(1)} м/с`;
+  if ($('wStatComfort')) $('wStatComfort').textContent = comfort;
+  if ($('wStatFresh')) $('wStatFresh').textContent = '● ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+  const wwUrl = getWorldWeatherUrl(snap.city);
+  if ($('wwCityLink')) $('wwCityLink').href = wwUrl;
+  if ($('googleLink2')) $('googleLink2').href = `https://www.google.com/search?q=${encodeURIComponent('погода ' + snap.city)}`;
+
+  const kpText = $('geoKp')?.textContent || 'Kp --';
+  const modelsLine = (snap.samples || []).map(s => `${s.name}: ${s.temp > 0 ? '+' : ''}${s.temp.toFixed(1)}°`).join(' · ');
+  if ($('wAutoSummary')) {
+    $('wAutoSummary').textContent = [
+      `📍 ${snap.city}: сейчас ${t}°C (ощущается как ${fl}°C), ${snap.condText.toLowerCase()}.`,
+      `📊 Сверка моделей: ${modelsLine || snap.source}.`,
+      `🧥 Рекомендация: ${outfit}.`,
+      `🌧️ Осадки: до ${maxPop}% (${maxPop >= 40 ? 'лучше взять зонт' : 'зонт вряд ли понадобится'}). Давление: ${snap.mmHg} мм рт. ст., геомагнитика: ${kpText}.`
+    ].join('\n');
+  }
+}
+
+// Автообновление погоды каждые 10 минут, пока открыт раздел Погода
+setInterval(() => {
+  if (state.section === 'weather' && !document.hidden) loadAllWeather(true);
+}, 600000);
+
+$('weatherGapiToggle')?.addEventListener('click', () => {
+  const box = $('weatherGapiBox');
+  box.hidden = !box.hidden;
+  if (!box.hidden) $('weatherGapiKey').value = getGoogleWeatherKey();
+});
+$('weatherGapiSave')?.addEventListener('click', () => {
+  const k = $('weatherGapiKey').value.trim();
+  try { localStorage.setItem(W_GAPI_KEY, k); } catch {}
+  $('weatherGapiBox').hidden = true;
+  loadWeather(true);
+});
+$('weatherGapiClear')?.addEventListener('click', () => {
+  try { localStorage.removeItem(W_GAPI_KEY); } catch {}
+  $('weatherGapiKey').value = '';
+  $('weatherGapiBox').hidden = true;
+  loadWeather(true);
+});
+
+$('weatherGeoBtn')?.addEventListener('click', () => {
+  if (!navigator.geolocation) { $('wCond').textContent = 'Геолокация не поддерживается браузером'; return; }
+  $('wCond').textContent = 'Определяем местоположение…';
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    let place = 'Моё местоположение', country = '';
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=ru`);
+      if (r.ok) {
+        const d = await r.json();
+        const a = d.address || {};
+        place = a.city || a.town || a.village || a.suburb || a.state || place;
+        country = a.country || '';
+      }
+    } catch {}
+    state.city = { name: place, country, lat, lon };
+    saveWeatherCity(state.city);
+    renderCityPresets();
+    loadWeather(true);
+  }, () => {
+    $('wCond').textContent = 'Доступ к геолокации отклонён';
+  }, { enableHighAccuracy: false, timeout: 8000 });
+});
+
+async function loadAllWeather(forceFresh = false) {
   state.weatherLoaded = true;
   renderCityPresets();
-  await Promise.all([loadWeather(), loadGeomagnetic()]);
+  await Promise.all([loadWeather(forceFresh), loadGeomagnetic()]);
 }
 
 $('citySearchForm').addEventListener('submit', async e => {
@@ -4313,15 +4864,16 @@ $('citySearchForm').addEventListener('submit', async e => {
       return;
     }
     state.city = found;
+    saveWeatherCity(found);
     $('cityInput').value = '';
     renderCityPresets();
-    loadWeather();
+    loadWeather(true);
   } catch {
     $('wCond').textContent = 'Ошибка поиска места';
   }
 });
 
-$('weatherRefresh').addEventListener('click', () => loadAllWeather());
+$('weatherRefresh').addEventListener('click', () => loadAllWeather(true));
 
 // === WORK CALENDAR (2026–2027 РФ) ===
 const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
@@ -4926,6 +5478,7 @@ function getSavedEndpoint() {
   try {
     const v = localStorage.getItem('storm_ai_url') || '';
     if (v.includes('.lhr.life')) { localStorage.removeItem('storm_ai_url'); return ''; }
+    if (v.includes('expend-dazzling-purifier.ngrok-free.dev/v1')) { const clean = v.replace(/\/v1\/?$/, ''); localStorage.setItem('storm_ai_url', clean); return clean; }
     return v;
   } catch { return ''; }
 }
@@ -5167,7 +5720,7 @@ function speakRussian(text, onDone) {
     if (ruVoice) u.voice = ruVoice;
     u.onend = () => { if (onDone) onDone(); };
     u.onerror = () => { if (onDone) onDone(); };
-    $('aiStatusText').textContent = '🔊 Говорит StormAI…';
+    
     window.speechSynthesis.speak(u);
   } catch { if (onDone) onDone(); }
 }
@@ -5187,7 +5740,7 @@ function startListening() {
   rec.maxAlternatives = 1;
   isRecording = true;
   $('aiMicBtn').classList.add('rec');
-  $('aiStatusText').textContent = liveMode ? '🎙️ Live: слушаю тебя…' : '🎤 Слушаю…';
+  
   rec.onresult = e => {
     const spoken = e.results?.[0]?.[0]?.transcript || '';
     if (spoken.trim()) {
@@ -5198,7 +5751,7 @@ function startListening() {
   rec.onerror = () => {
     isRecording = false;
     $('aiMicBtn').classList.remove('rec');
-    if (liveMode) $('aiStatusText').textContent = '🎙️ Live: нажми 🎤 чтобы сказать';
+    
   };
   rec.onend = () => {
     isRecording = false;
@@ -5230,7 +5783,7 @@ $('aiTtsBtn').addEventListener('click', () => {
 $('aiLiveBtn').addEventListener('click', () => {
   if (liveMode) {
     stopVoiceAll();
-    $('aiStatusText').textContent = 'Live-режим остановлен';
+    
   } else {
     liveMode = true;
     ttsEnabled = true;
@@ -5248,7 +5801,7 @@ function openAiPanel() {
   if (!aiOpenedOnce) {
     aiOpenedOnce = true;
     const saved = getSavedEndpoint();
-    $('aiEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev/v1';
+    $('aiEndpoint').value = saved || 'https://expend-dazzling-purifier.ngrok-free.dev';
     testAiServer();
     switchAiChat(activeChatId);
   }
@@ -5267,12 +5820,50 @@ $('aiToastClose').addEventListener('click', () => { $('aiToast').hidden = true; 
 $('aiCloseBtn').addEventListener('click', () => { stopVoiceAll(); closeAiPanel(); });
 $('aiSettingsBtn').addEventListener('click', () => { $('aiSettings').hidden = !$('aiSettings').hidden; });
 
+
+const aiResolvedPrefixCache = {};
+async function aiSmartFetch(rawBase, path, opts = {}) {
+  const clean = String(rawBase || '').trim().replace(/\/+$/, '');
+  if (!clean) throw new Error('Empty API URL');
+  const cached = aiResolvedPrefixCache[clean];
+  if (cached) {
+    return fetch(cached + path, opts);
+  }
+  // If user entered clean domain without /v1, try /v1 first (standard LM Studio), fallback to root
+  const candidates = /\/v1$/i.test(clean) ? [clean] : [clean + '/v1', clean];
+  let lastRes = null, lastErr = null;
+  for (const base of candidates) {
+    try {
+      const r = await fetch(base + path, opts);
+      if (r.ok) {
+        aiResolvedPrefixCache[clean] = base;
+        return r;
+      }
+      lastRes = r;
+      if (r.status !== 404 && r.status !== 405) return r;
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  if (lastRes) return lastRes;
+  throw lastErr || new Error('Network error');
+}
+
+function setAiOnlineState(isOnline) {
+  const txt = isOnline ? '🟢 Онлайн' : '🔴 Офлайн';
+  const col = isOnline ? 'var(--ok)' : 'var(--bad)';
+  ['aiStatusText', 'coderStatus'].forEach(id => {
+    const el = $(id);
+    if (el) { el.textContent = txt; el.style.color = col; }
+  });
+}
+
 async function testAiServer() {
   const base = ($('aiEndpoint').value.trim() || $('aiEndpoint').placeholder).replace(/\/+$/, '');
   saveEndpoint(base);
-  $('aiStatusText').textContent = 'Проверяем сервер…';
+  
   try {
-    const r = await fetch(base + '/models', { headers: getAiHeaders() });
+    const r = await aiSmartFetch(base, '/models', { headers: getAiHeaders() });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     const list = d.data || [];
@@ -5280,9 +5871,9 @@ async function testAiServer() {
     sel.replaceChildren(new Option('Авто (текущая модель)', ''));
     list.forEach(m => sel.add(new Option(m.id, m.id)));
     if (list[0]) sel.value = list[0].id;
-    $('aiStatusText').textContent = list.length ? `Онлайн · ${list[0].id}` : 'Сервер онлайн';
+    setAiOnlineState(true);
   } catch {
-    $('aiStatusText').textContent = 'Сервер не отвечает (проверь LM Studio + CORS)';
+    setAiOnlineState(false);
   }
 }
 $('aiTestBtn').addEventListener('click', testAiServer);
@@ -5369,10 +5960,10 @@ async function handleAiFiles(fileList) {
         const dataUrl = await imageFileToDataUrl(file);
         aiPendingAtts.push({ name: file.name, kind: 'image', images: [dataUrl] });
       } else if (file.type.startsWith('video/')) {
-        $('aiStatusText').textContent = `Извлекаем кадры из ${file.name}…`;
+        
         const frames = await extractVideoFrames(file, 4);
         aiPendingAtts.push({ name: file.name, kind: 'video', images: frames });
-        $('aiStatusText').textContent = 'Видео готово к анализу ✓';
+        
       } else if ((ext === 'xlsx' || ext === 'xls') && window.XLSX) {
         const buf = await file.arrayBuffer();
         const wb = window.XLSX.read(buf, { type: 'array' });
@@ -5421,7 +6012,7 @@ async function fetchWebContext(query) {
   const urls = query.match(/https?:\/\/[^\s)]+/gi) || [];
   for (const u of urls.slice(0, 2)) {
     try {
-      $('aiStatusText').textContent = `📖 Читаю страницу ${new URL(u).hostname}…`;
+      
       const r = await fetch('https://r.jina.ai/' + u, { headers: { 'Accept': 'text/plain' } });
       if (r.ok) {
         const txt = (await r.text()).trim().slice(0, 4200);
@@ -5433,7 +6024,7 @@ async function fetchWebContext(query) {
   const cleanQ = query.replace(/https?:\/\/[^\s)]+/gi, '').trim().slice(0, 140);
   if (cleanQ.length >= 3) {
     try {
-      $('aiStatusText').textContent = '🔎 Deep Search: ищу по сайтам…';
+      
       const sr = await fetch('https://s.jina.ai/' + encodeURIComponent(cleanQ), { headers: { 'Accept': 'text/plain' } });
       if (sr.ok) {
         const body = (await sr.text()).trim();
@@ -5467,6 +6058,107 @@ async function fetchWebContext(query) {
   return { context: chunks.join('\n\n'), sources };
 }
 
+function stripThinkTags(raw) {
+  return String(raw || '').replace(/<think>[\s\S]*?<\/think>\s*/gi, '').trim();
+}
+
+function detectPromptStage(q) {
+  const s = (q || '').toLowerCase();
+  if (/(файл|excel|xlsx|word|docx|pdf|pptx|презентац|таблиц|1с|bsl|svg|схем|ics)/.test(s)) return '📄 Готовлю файл…';
+  if (/(код|функц|скрипт|программ|python|c\+\+|js|html|css|ошибк|баг|почини|напиши)/.test(s)) return '💻 Пишу код…';
+  if (/(погод|новост|курс|найди|поищ|что такое|кто такой|сколько стоит)/.test(s)) return '🔎 Анализирую данные…';
+  return '🧠 Думаю…';
+}
+
+function createThinkBubble(container, initialLabel) {
+  const box = document.createElement('div');
+  box.className = 'ai-think-bubble';
+  box.innerHTML = `<span class="ai-think-dot" aria-hidden="true"></span><div style="min-width:0"><div class="ai-think-lbl"></div><div class="ai-think-preview" hidden></div></div>`;
+  const lbl = box.querySelector('.ai-think-lbl');
+  const prev = box.querySelector('.ai-think-preview');
+  lbl.textContent = initialLabel || '🧠 Думаю…';
+  container.append(box);
+  container.scrollTop = container.scrollHeight;
+  return {
+    el: box,
+    setStage(txt) {
+      lbl.textContent = txt;
+      container.scrollTop = container.scrollHeight;
+    },
+    setPreview(txt) {
+      if (!txt) { prev.hidden = true; return; }
+      prev.hidden = false;
+      prev.textContent = txt.length > 320 ? '…' + txt.slice(-320) : txt;
+      container.scrollTop = container.scrollHeight;
+    },
+    remove() { box.remove(); }
+  };
+}
+
+async function callLlmWithLiveStatus(base, body, onStage, onText) {
+  const headers = getAiHeaders();
+  // Try streaming first so we can show real-time stages ("Думаю…", "Пишу код…", "Создаю файл…")
+  try {
+    const r = await aiSmartFetch(base, '/chat/completions', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ ...body, stream: true })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const ctype = (r.headers.get('content-type') || '').toLowerCase();
+    if (!ctype.includes('text/event-stream') || !r.body) {
+      const d = await r.json();
+      return d.choices?.[0]?.message?.content || '';
+    }
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '', full = '';
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop() || '';
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line.startsWith('data:')) continue;
+        const payload = line.slice(5).trim();
+        if (payload === '[DONE]') continue;
+        try {
+          const j = JSON.parse(payload);
+          const delta = j.choices?.[0]?.delta || {};
+          if (delta.reasoning_content) {
+            onStage('🧠 Думаю…');
+          }
+          if (delta.content) {
+            full += delta.content;
+            if (/<think>/i.test(full) && !/<\/think>/i.test(full)) {
+              onStage('🧠 Думаю…');
+            } else {
+              const vis = stripThinkTags(full);
+              if (/```file:/i.test(vis)) onStage('📄 Создаю файл…');
+              else if (/```/.test(vis)) onStage('💻 Пишу код…');
+              else if (vis.length > 0) onStage('✨ Пишу ответ…');
+              if (vis && onText) onText(vis);
+            }
+          }
+        } catch {}
+      }
+    }
+    return full;
+  } catch (e) {
+    // Fallback to non-streaming request
+    const r = await aiSmartFetch(base, '/chat/completions', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ ...body, stream: false })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    return d.choices?.[0]?.message?.content || '';
+  }
+}
+
 async function sendAiPrompt(text, fromVoice = false) {
   const q = text.trim();
   if (!q && !aiPendingAtts.length) return;
@@ -5483,16 +6175,24 @@ async function sendAiPrompt(text, fromVoice = false) {
   const displayLabel = [q || (imgs.length ? 'Проанализируй прикреплённые медиа.' : 'Проанализируй прикреплённые файлы.'), ...atts.map(a => `[${a.name}]`)].join(' ');
   appendAiMsg('user', displayLabel, [], imgs);
 
+  $('aiInput').value = '';
+  $('aiSendBtn').disabled = true;
+
+  const think = createThinkBubble($('aiMsgs'), aiWebEnabled && q ? '🔎 Ищу в интернете…' : '🧠 Думаю…');
+
   let webNote = '';
   let webSources = [];
   if (aiWebEnabled && q) {
-    $('aiStatusText').textContent = '🔎 Deep Search: сканирую интернет…';
+    
+    think.setStage('🔎 Ищу в интернете…');
     const webRes = await fetchWebContext(q);
     if (webRes.context) {
       webSources = webRes.sources;
       webNote = `\n\n[Актуальные данные из интернета — опирайся на них и укажи источники]:\n${webRes.context}`;
+      think.setStage(`📖 Изучаю найденное (${webSources.length || 1})…`);
     }
   }
+
   const promptText = (q || (imgs.length ? 'Опиши и проанализируй прикреплённые изображения/кадры видео.' : 'Проанализируй прикреплённый файл.')) + textExtra + webNote;
   if (imgs.length) {
     const parts = [{ type: 'text', text: promptText }, ...imgs.map(u => ({ type: 'image_url', image_url: { url: u } }))];
@@ -5500,37 +6200,40 @@ async function sendAiPrompt(text, fromVoice = false) {
   } else {
     aiHistory.push({ role: 'user', content: promptText });
   }
-  $('aiInput').value = '';
-  $('aiSendBtn').disabled = true;
+
+  const initialStage = detectPromptStage(q);
+  think.setStage(initialStage);
+  
 
   const base = ($('coderEndpoint').value.trim() || $('aiEndpoint').value.trim() || $('coderEndpoint').placeholder).replace(/\/+$/, '');
   const model = $('coderModelSelect').value || $('aiModelSelect').value || undefined;
   try {
     const body = { messages: aiHistory, temperature: 0.7 };
     if (model) body.model = model;
-    const r = await fetch(base + '/chat/completions', {
-      method: 'POST',
-      headers: getAiHeaders(),
-      body: JSON.stringify(body)
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    const d = await r.json();
-    const reply = d.choices?.[0]?.message?.content || 'Пустой ответ от модели.';
+    const rawReply = await callLlmWithLiveStatus(
+      base,
+      body,
+      st => { think.setStage(st); },
+      vis => { think.setPreview(vis); }
+    );
+    const reply = stripThinkTags(rawReply) || 'Пустой ответ от модели.';
+    think.remove();
     aiHistory.push({ role: 'assistant', content: reply });
     const { cleaned, files } = extractFiles(reply);
     const spokenText = cleaned || 'Готово! Файлы созданы.';
     appendAiMsg('bot', spokenText, files, [], webSources);
     saveCurrentChatState();
-    $('aiStatusText').textContent = 'Онлайн · локальная LLM';
+    setAiOnlineState(true);
     if (liveMode || fromVoice) {
       speakRussian(spokenText, () => {
         if (liveMode && !$('aiPanel').hidden) startListening();
-        else $('aiStatusText').textContent = 'Онлайн · локальная LLM';
+        else setAiOnlineState(true);
       });
     }
   } catch {
+    think.remove();
     appendAiMsg('bot', 'Не удалось подключиться к локальной модели.\n1. Запусти сервер в LM Studio (вкладка Developer).\n2. Включи Enable CORS в Server Settings.\n3. Нажми ⚙ вверху чата и «Проверить».');
-    $('aiStatusText').textContent = 'Офлайн · включи LM Studio';
+    setAiOnlineState(false);
   } finally {
     $('aiSendBtn').disabled = false;
   }
@@ -6675,9 +7378,9 @@ async function connectCoderLmStudio() {
   const base = ($('coderEndpoint').value.trim() || $('coderEndpoint').placeholder).replace(/\/+$/, '');
   saveEndpoint(base);
   $('aiEndpoint').value = base;
-  $('coderStatus').textContent = 'Подключаемся к LM Studio…';
+  
   try {
-    const r = await fetch(base + '/models', { headers: getAiHeaders() });
+    const r = await aiSmartFetch(base, '/models', { headers: getAiHeaders() });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     const list = d.data || [];
@@ -6690,12 +7393,12 @@ async function connectCoderLmStudio() {
       sel2.add(new Option(m.id, m.id));
     });
     if (list[0]) { sel.value = list[0].id; sel2.value = list[0].id; }
-    $('coderStatus').textContent = list.length ? `Онлайн · ${list[0].id}` : 'Подключено ✓';
-    $('aiStatusText').textContent = $('coderStatus').textContent;
+    setAiOnlineState(true);
+    
     $('coderSettings').hidden = true;
     appendCoderMsg('bot', `Подключено к локальной модели${list[0] ? ' (' + list[0].id + ')' : ''}! Пиши задачу — буду править код прямо в Stormcode ⚡`);
   } catch {
-    $('coderStatus').textContent = 'Нет ответа · проверь LM Studio + CORS';
+    setAiOnlineState(false);
     appendCoderMsg('bot', 'Не удалось достучаться до LM Studio. Проверь:\n1) Вкладка Developer → сервер запущен (Status: Running)\n2) Server Settings → Enable CORS включён\n3) Нажми «Подключить» ещё раз.');
   }
 }
@@ -6837,7 +7540,7 @@ async function runCoderPrompt(userPrompt) {
   appendCoderMsg('user', q);
   $('coderInput').value = '';
   $('coderSendBtn').disabled = true;
-  $('coderStatus').textContent = `Агент анализирует ${lang}…`;
+  
 
   const base = ($('coderEndpoint').value.trim() || $('aiEndpoint').value.trim() || $('coderEndpoint').placeholder).replace(/\/+$/, '');
   const model = $('coderModelSelect').value || $('aiModelSelect').value || undefined;
@@ -6851,7 +7554,7 @@ async function runCoderPrompt(userPrompt) {
   try {
     const body = { messages: coderHistory, temperature: 0.35 };
     if (model) body.model = model;
-    const r = await fetch(base + '/chat/completions', {
+    const r = await aiSmartFetch(base, '/chat/completions', {
       method: 'POST', headers: getAiHeaders(),
       body: JSON.stringify(body)
     });
@@ -6871,11 +7574,11 @@ async function runCoderPrompt(userPrompt) {
     }
     const cleanText = reply.replace(/```[\w+-]*\n[\s\S]*?```/g, '').trim() || 'Код обновлён и запущен в редакторе.';
     appendCoderMsg('bot', cleanText, newCode, steps, diffInfo);
-    $('coderStatus').textContent = `Онлайн · ${lang}`;
+    setAiOnlineState(true);
   } catch {
     steps.push({ text: '✖ Нет ответа от сервера модели', cls: 'err' });
     appendCoderMsg('bot', 'Не удалось подключиться к серверу. Проверь в ⚙ URL (localhost:1234/v1 или ссылку Cloudflare Tunnel) и включённый Enable CORS в LM Studio.', '', steps);
-    $('coderStatus').textContent = 'Офлайн · проверь сервер';
+    setAiOnlineState(false);
   } finally {
     $('coderSendBtn').disabled = false;
   }
@@ -8361,7 +9064,7 @@ async function askBen(question) {
       max_tokens: 60
     };
     if (model) body.model = model;
-    const r = await fetch(base + '/chat/completions', { method: 'POST', headers: getAiHeaders(), body: JSON.stringify(body) });
+    const r = await aiSmartFetch(base, '/chat/completions', { method: 'POST', headers: getAiHeaders(), body: JSON.stringify(body) });
     if (r.ok) {
       const d = await r.json();
       const raw = d.choices?.[0]?.message?.content || '';
@@ -12477,7 +13180,7 @@ renderQuickHub();
 
   // ---------- состояние ----------
   let root, cv, g, W = 0, H = 0, S = 1, OX = 0, OY = 0;
-  let i = 0, t = 0, bt = 0, last = 0, raf = 0, typed = 0, auto = false, sound = false, shake = 0, flash = 0, fade = 1, scene = '';
+  let i = 0, t = 0, bt = 0, last = 0, raf = 0, typed = 0, auto = true, sound = false, shake = 0, flash = 0, fade = 1, scene = '';
   let parts = [], ac = null, drone = null;
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const R = (a, b) => a + Math.random() * (b - a);
@@ -12533,28 +13236,70 @@ renderQuickHub();
 
   // ---------- персонажи ----------
   function person(x, y, o) {
-    const s = o.s || 1, br = Math.sin(t * 1.8 + x) * 2.5, talk = o.talk, dir = o.dir || 1;
-    g.save(); g.translate(x, y); g.scale(s * dir, s);
-    if (talk) glow(0, -190, 230, o.rim, .32);
-    g.fillStyle = 'rgba(0,0,0,.4)'; g.beginPath(); g.ellipse(0, 4, 78, 13, 0, 0, 7); g.fill();
-    const walk = o.walk ? Math.sin(t * 6 + x * .02) * 24 : 0;
-    line(-20, -135, -26 + walk, -6, '#0b0e17', 30); line(20, -135, 26 - walk, -6, '#0b0e17', 30);
-    if (o.cape) poly([[-48, -285], [-96 - Math.sin(t * 2) * 9, -40], [-22, -70]], o.cape);
-    poly([[-54, -288 + br], [54, -288 + br], [42, -128], [-42, -128]], o.coat);
-    poly([[28, -286 + br], [54, -288 + br], [42, -128], [26, -128]], o.rim);
-    rect(-44, -165, 88, 13, '#0d101a');
-    const gest = talk ? Math.sin(t * 5) * 18 : 0;
-    line(-48, -270 + br, -66, -160, o.coat, 25);
-    line(48, -270 + br, 70 + (talk ? 20 : 0), -165 - (talk ? 44 + gest : 0), o.coat, 25);
-    disc(70 + (talk ? 20 : 0), -160 - (talk ? 44 + gest : 0), 13, '#d9a583');
-    rect(-11, -315 + br, 22, 30, '#c18f70');
-    disc(0, -343 + br, 40, '#dcab89');
-    g.fillStyle = o.hair; g.beginPath(); g.arc(0, -348 + br, 43, Math.PI * .93, Math.PI * 2.12); g.quadraticCurveTo(8, -362 + br, -40, -335 + br); g.fill();
-    const blink = (t + x * .01) % 4.2 < .12;
-    rect(9, -346 + br, 7, blink ? 2 : 6, '#1b1e2b'); rect(26, -346 + br, 6, blink ? 2 : 6, '#1b1e2b');
-    rect(15, -323 + br, 15, talk && Math.sin(t * 17) > 0 ? 7 : 2, '#7a4438');
-    if (o.crown) poly([[-34, -378 + br], [-34, -410 + br], [-17, -392 + br], [0, -420 + br], [17, -392 + br], [34, -410 + br], [34, -378 + br]], '#f6c453');
-    if (o.mark === 'epaulet') { rect(-62, -292 + br, 28, 12, '#f6c453'); rect(34, -292 + br, 28, 12, '#f6c453'); }
+    const s = o.s || 1, br = Math.sin(t * 2.1 + x * .01) * 3, talk = o.talk, dir = o.dir || 1;
+    const sway = Math.sin(t * 1.15 + x * .02) * (talk ? 0.032 : 0.012);
+    const headNod = talk ? Math.sin(t * 6.5) * 0.045 : Math.sin(t * 1.4 + x) * 0.015;
+    g.save(); g.translate(x, y); g.scale(s * dir, s); g.rotate(sway);
+    if (talk) glow(0, -195, 250, o.rim, .38);
+    // Ground shadow
+    g.fillStyle = 'rgba(0,0,0,.46)'; g.beginPath(); g.ellipse(0, 5, 82, 14, 0, 0, 7); g.fill();
+    // Animated legs with boots
+    const walk = o.walk ? Math.sin(t * 6.4 + x * .02) * 26 : 0;
+    line(-20, -135, -26 + walk, -8, '#0b0e17', 30); line(20, -135, 26 - walk, -8, '#0b0e17', 30);
+    // Flowing cape (animated wave)
+    if (o.cape) {
+      const cw = Math.sin(t * 2.8) * 14, cw2 = Math.cos(t * 2.2) * 10;
+      poly([[-48, -285 + br], [-104 - cw, -36], [-62 - cw2, -54], [-20, -70]], o.cape);
+    }
+    // Torso / Coat with cel-shaded outline & rim highlight
+    g.save();
+    g.lineWidth = 4; g.strokeStyle = '#070910';
+    g.fillStyle = o.coat;
+    g.beginPath(); g.moveTo(-56, -288 + br); g.lineTo(56, -288 + br); g.lineTo(44, -126); g.lineTo(-44, -126); g.closePath();
+    g.fill(); g.stroke();
+    g.restore();
+    poly([[26, -286 + br], [54, -288 + br], [42, -128], [24, -128]], o.rim);
+    // Collar / V-lapels
+    poly([[-22, -288 + br], [0, -252 + br], [22, -288 + br]], '#141926');
+    rect(-45, -166, 90, 14, '#0c0f19');
+    rect(-9, -165, 18, 12, '#d8b25a');
+    // Animated arms & gestures
+    const gest = talk ? Math.sin(t * 5.8) * 22 : Math.sin(t * 1.6) * 4;
+    const armIdle = Math.sin(t * 1.9 + x) * 6;
+    line(-48, -270 + br, -68, -158 + armIdle, o.coat, 25);
+    disc(-68, -154 + armIdle, 12, '#d9a583');
+    const handX = 72 + (talk ? 24 : 0), handY = -164 - (talk ? 48 + gest : -armIdle);
+    line(48, -270 + br, handX, handY, o.coat, 25);
+    disc(handX, handY + 4, 13, '#d9a583');
+    // Head group with expressive cartoon face, blinking eyes, eyebrows & talking mouth
+    g.save();
+    g.translate(0, -315 + br);
+    g.rotate(headNod);
+    rect(-12, -2, 24, 30, '#c18f70');
+    g.fillStyle = '#dcab89'; g.strokeStyle = '#070910'; g.lineWidth = 3.5;
+    g.beginPath(); g.arc(0, -28, 41, 0, 7); g.fill(); g.stroke();
+    // Cheek shading
+    g.fillStyle = 'rgba(0,0,0,.11)'; g.beginPath(); g.arc(-14, -22, 26, Math.PI * .5, Math.PI * 1.5); g.fill();
+    // Hair
+    g.fillStyle = o.hair; g.beginPath(); g.arc(0, -33, 44, Math.PI * .92, Math.PI * 2.12); g.quadraticCurveTo(8, -47, -41, -20); g.fill(); g.stroke();
+    // Cartoon eyes with blink + specular highlight
+    const blink = (t + x * .01) % 3.8 < .13;
+    const eyeH = blink ? 2 : 9;
+    rect(8, -33, 9, eyeH, '#141724'); rect(26, -33, 8, eyeH, '#141724');
+    if (!blink) {
+      rect(10, -32, 3, 3, '#ffffff'); rect(28, -32, 3, 3, '#ffffff');
+    }
+    // Expressive eyebrows
+    const browY = talk ? -40 - Math.abs(Math.sin(t * 4.5)) * 3 : -39;
+    line(6, browY, 18, browY - 1, o.hair, 3.5);
+    line(24, browY - 1, 35, browY, o.hair, 3.5);
+    // Animated talking mouth
+    const mOpen = talk ? (2 + Math.abs(Math.sin(t * 14)) * 9) : 2.5;
+    g.fillStyle = '#6c352c';
+    g.beginPath(); g.roundRect ? g.roundRect(14, -10, 16, mOpen, 3) : g.rect(14, -10, 16, mOpen); g.fill();
+    if (o.crown) poly([[-34, -63], [-34, -95], [-17, -77], [0, -105], [17, -77], [34, -95], [34, -63]], '#f6c453');
+    g.restore();
+    if (o.mark === 'epaulet') { rect(-64, -292 + br, 30, 13, '#f6c453'); rect(34, -292 + br, 30, 13, '#f6c453'); }
     if (o.mark === 'apron') poly([[-26, -240 + br], [26, -240 + br], [36, -90], [-36, -90]], '#6b4a32');
     g.restore();
   }
@@ -12866,10 +13611,12 @@ renderQuickHub();
     const dt = Math.min(.05, (now - last) / 1000 || .016); last = now; t += dt; bt += dt;
     const b = beats[i];
     g.save(); g.clearRect(0, 0, W, H);
-    const zoom = calm ? 1 : 1.02 + Math.min(.07, bt * .006) + (b.who ? .025 : 0);
-    const camX = calm ? 0 : Math.sin(t * .21) * 14 + (b.who ? (b.who === 'M' ? 22 : -22) : 0);
-    g.translate(W / 2, H / 2); g.scale(zoom, zoom); g.translate(-W / 2, -H / 2);
-    g.translate(OX + camX * S + R(-shake, shake), OY + R(-shake, shake)); g.scale(S, S);
+    const targetZoom = calm ? 1 : 1.02 + Math.min(.08, bt * .007) + (b.who ? .03 : 0);
+    const targetCamX = calm ? 0 : Math.sin(t * .28) * 16 + (b.who ? (b.who === 'M' ? 28 : -28) : 0);
+    camZoomCur += (targetZoom - camZoomCur) * Math.min(1, dt * 3.5);
+    camXCur += (targetCamX - camXCur) * Math.min(1, dt * 3.5);
+    g.translate(W / 2, H / 2); g.scale(camZoomCur, camZoomCur); g.translate(-W / 2, -H / 2);
+    g.translate(OX + camXCur * S + R(-shake, shake), OY + R(-shake, shake)); g.scale(S, S);
     DRAW[b.scene].call(DRAW[b.scene], b);
     particles(dt);
     g.restore();
@@ -12886,7 +13633,7 @@ renderQuickHub();
   }
 
   const SPEAKER_COLORS = { M: '#7fd8ff', E: '#f6c453', F: '#ff9f5a', I: '#f5d061', G: '#ff6b6b', O: '#cbd5e1' };
-  let cinemaMode = true, speedMult = 1, uiTimer = 0, touchX0 = 0, touchY0 = 0;
+  let cinemaMode = true, speedMult = 1, uiTimer = 0, touchX0 = 0, touchY0 = 0, camZoomCur = 1.02, camXCur = 0;
 
   function playSfx(kind) {
     if (!sound) return;
@@ -13040,7 +13787,7 @@ renderQuickHub();
   <button id="krClose" type="button">✕ Выйти</button>
   <select id="krChap" aria-label="Глава"></select>
   <span class="kr-count" id="krCount">1 / 1</span>
-  <button id="krAuto" type="button">▶ Авто</button>
+  <button id="krAuto" type="button" class="on">⏸ Пауза</button>
   <button id="krSpeed" type="button" title="Скорость авто-кино">1×</button>
   <button id="krSound" type="button">🔇 Звук</button>
   <button id="krCinemaBtn" type="button" class="on" title="Кино-полосы и автоскрытие панели (C)">🎞 Кино</button>
