@@ -2119,27 +2119,145 @@ body.light-mode .fc-card{background:#f1f5f9}
 body.light-mode .fc-card .fc-txt{color:#0f172a}
 .cmd-smart-hint{padding:9px 12px;border-radius:11px;background:linear-gradient(135deg,#7c5cff26,#22d3ee1c);border:1px solid #22d3ee66;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;cursor:pointer}
 
-/* === RELEASE 1.5 POLISH: SMOOTH NATURAL MOTION (200-260ms) === */
-:root{--ease-storm:cubic-bezier(0.22,1,0.36,1);--t-fast:180ms;--t-med:250ms}
-a,button,.card,.today-card,.bento-card,.sec-tile,.pill,.nav-btn,.nav-util-btn,.llm-pill,.qh-chip,.side-item,.cad-tool-btn,.noise-btn,.fc-card,.ws-proj-tab,.ws-widget{
-  transition:background-color var(--t-fast) var(--ease-storm),
-             border-color var(--t-fast) var(--ease-storm),
-             color var(--t-fast) var(--ease-storm),
-             transform var(--t-med) var(--ease-storm),
-             box-shadow var(--t-med) var(--ease-storm),
-             opacity var(--t-fast) var(--ease-storm);
+/* === RELEASE 1.6: MULTI-DEVICE ERGONOMICS (PHONE / TABLET / LAPTOP / PC) & KARATEL CINEMA === */
+:root{--bottom-bar-h:0px}
+.mob-bottom-nav{display:none}
+@media (max-width:680px){
+  :root{--bottom-bar-h:64px}
+  body{padding-bottom:calc(var(--bottom-bar-h) + env(safe-area-inset-bottom) + 8px)}
+  .storm-toast-host{bottom:calc(var(--bottom-bar-h) + env(safe-area-inset-bottom) + 14px)}
+  .mob-bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:85;
+    height:calc(60px + env(safe-area-inset-bottom));
+    padding:4px 8px env(safe-area-inset-bottom);
+    background:color-mix(in srgb,var(--panel) 92%,#0b0f19);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-top:1px solid var(--line-strong);
+    display:grid;grid-template-columns:repeat(5,1fr);gap:2px;align-items:center;
+    box-shadow:0 -8px 28px rgba(0,0,0,.45);
+  }
+  .mob-bnav-btn{
+    background:none;border:0;border-radius:10px;padding:4px 2px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    color:var(--dim);font:500 10.5px var(--sans);min-height:48px;
+  }
+  .mob-bnav-btn span.ico{font-size:18px;line-height:1.05}
+  .mob-bnav-btn.active{color:#fff;background:rgba(124,92,255,.22)}
+  body.light-mode .mob-bnav-btn.active{color:var(--a);background:rgba(124,92,255,.12)}
+  input,select,textarea{font-size:16px !important}
+  .modal-backdrop{align-items:end;padding:0}
+  .modal{border-radius:20px 20px 0 0;max-height:88dvh;overflow-y:auto;width:100%}
 }
-button:active:not(:disabled){transform:scale(0.985)}
-main > section:not([hidden]){animation:stormViewIn var(--t-med) var(--ease-storm) both}
-@keyframes stormViewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.modal-backdrop:not([hidden]){animation:stormFade var(--t-fast) ease-out both}
-.modal-backdrop:not([hidden]) .modal{animation:stormPop var(--t-med) var(--ease-storm) both}
-.focus-dock:not([hidden]),.mp-dock:not([hidden]),.ai-panel:not([hidden]){animation:stormPop var(--t-med) var(--ease-storm) both}
-@keyframes stormFade{from{opacity:0}to{opacity:1}}
-@keyframes stormPop{from{opacity:0;transform:translateY(8px) scale(0.985)}to{opacity:1;transform:translateY(0) scale(1)}}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+@media (min-width:681px) and (max-width:1024px){
+  .hero{grid-template-columns:1fr 1fr;gap:20px;padding:24px}
+  .ai-studio{grid-template-columns:210px 1fr;gap:12px}
+  .cad-grid-epur{grid-template-columns:1fr 1fr}
+  .plan-wrap{grid-template-columns:1.25fr 1fr}
 }
+@media (min-width:1025px) and (max-width:1440px){
+  main{padding-top:20px;padding-bottom:44px}
+  .hero{padding:26px 28px;gap:24px;margin-bottom:20px}
+}
+@media (min-width:1441px){
+  body.wide-workspace main{max-width:min(1640px,94vw)}
+  body.wide-workspace .nav{max-width:min(1640px,94vw) !important}
+}
+
+/* Karatel Cinema Story Styles */
+.kc-wrap{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.kc-topbar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;border-radius:16px;background:rgba(18,22,32,.86);border:1px solid var(--line);
+}
+body.light-mode .kc-topbar{background:#ffffff;border-color:#d8dfee}
+.kc-cinema-card{
+  position:relative;border-radius:20px;overflow:hidden;
+  background:#06080f;border:1px solid #7c5cff55;
+  box-shadow:0 24px 64px rgba(0,0,0,.65);
+}
+.kc-viewport{
+  position:relative;width:100%;height:clamp(340px,54dvh,540px);
+  overflow:hidden;background:#05070e;user-select:none;
+}
+.kc-canvas{width:100%;height:100%;display:block}
+.kc-letterbox-t,.kc-letterbox-b{
+  position:absolute;left:0;right:0;height:0;background:#020307;z-index:6;pointer-events:none;
+  transition:height .45s var(--ease-storm);
+}
+.kc-letterbox-t{top:0}.kc-letterbox-b{bottom:0}
+.kc-cinema-card.letterbox .kc-letterbox-t,
+.kc-cinema-card.letterbox .kc-letterbox-b{height:clamp(22px,5.2vh,44px)}
+.kc-hud-top{
+  position:absolute;top:12px;left:12px;right:12px;z-index:8;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+  pointer-events:none;
+}
+.kc-hud-top > *{pointer-events:auto}
+.kc-badge{
+  background:rgba(9,13,22,.78);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.14);border-radius:999px;
+  padding:5px 12px;font:600 12px var(--mono);color:#e2e8f0;
+}
+.kc-actor-stage{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:clamp(14px,3vh,28px);
+}
+.kc-actor{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  transition:transform .55s var(--ease-storm),opacity .4s ease,filter .4s ease;
+  will-change:transform,opacity;
+}
+.kc-actor-svg{width:clamp(96px,16vw,156px);height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.85))}
+.kc-actor-tag{
+  background:rgba(10,14,24,.84);border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:2px 9px;font:600 11px var(--mono);color:#cbd5e1;
+}
+.kc-subtitles{
+  position:relative;z-index:9;
+  padding:18px 22px 20px;
+  background:linear-gradient(180deg,#0b101d 0%,#080c16 100%);
+  border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:10px;
+}
+body.light-mode .kc-subtitles{background:#f8fafc;color:#0f172a}
+.kc-speaker-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.kc-speaker{font:700 15px var(--display);color:var(--b)}
+body.light-mode .kc-speaker{color:var(--a)}
+.kc-beat-text{
+  font:400 clamp(15.5px,1.45vw,18.5px)/1.68 var(--sans);
+  color:#f1f5f9;min-height:64px;cursor:pointer;
+}
+body.light-mode .kc-beat-text{color:#0f172a}
+.kc-controls{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+  padding-top:6px;border-top:1px solid var(--line);
+}
+.kc-chapters-drawer{
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;
+}
+.kc-ch-btn{
+  text-align:left;padding:10px 12px;border-radius:11px;
+  background:#121726;border:1px solid var(--line);color:#cbd5e1;font-size:13px;
+}
+body.light-mode .kc-ch-btn{background:#f1f5f9;color:#0f172a}
+.kc-ch-btn.active{border-color:var(--b);background:rgba(34,211,238,.14);color:#fff;font-weight:600}
+body.light-mode .kc-ch-btn.active{color:#0f172a}
+.kc-script-box{
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;
+  display:flex;flex-direction:column;gap:8px;
+}
+@media (max-width:600px){
+  .kc-viewport{height:clamp(260px,42dvh,360px)}
+  .kc-subtitles{padding:14px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .kc-wrap{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
+  .kc-topbar{width:100%}
+  .kc-cinema-card{flex:1 1 58%;min-width:300px}
+  .kc-viewport{height:calc(100dvh - 120px);min-height:220px}
+}
+
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -2765,7 +2883,6 @@ main > section:not([hidden]){animation:stormViewIn var(--t-med) var(--ease-storm
             <option value="py_max">Пример: Python Максимум</option>
             <option value="py_while">Пример: Python Цикл while</option>
           </select>
-          <label style="font-size:12.5px;display:inline-flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="sfGostPaper" checked> Белый лист ГОСТ</label>
           <button class="btn-primary" id="sfBuildBtn" type="button">Построить</button>
           <button class="btn-secondary" id="sfExportSvgBtn" type="button">⬇ SVG</button>
           <button class="btn-secondary" id="sfExportPngBtn" type="button">⬇ PNG</button>
@@ -2978,7 +3095,6 @@ main > section:not([hidden]){animation:stormViewIn var(--t-med) var(--ease-storm
           <button class="btn-secondary" id="cadAskAiBtn" type="button" title="Отправить текущие точки и расчёты в Шторм AI для пошагового решения">🧠 Решить с ИИ</button>
           <button class="btn-secondary" id="cadEpurPng" type="button">⬇ PNG</button>
           <button class="btn-secondary" id="cadEpurSvg" type="button">⬇ SVG</button>
-          <button class="btn-secondary" id="cadEpurDxf" type="button" title="Экспорт для AutoCAD / Компас-3D">⬇ DXF</button>
         </div>
       </div>
 
@@ -3019,17 +3135,9 @@ C-A</textarea>
       <div class="lab-head">
         <h2>✏️ 2D-Чертёжник (Мини-САПР · ЕСКД / ГОСТ)</h2>
         <div class="lab-controls">
-          <select id="cadSheetPreset" aria-label="Простые чертежи на листе ГОСТ" style="min-height:34px;padding:4px 8px;border-radius:8px;background:#151b2b;color:var(--text);border:1px solid var(--line);font-size:12.5px">
-            <option value="">📄 Шаблоны на листе А4…</option>
-            <option value="empty">Пустой лист ГОСТ А4</option>
-            <option value="plate">Пластина с отверстием (ГОСТ)</option>
-            <option value="shaft">Вал ступенчатый (ГОСТ)</option>
-            <option value="bracket">Уголок с разрезом (ГОСТ)</option>
-          </select>
           <button class="btn-secondary" id="cadUndoBtn" type="button" title="Отменить (Ctrl+Z)">↩ Отмена</button>
           <button class="btn-secondary" id="cadClearBtn" type="button">🗑 Очистить</button>
           <button class="btn-secondary" id="cadDrawSvg" type="button">⬇ SVG</button>
-          <button class="btn-secondary" id="cadDrawDxf" type="button" title="Экспорт для AutoCAD / Компас-3D">⬇ DXF</button>
           <button class="btn-secondary" id="cadDrawPng" type="button">⬇ PNG</button>
           <button class="btn-primary" id="cadToPdfBtn" type="button">📄 В PDF-конструктор</button>
         </div>
@@ -3040,7 +3148,6 @@ C-A</textarea>
         <button class="cad-tool-btn" type="button" data-ctool="rect">▭ Прямоугольник</button>
         <button class="cad-tool-btn" type="button" data-ctool="circle">◯ Окружность</button>
         <button class="cad-tool-btn" type="button" data-ctool="dim">↔ Размер (мм)</button>
-        <button class="cad-tool-btn" type="button" data-ctool="hatch" title="Штриховка разреза 45° по ГОСТ 2.306-68">▤ Штриховка 45°</button>
         <button class="cad-tool-btn" type="button" data-ctool="text">T Текст</button>
         <button class="cad-tool-btn" type="button" data-ctool="erase">⌫ Ластик</button>
         <select id="cadLineStyle" aria-label="Тип линии по ГОСТ 2.303-68" style="min-height:34px;padding:4px 8px;border-radius:8px;background:#151b2b;color:var(--text);border:1px solid var(--line);font-size:12.5px">
@@ -3836,6 +3943,71 @@ GTA 5
     </div>
   </section>
 
+  <!-- Раздел «Каратель» — кино-повествование первого тома (единый сюжет без ветвлений) -->
+  <section class="kc-wrap" id="karatelSection" hidden aria-label="Каратель. Том I. Начало — кино-повествование">
+    <div class="kc-topbar">
+      <div class="lab-controls">
+        <span style="font:700 16px var(--display)">🎬 КАРАТЕЛЬ · Том I</span>
+        <span class="count-pill" id="kcChapterPill">Глава 1 / 14</span>
+        <span class="count-pill" id="kcBeatPill">Кадр 1</span>
+      </div>
+      <div class="lab-controls">
+        <button class="btn-secondary" id="kcChaptersToggleBtn" type="button" style="padding:7px 12px;font-size:12.5px">📑 Главы (14)</button>
+        <button class="btn-secondary" id="kcSoundBtn" type="button" style="padding:7px 12px;font-size:12.5px">🔊 Звук: Вкл</button>
+        <button class="btn-secondary" id="kcLetterboxBtn" type="button" style="padding:7px 12px;font-size:12.5px">🎞 Кино-кадр</button>
+        <button class="btn-secondary" id="kcScriptToggleBtn" type="button" style="padding:7px 12px;font-size:12.5px">📜 Сценарий</button>
+      </div>
+    </div>
+
+    <div class="kc-chapters-drawer" id="kcChaptersDrawer" hidden></div>
+
+    <div class="kc-cinema-card letterbox" id="kcCinemaCard">
+      <div class="kc-viewport" id="kcViewport">
+        <canvas class="kc-canvas" id="kcCanvas" width="960" height="480"></canvas>
+        <div class="kc-letterbox-t"></div>
+        <div class="kc-letterbox-b"></div>
+        <div class="kc-hud-top">
+          <span class="kc-badge" id="kcSceneBadge">Локация · Атмосфера</span>
+          <span class="kc-badge" id="kcCamBadge">Камера: общий план</span>
+        </div>
+        <div class="kc-actor-stage" id="kcActorStage"></div>
+      </div>
+
+      <div class="kc-subtitles">
+        <div class="kc-speaker-row">
+          <span class="kc-speaker" id="kcSpeaker">Повествователь</span>
+          <span class="card-meta" id="kcActionHint">Нажми «▶ Авто-кино» или «Далее →» (или кликни по тексту)</span>
+        </div>
+        <div class="kc-beat-text" id="kcBeatText">Загрузка сцены…</div>
+        <div class="kc-controls">
+          <div class="lab-controls">
+            <button class="btn-secondary" id="kcPrevBtn" type="button" style="padding:7px 13px;font-size:13px">← Назад</button>
+            <button class="btn-primary" id="kcPlayBtn" type="button" style="padding:7px 16px;font-size:13px">▶ Авто-кино</button>
+            <button class="btn-secondary" id="kcNextBtn" type="button" style="padding:7px 13px;font-size:13px">Далее →</button>
+          </div>
+          <div class="lab-controls">
+            <label style="font-size:12px;color:var(--dim)">Темп:
+              <select id="kcSpeedSel" aria-label="Скорость авто-воспроизведения">
+                <option value="0.75">0.75×</option>
+                <option value="1" selected>1.0×</option>
+                <option value="1.3">1.3×</option>
+              </select>
+            </label>
+            <button class="btn-secondary" id="kcFullTextBtn" type="button" style="padding:6px 11px;font-size:12px">📖 Текст главы</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kc-script-box" id="kcScriptBox" hidden>
+      <div class="lab-head">
+        <b style="font:700 14px var(--display)" id="kcScriptTitle">Полный текст главы</b>
+        <button class="btn-secondary" id="kcScriptCloseBtn" type="button" style="padding:4px 10px;font-size:12px">Закрыть</button>
+      </div>
+      <div id="kcScriptBody" style="font-size:14px;line-height:1.7;color:var(--text);white-space:pre-line;max-height:340px;overflow-y:auto"></div>
+    </div>
+  </section>
+
   <!-- Каталог сервисов -->
   <section id="catalogAnchor" aria-label="Каталог сервисов">
     <div class="controls">
@@ -4053,8 +4225,6 @@ GTA 5
     <button class="ai-web-btn" id="aiWebBtn" type="button" title="Deep Search: поиск по всему интернету и чтение сайтов">🔎 Выкл</button>
     <button class="ai-live-btn" id="aiLiveBtn" type="button" title="Голосовой Live-режим">🎙️ Live</button>
     <button class="ai-icon-btn" id="aiTtsBtn" type="button" title="Озвучивать ответы">🔊</button>
-    <button class="ai-icon-btn" id="aiExportMdBtn" type="button" title="Экспорт чата в Markdown (.md)">📝</button>
-    <button class="ai-icon-btn" id="aiExportPdfBtn" type="button" title="Экспорт чата в PDF (.pdf)">📑</button>
     <button class="ai-icon-btn" id="aiSettingsBtn" type="button" title="Настройки локального сервера">⚙</button>
     <button class="ai-icon-btn" id="aiCloseBtn" type="button" aria-label="Закрыть чат">✕</button>
   </div>
@@ -4100,12 +4270,10 @@ GTA 5
     <button type="button" data-prompt="Создай календарное событие meeting.ics на завтра в 15:00"><span>📅 Событие календаря</span><small>.ics</small></button>
     <button type="button" data-prompt="Построй Эпюр Монжа для треугольника A(60,15,45), B(15,50,15), C(35,10,10) и объясни, как найти натуральную величину AB"><span>📐 Эпюр Монжа (Начерталка)</span><small>StormCAD</small></button>
     <button type="button" data-prompt="Создай интерактивный калькулятор или мини-приложение demo.html с красивым тёмным дизайном"><span>🌐 HTML-артефакт (превью)</span><small>.html</small></button>
-    <button type="button" data-prompt="Сделай 6 карточек для учёбы по теме ООП в C++ и оформи их в блок action:cards"><span>🎓 Карточки в колоду</span><small>action:cards</small></button>
-    <button type="button" data-prompt="Создай мини-сайт визитку из 3 файлов (index.html, style.css, script.js) в тёмном неоновом стиле"><span>📦 Проект сайта (в ZIP)</span><small>.zip</small></button>
     <button type="button" id="aiDemoFileBtn"><span>⚡ Демо Excel (офлайн)</span><small>.xlsx</small></button>
   </div>
   <div class="ai-att-tray" id="aiAttTray" hidden></div>
-  <input id="aiFileInput" type="file" multiple accept="image/*,video/*,.zip,.pptx,.pdf,.docx,.xlsx,.xls,.csv,.txt,.md,.json,.xml,.bsl,.sql,.py,.cpp,.c,.h,.hpp,.cs,.java,.go,.rs,.js,.ts,.html,.css,.tex,.yaml,.yml,.bat,.ps1,.sh,.ini,.conf,.env,.log" hidden>
+  <input id="aiFileInput" type="file" multiple accept="image/*,video/*,.pdf,.docx,.xlsx,.xls,.csv,.txt,.md,.json,.xml,.bsl,.sql,.py,.cpp,.c,.h,.js,.ts,.html,.css,.tex,.yaml,.yml,.bat,.ps1,.log" hidden>
   <form class="ai-form" id="aiForm">
     <button class="ai-mic-btn" id="aiSkillsBtn" type="button" title="Инструменты и скиллы (или введи /)">＋</button>
     <button class="ai-mic-btn" id="aiAttachBtn" type="button" title="Прикрепить фото, видео или файл">📎</button>
@@ -4129,7 +4297,8 @@ const SECTIONS = [
   { id: 'finance',  name: 'Финансы',    icon: '💱', desc: 'StormFinance: учёт доходов и трат, 1С:Бухгалтерия (проводки и ОСВ), счета/акты, налоги РФ, ИИ-Бухгалтер и курсы валют.' },
   { id: 'arcade',   name: 'Игры',       icon: '🎮', desc: 'StormArcade: Змейка, Блок Бласт 8×8, Тетрис и словесный спринт на скорость.' },
   { id: 'media',    name: 'Медиа',      icon: '🎬', desc: 'Лента мемов, клипы Shorts/TikTok, конструктор мемов и трекер игр, фильмов и сериалов.' },
-  { id: 'search',   name: 'Поиск',      icon: '🔎', desc: 'Единый поиск по сайту, GitHub, Stack Overflow, Википедии и npm без токенов.' }
+  { id: 'search',   name: 'Поиск',      icon: '🔎', desc: 'Единый поиск по сайту, GitHub, Stack Overflow, Википедии и npm без токенов.' },
+  { id: 'karatel',  name: 'Каратель',   icon: '🎬', desc: 'Кино-повествование первого тома «Каратель. Начало» (14 глав) с живой камерой, шагами, светом и звуком.' }
 ];
 
 // === КАТАЛОГ СЕРВИСОВ ===
@@ -4296,6 +4465,18 @@ const SERVICES = [
     url: '',
     desc: 'Начертательная геометрия и чертежи: автоматический Эпюр Монжа (Π₁, Π₂, Π₃), 3D-изометрия, натуральная величина (НВ), а также 2D-чертёжник с линиями и штампом ГОСТ.',
     tags: ['Эпюр Монжа', 'Чертежи', 'ГОСТ', '3D', 'НВ'],
+    plan: []
+  },
+  {
+    id: 'karatel_vn',
+    name: 'Каратель · Том I (Кино)',
+    icon: '🎬',
+    section: 'karatel',
+    status: 'live',
+    internalSection: 'karatel',
+    url: '',
+    desc: 'Кинематографичное повествование по 14 главам первого тома «Каратель. Начало»: плавные наезды камеры, letterbox, шаги персонажей, атмосферный звук и удобное чтение на любом экране.',
+    tags: ['Кино-история', '14 глав', 'GSAP / WebAudio', 'Адаптив'],
     plan: []
   },
   {
@@ -5029,6 +5210,7 @@ function render() {
   const isFlow = state.section === 'it' && state.itMode === 'flow';
   const isMath = state.section === 'it' && state.itMode === 'math';
   const isCad = state.section === 'it' && state.itMode === 'cad';
+  const isLab = state.section === 'it' && state.itMode === 'lab';
   const isSearchHub = state.section === 'search';
   const isWorkspace = state.section === 'workspace';
   const isFin = state.section === 'finance';
@@ -5037,7 +5219,8 @@ function render() {
   const isStormAi = state.section === 'stormai';
   const isIde = state.section === 'it' && state.itMode === 'ide';
   const isItNonIde = state.section === 'it' && state.itMode !== 'ide';
-  const isCustom = isWeather || isCal || isPlan || isTools || isFlow || isMath || isCad || isSearchHub || isWorkspace || isFin || isArcade || isMedia || isIde || isStormAi;
+  const isKaratel = state.section === 'karatel';
+  const isCustom = isWeather || isCal || isPlan || isTools || isFlow || isMath || isCad || isSearchHub || isWorkspace || isFin || isArcade || isMedia || isIde || isStormAi || isKaratel;
   const sec = getSection(state.section);
 
   document.body.classList.toggle('ide-mode', isIde);
@@ -5067,6 +5250,8 @@ function render() {
   $('mediaSection').hidden = !isMedia;
   if (isMedia && !mediaInitialized) initMediaHub();
   $('stormaiSection').hidden = !isStormAi;
+  if ($('karatelSection')) $('karatelSection').hidden = !isKaratel;
+  if (isKaratel && typeof initKaratelCinema === 'function') initKaratelCinema();
   $('stormcodeSection').hidden = !isIde;
   $('catalogAnchor').hidden = isCustom || (isHome && !isSearching);
 
@@ -5093,7 +5278,7 @@ function render() {
   $('bannerItToolsBtn').hidden = !(state.section === 'it' && state.itMode === 'catalog');
   $('bannerItLabBtn').hidden = !(state.section === 'it' && state.itMode === 'tools');
   if (!isHome) {
-    $('bannerTitle').textContent = isTools ? '🧰 IT · StormTools (Утилиты)' : isFlow ? '🔀 IT · StormFlow' : isMath ? '∑ IT · StormMath' : isCad ? '📐 IT · StormCAD (Чертежи и Начерталка)' : (state.section === 'it' ? '🧪 IT · Наука и лаборатория' : `${sec.icon} Раздел «${sec.name}»`);
+    $('bannerTitle').textContent = isTools ? '🧰 IT · StormTools (Утилиты)' : isFlow ? '🔀 IT · StormFlow' : isMath ? '∑ IT · StormMath' : isCad ? '📐 IT · StormCAD (Чертежи и Начерталка)' : '' : (state.section === 'it' ? '🧪 IT · Наука и лаборатория' : `${sec.icon} Раздел «${sec.name}»`);
     $('bannerDesc').textContent = sec.desc;
     $('catalogTitle').textContent = state.section === 'it' ? 'Инструменты и лаборатория IT' : `Сервисы раздела «${sec.name}»`;
   } else {
@@ -5171,8 +5356,6 @@ document.addEventListener('keydown', e => {
     if (!$('guideBackdrop').hidden) $('guideBackdrop').hidden = true;
     if (!$('cloudBackdrop').hidden) closeCloudModal();
     if (!$('aiSkillsMenu').hidden) $('aiSkillsMenu').hidden = true;
-    if ($('whatsNewBackdrop') && !$('whatsNewBackdrop').hidden) $('whatsNewBackdrop').hidden = true;
-    if ($('focusDock') && !$('focusDock').hidden) $('focusDock').hidden = true;
   } else if (e.key === '/' && document.activeElement !== $('searchInput') && document.activeElement !== $('cityInput') && $('modalBackdrop').hidden) {
     e.preventDefault();
     $('searchInput').focus();
@@ -5491,7 +5674,737 @@ function mdToCleanHtml(md, title) {
     }
   }
   if (inList) html += '</ul>';
-  return `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${esc(title)}</title><style>body{font-family:Arial,Helvetica,sans-serif;color:#111;line-height:1.55;padding:24px}h1{color:#3b27a3;border-bottom:2px solid #7c5cff;padding-bottom:6px}h2{color:#1e293b;margin-top:18px}ul{padding-left:20px}li{margin:4px 0}</style></head><body>${html}</body></html>`;
+  return `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${esc(title)}</title><style>body{font-family:Arial,Helvetica,sans-serif;color:#111;line-height:1.55;padding:24px}h1{color:#3b27a3;border-bottom:2px solid #7c5cff;padding-bottom:6px}h2{color:#1e293b;margin-top:18px}ul{padding-left:20px}li{margin:4px 0}</style></head><body>${html}<nav class="mob-bottom-nav" id="mobBottomNav" aria-label="Быстрая навигация на телефоне">
+  <button class="mob-bnav-btn active" type="button" data-mbnav="home"><span class="ico">🏠</span><span>Главная</span></button>
+  <button class="mob-bnav-btn" type="button" data-mbnav="karatel"><span class="ico">🎬</span><span>Каратель</span></button>
+  <button class="mob-bnav-btn" type="button" data-mbnav="it"><span class="ico">💻</span><span>IT</span></button>
+  <button class="mob-bnav-btn" type="button" data-mbnav="stormai"><span class="ico">🧠</span><span>ИИ</span></button>
+  <button class="mob-bnav-btn" type="button" data-mbnav="menu"><span class="ico">☰</span><span>Меню</span></button>
+</nav>
+<script>
+// =========================================================================
+// === КАРАТЕЛЬ · ТОМ I. НАЧАЛО — КИНО-ПОВЕСТВОВАНИЕ (ЕДИНЫЙ СЮЖЕТ) ========
+// =========================================================================
+(function() {
+  const KC_CHAPTERS = [
+    {
+      num: 1, title: 'Глава 1. Город за дворцовыми проспектами',
+      scene: 'city_contrast', timeOfDay: 'dusk', cam: 'pan_right',
+      badge: 'Столица · Дворцы и заводские кварталы',
+      camLabel: 'Камера: панорама от центра к заводам',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.42, targetX: -0.22, mood: 'focused', step: true },
+        { id: 'erian',  name: 'Эриан',  x: 0.42,  targetX: 0.22,  mood: 'calm',    step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Столица империи была городом контрастов. В центре возвышались дворцы, министерства и широкие проспекты. Мраморные фасады, колоннады и монументальные площади подчёркивали могущество государства.', cam: 'pan_right', sound: 'city' },
+        { speaker: 'Повествователь', text: 'По улицам двигались автомобили, над крышами тянулись линии электрического транспорта, а возле дворца круглосуточно дежурила Императорская гвардия.', cam: 'wide', sound: 'city' },
+        { speaker: 'Повествователь', text: 'Но стоило отдалиться от парадных улиц, как город менялся. За богатыми кварталами начинались заводские районы: металлургические предприятия, ремонтные мастерские, склады и рабочие общежития.', cam: 'pan_left', sound: 'factory' },
+        { speaker: 'Повествователь', text: 'Воздух был наполнен запахом угля и машинного масла, а гул производства не прекращался даже ночью. В одном из таких районов жил Маркус.', cam: 'zoom_in', sound: 'factory', focus: 'markus' },
+        { speaker: 'Повествователь', text: 'Его отец был кузнецом и военным специалистом, создававшим оружие и защитное оснащение для Императорской гвардии. Он погиб во время выполнения военной миссии, когда Маркус был ещё молод.', cam: 'slow_in', sound: 'ember', focus: 'markus' },
+        { speaker: 'Повествователь', text: 'Собранный, наблюдательный и упрямый — Маркус мог часами сидеть над чертежом, забыв о времени. А во дворце жил его давний друг Эриан — сын императора.', cam: 'wide', sound: 'city' }
+      ],
+      fullText: `Глава 1. Город за дворцовыми проспектами
+Столица империи была городом контрастов.
+В центре возвышались дворцы, министерства и широкие проспекты. Мраморные фасады, колоннады и монументальные площади подчёркивали могущество государства. По улицам двигались автомобили, над крышами тянулись линии электрического транспорта, а возле дворца круглосуточно дежурила Императорская гвардия.
+Но стоило отдалиться от парадных улиц, как город менялся.
+За богатыми кварталами начинались заводские районы. Там стояли металлургические предприятия, ремонтные мастерские, склады и рабочие общежития. Воздух был наполнен запахом угля и машинного масла, а гул производства не прекращался даже ночью.
+В одном из таких районов жил Маркус.
+Его отец был кузнецом и военным специалистом, создававшим оружие и защитное оснащение для Императорской гвардии. Он погиб во время выполнения военной миссии, когда Маркус был ещё молод. Обстоятельства его смерти остались частью семейной памяти, о которой Маркус предпочитал не говорить.
+После гибели отца мастерская не исчезла из его жизни. Она стала местом, куда он возвращался, когда хотел разобраться в очередной проблеме.
+На старом рабочем столе до сих пор лежали инструменты, чертежи и детали, оставленные отцом. Маркус не любил, когда кто-то трогал их без разрешения.
+Он был собранным, наблюдательным и упрямым. Не из тех, кто легко меняет мнение под давлением. При этом он не считал себя человеком, которому всё известно. Если не понимал устройство механизма, разбирал его. Если ошибался — начинал заново.
+Именно таким его запомнили в рабочем квартале: человеком, который мог часами просидеть над чертежом, забыв о времени.
+Но у Маркуса была и другая сторона жизни.
+Во дворце жил его давний друг Эриан — сын императора, почти ровесник Маркуса. Они познакомились ещё в юности, когда различия между их положением казались куда менее важными, чем общие интересы и характеры.
+Их дружба пережила годы, изменения в положении и постепенное взросление. Маркус не нуждался в том, чтобы напоминать Эриану о его происхождении. Эриан, в свою очередь, никогда не относился к другу как к человеку, которого следует оценивать по фамилии.
+Они были разными, но именно это делало их союз крепче.`
+    },
+    {
+      num: 2, title: 'Глава 2. Мастерская',
+      scene: 'forge', timeOfDay: 'night', cam: 'zoom_in',
+      badge: 'Рабочий квартал · Мастерская отца',
+      camLabel: 'Камера: средний план у горна',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.15, targetX: -0.05, mood: 'focused', step: true },
+        { id: 'father', name: 'Отец',   x: 0.25,  targetX: 0.20,  mood: 'stern',   step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Маркус часто вспоминал отца. Особенно — его мастерскую, где когда-то горел горн, звенел металл и лежали чертежи военного снаряжения.', cam: 'zoom_in', sound: 'forge' },
+        { speaker: 'Отец', text: '«Если человек доверяет тебе свою жизнь, ты не имеешь права экономить на качестве».', cam: 'close_up', sound: 'forge', focus: 'father' },
+        { speaker: 'Повествователь', text: 'Ещё ребёнком Маркус пытался собирать собственные механизмы: пистолеты, винтовки, узлы. Первые модели часто оказывались неудобными или нерабочими.', cam: 'pan_right', sound: 'forge', focus: 'markus' },
+        { speaker: 'Отец', text: '— Почему ты решил, что этот механизм будет работать? — Расчёты сходятся. — Расчёты сходятся на бумаге. А что будет с ним в руках у солдата?', cam: 'medium', sound: 'forge', focus: 'father' },
+        { speaker: 'Отец', text: '— Не убеждай меня. Докажи.', cam: 'close_up', sound: 'forge', focus: 'father' },
+        { speaker: 'Повествователь', text: 'Маркус не пытался копировать отца. Он хотел стать достойным продолжателем его дела.', cam: 'slow_in', sound: 'ember', focus: 'markus' }
+      ],
+      fullText: `Глава 2. Мастерская
+Маркус часто вспоминал отца. Особенно — его мастерскую.
+Когда-то здесь постоянно горел горн, звенел металл и лежали чертежи военного снаряжения. Отец мог часами работать над одной деталью, пока не добивался нужного результата.
+Он не любил спешки и не терпел халтуры.
+«Если человек доверяет тебе свою жизнь, ты не имеешь права экономить на качестве», — повторял он.
+Маркус усвоил это правило раньше многих других. Ещё ребёнком он пытался разрабатывать собственные механизмы. Его интересовали пистолеты, винтовки и сложные системы, которые он видел на чертежах отца.
+Не всё получалось. Первые конструкции часто оказывались неудобными или попросту неработоспособными.
+Отец не высмеивал сына. Он заставлял его объяснять каждую деталь и самостоятельно находить ошибки.
+— Почему ты решил, что этот механизм будет работать? — спрашивал он.
+— Потому что расчёты сходятся.
+— Расчёты сходятся на бумаге. А что будет с ним в руках у солдата?
+Маркус обычно начинал объяснять, но отец останавливал его:
+— Не убеждай меня. Докажи.
+Эти разговоры остались с Маркусом на всю жизнь. После смерти отца он продолжал работать в мастерской, иногда перечитывая старые записи. Некоторые решения казались ему устаревшими, другие — удивительно точными.
+Он не пытался копировать отца. Он хотел стать достойным продолжателем его дела.`
+    },
+    {
+      num: 3, title: 'Глава 3. Мальчик и чертежи',
+      scene: 'drafting', timeOfDay: 'day', cam: 'medium',
+      badge: 'Юность · За столом с чертежами',
+      camLabel: 'Камера: диалог двух друзей',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.22, targetX: -0.18, mood: 'focused', step: false },
+        { id: 'erian',  name: 'Эриан',  x: 0.24,  targetX: 0.18,  mood: 'smile',   step: true }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Эриан не любил дворцовые ограничения: наставники, охрана и советы, каким должен быть будущий правитель. Маркус же привык искать ответы сам.', cam: 'wide', sound: 'calm' },
+        { speaker: 'Эриан', text: '— Ты опять рисуешь оружие? — Не оружие. Механизм. — А разница? — Большая.', cam: 'medium', sound: 'calm' },
+        { speaker: 'Эриан', text: '— Ты можешь хотя бы раз нарисовать что-нибудь, что не предназначено для армии? — Могу. — Например? — Не придумал.', cam: 'zoom_in', sound: 'calm', focus: 'erian' },
+        { speaker: 'Эриан', text: '— Ты когда-нибудь хотел бы жить во дворце? — Нет. — Даже если бы мог? — Особенно если бы мог. — Почему? — Слишком много людей говорят то, что от них хотят услышать.', cam: 'medium', sound: 'calm' },
+        { speaker: 'Эриан', text: '— Возможно, именно поэтому мне нужен такой друг. — Маркус ничего не ответил. Но запомнил эти слова.', cam: 'slow_in', sound: 'calm', focus: 'markus' }
+      ],
+      fullText: `Глава 3. Мальчик и чертежи
+Дружба Маркуса и Эриана началась задолго до их взрослой жизни.
+Они познакомились, когда оба были ещё юными. Эриан уже тогда не слишком любил дворцовые ограничения. Его окружали наставники, охрана и люди, которые постоянно объясняли, каким должен быть будущий правитель.
+Маркус же привык самостоятельно искать ответы. Их первые разговоры часто заканчивались спорами.
+— Ты опять рисуешь оружие? — спросил однажды Эриан.
+— Не оружие. Механизм.
+— А разница?
+— Большая.
+Эриан заглянул через плечо.
+— Ты можешь хотя бы раз нарисовать что-нибудь, что не предназначено для армии?
+— Могу.
+— Например?
+Маркус задумался.
+— Не придумал.
+Эриан рассмеялся. Он был более общительным и умел располагать к себе людей. Маркус ценил в нём способность слушать. Эриан ценил в Маркусе прямоту.
+Однажды Эриан спросил:
+— Ты когда-нибудь хотел бы жить во дворце?
+— Нет.
+— Даже если бы мог?
+— Особенно если бы мог.
+— Почему?
+— Слишком много людей, которые говорят то, что от них хотят услышать.
+Эриан на секунду задумался.
+— Возможно, именно поэтому мне нужен такой друг.
+Маркус ничего не ответил. Но запомнил эти слова.`
+    },
+    {
+      num: 4, title: 'Глава 4. Чертёж для императора',
+      scene: 'drafting', timeOfDay: 'dusk', cam: 'close_up',
+      badge: 'Поворотный момент · Чертёж винтовки',
+      camLabel: 'Камера: наезд на чертёж и лица',
+      chars: [
+        { id: 'father', name: 'Отец',   x: -0.20, targetX: -0.16, mood: 'stern',   step: false },
+        { id: 'markus', name: 'Маркус', x: 0.22,  targetX: 0.16,  mood: 'awe',     step: true }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Одной из последних важных работ отца стал чертёж винтовки, разработанной самим Маркусом. Отец проверил расчёты и показал проект императору.', cam: 'zoom_in', sound: 'calm', focus: 'markus' },
+        { speaker: 'Отец', text: '— Император одобрил винтовку. — Значит, её будут производить? — Сначала испытания. Одобрение — ещё не гарантия успеха.', cam: 'medium', sound: 'calm', focus: 'father' },
+        { speaker: 'Отец', text: '— Не забывай, что за каждым твоим чертежом однажды может оказаться человек. — Я помню. — Надеюсь.', cam: 'close_up', sound: 'ember' },
+        { speaker: 'Повествователь', text: 'Вскоре отец отправился на военную миссию и не вернулся. Но привычка проверять каждую деталь осталась с Маркусом навсегда.', cam: 'slow_in', sound: 'ember', focus: 'markus' }
+      ],
+      fullText: `Глава 4. Чертёж для императора
+Одной из последних важных работ, которые отец Маркуса успел выполнить, стал чертёж винтовки.
+Разработка принадлежала сыну. Отец лишь помогал проверять расчёты и указывал на недостатки. Он понимал, что конструкция заслуживает внимания. Поэтому решил показать её императору.
+Для Маркуса это стало неожиданностью. Император изучил чертёж и одобрил разработку для дальнейших испытаний.
+— Император одобрил винтовку, — сказал отец.
+— Значит, её будут производить?
+— Сначала испытания. Одобрение — ещё не гарантия успеха.
+— Но он увидел чертёж?
+— Увидел.
+Отец посмотрел на сына:
+— Не забывай, что за каждым твоим чертежом однажды может оказаться человек.
+— Я помню.
+— Надеюсь.
+Вскоре отец отправился выполнять военную миссию, с которой уже не вернулся. Маркус больше не услышал его советов. Но именно переданная им привычка проверять каждую деталь определила дальнейший путь сына.`
+    },
+    {
+      num: 5, title: 'Глава 5. Первые двери',
+      scene: 'palace_hall', timeOfDay: 'day', cam: 'pan_right',
+      badge: 'Испытания и дворцовые коридоры',
+      camLabel: 'Камера: проход по коридорам',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.24, targetX: -0.18, mood: 'firm',  step: true },
+        { id: 'erian',  name: 'Эриан',  x: 0.24,  targetX: 0.18,  mood: 'smile', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Маркус получил доступ к испытательным площадкам и государственным инженерам. В военной среде ценились не только знания, но и происхождение, связи и репутация.', cam: 'pan_right', sound: 'city' },
+        { speaker: 'Эриан', text: '— Ты мог бы быть немного мягче. — А ты мог бы перестать пытаться понравиться всем. — Я не пытаюсь понравиться всем. — Тогда у тебя хорошо получается скрывать это.', cam: 'medium', sound: 'calm' },
+        { speaker: 'Повествователь', text: 'Пути друзей расходились по обязанностям: Маркус чаще работал с военными, Эриан — с советниками. Но доверие между ними оставалось прежним.', cam: 'wide', sound: 'calm' }
+      ],
+      fullText: `Глава 5. Первые двери
+После одобрения винтовки перед Маркусом постепенно открылись возможности, о которых раньше он мог только мечтать.
+Его разработки начали рассматривать военные специалисты. Он получил доступ к испытательным площадкам и возможность общаться с инженерами, работавшими на государственные предприятия.
+Переход оказался непростым. В военной среде значение имели не только знания. Важными были происхождение, связи и репутация. Молодому человеку из рабочего района приходилось постоянно доказывать, что его место здесь заслужено.
+Маркус не пытался понравиться всем. Он говорил прямо и не скрывал несогласия, если считал чужое решение ошибочным.
+— Ты мог бы быть немного мягче, — заметил однажды Эриан.
+— А ты мог бы перестать пытаться понравиться всем.
+— Я не пытаюсь понравиться всем.
+— Тогда у тебя хорошо получается скрывать это.
+Их отношения оставались прежними. Маркус всё чаще работал с военными, а Эриан всё больше времени проводил среди государственных советников. Их пути расходились по обязанностям, но не по доверию.`
+    },
+    {
+      num: 6, title: 'Глава 6. Армия',
+      scene: 'barracks', timeOfDay: 'dusk', cam: 'medium',
+      badge: 'Служба · Проверка в строю',
+      camLabel: 'Камера: плац и солдатские будни',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: 0, targetX: 0, mood: 'focused', step: true }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Армейская служба стала проверкой: Маркус увидел, как его разработки работают в реальных руках солдат.', cam: 'zoom_in', sound: 'march' },
+        { speaker: 'Повествователь', text: 'Конструкция должна помогать бойцу выполнять задачу, а не заставлять его подстраиваться под неудобные решения.', cam: 'medium', sound: 'march' },
+        { speaker: 'Повествователь', text: 'Армия научила Маркуса главному: за любым приказом стоят люди, а за любой ошибкой — последствия.', cam: 'slow_in', sound: 'march', focus: 'markus' }
+      ],
+      fullText: `Глава 6. Армия
+Армейская служба стала для Маркуса проверкой. До этого он знал оружие преимущественно как инженер. Теперь ему предстояло увидеть, как оно работает в руках солдат.
+Он изучал дисциплину, устройство подразделений и повседневные проблемы армии. Постепенно понял, что хорошая разработка должна учитывать не только технические характеристики, но и человеческие возможности.
+Солдаты не обязаны были подстраиваться под неудобную конструкцию. Напротив, конструкция должна была помогать им выполнять задачу.
+Маркус часто выслушивал замечания бойцов, даже если те выражались грубо или не могли объяснить техническую причину проблемы. Он не любил кабинетных рассуждений без практической проверки.
+При этом Маркус не был идеальным военным: мог быть нетерпеливым, долго настаивал на своём решении и не всегда замечал, как тяжело другим выдерживать его темп. Но он учился.
+Армия научила его тому, чему не могла научить мастерская: за любым приказом стоят люди, а за любой ошибкой — последствия.`
+    },
+    {
+      num: 7, title: 'Глава 7. Угроза на границе',
+      scene: 'war_room', timeOfDay: 'night', cam: 'zoom_in',
+      badge: 'Военный совет · Граница империи',
+      camLabel: 'Камера: напряжение в штабе',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.22, targetX: -0.15, mood: 'firm', step: true },
+        { id: 'erian',  name: 'Эриан',  x: 0.22,  targetX: 0.16,  mood: 'calm', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Империя столкнулась с противником, превосходившим её по численности. Большинство командиров предлагали лобовое столкновение.', cam: 'wide', sound: 'alert' },
+        { speaker: 'Маркус', text: '— Мы не можем победить их численностью. Значит, не должны пытаться. Нужны малая гвардия и специальные подразделения, чтобы лишить врага его преимуществ.', cam: 'zoom_in', sound: 'alert', focus: 'markus' },
+        { speaker: 'Эриан', text: '— Ты уверен в своём плане? — Нет. — Не ожидал такого ответа. — Уверенность не делает план правильным. Но я считаю его лучшим из доступных.', cam: 'medium', sound: 'alert' },
+        { speaker: 'Эриан', text: '— Тогда я поддержу его рассмотрение. — Не делай этого только потому, что мы знакомы. — Я поддержу его потому, что считаю твои доводы разумными.', cam: 'close_up', sound: 'alert', focus: 'erian' }
+      ],
+      fullText: `Глава 7. Угроза на границе
+Империя столкнулась с противником, превосходившим её армию по численности. Первые донесения не вызывали паники, но постепенно стало ясно: обычной обороны может оказаться недостаточно.
+Военный совет обсуждал возможные варианты действий. Большинство командиров предлагали сосредоточить основные силы и принять прямое столкновение.
+Маркус считал это ошибкой.
+— Мы не можем победить их численностью, — заявил он. — Значит, не должны пытаться.
+— И что же вы предлагаете? — недовольно спросил один из генералов.
+— Использовать малую гвардию и специальные подразделения. Не позволять противнику навязать нам удобный для него бой. Нужно лишить его преимуществ, на которые он рассчитывает.
+Позднее Эриан спросил Маркуса:
+— Ты уверен в своём плане?
+— Нет.
+Эриан удивлённо поднял брови:
+— Не ожидал такого ответа.
+— Уверенность не делает план правильным. Но я считаю его лучшим из доступных.
+— Тогда я поддержу его рассмотрение.
+— Не делай этого только потому, что мы знакомы.
+— Я поддержу его потому, что считаю твои доводы разумными. Дружба здесь ни при чём.
+Маркус кивнул. Именно такой ответ он хотел услышать.`
+    },
+    {
+      num: 8, title: 'Глава 8. Новое вооружение',
+      scene: 'forge', timeOfDay: 'night', cam: 'medium',
+      badge: 'Испытания · Новые образцы',
+      camLabel: 'Камера: цех и испытательный стенд',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.20, targetX: -0.14, mood: 'focused', step: true },
+        { id: 'erian',  name: 'Эриан',  x: 0.22,  targetX: 0.18,  mood: 'smile',   step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Подготовка к кампании принесла новые образцы: ручные гранатомёты, усиленные щиты и специальные копья для спецподразделений.', cam: 'pan_right', sound: 'forge' },
+        { speaker: 'Маркус', text: '— Переделать. — Но на это уйдёт время. — Лучше потратить время сейчас, чем получить неисправное оборудование в армии.', cam: 'zoom_in', sound: 'forge', focus: 'markus' },
+        { speaker: 'Эриан', text: '— Ты скоро забудешь, как выглядят нормальные комнаты. — В моей лаборатории нормальные комнаты. — Там пахнет металлом. — Это и есть нормальный запах.', cam: 'medium', sound: 'calm' }
+      ],
+      fullText: `Глава 8. Новое вооружение
+Подготовка к кампании потребовала новых технических решений. Маркус занялся созданием вооружения и защитного оборудования для специальных подразделений.
+В работе участвовали инженеры и мастера, способные воплотить его проекты в металле. Появились новые образцы: ручные гранатомёты, усиленные щиты и специальные копья.
+Не все разработки оказывались удачными. Некоторые конструкции были слишком тяжёлыми, другие требовали доработки.
+— Переделать, — коротко говорил Маркус.
+— Но на это уйдёт время.
+— Лучше потратить время сейчас, чем получить неисправное оборудование в армии.
+Его требовательность стала известна всем, но люди видели: Маркус сам проводит целые дни на испытаниях и разбирает неудачи наравне со всеми.
+Эриан однажды заметил:
+— Ты скоро забудешь, как выглядят нормальные комнаты.
+— В моей лаборатории нормальные комнаты.
+— Там пахнет металлом.
+— Это и есть нормальный запах.`
+    },
+    {
+      num: 9, title: 'Глава 9. План кампании',
+      scene: 'war_room', timeOfDay: 'dusk', cam: 'close_up',
+      badge: 'Накануне похода · Карта кампании',
+      camLabel: 'Камера: планшет с картой и глаза Эриана',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.22, targetX: -0.18, mood: 'firm', step: false },
+        { id: 'erian',  name: 'Эриан',  x: 0.22,  targetX: 0.18,  mood: 'calm', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'План взаимодействия спецподразделений, малой гвардии и основных войск был утверждён несмотря на споры.', cam: 'wide', sound: 'alert' },
+        { speaker: 'Эриан', text: '— Ты ведь понимаешь, что теперь всё серьёзно? — Понимаю. — Мне не нужно, чтобы ты обещал победу. — Хорошо. Потому что обещать её я не могу.', cam: 'medium', sound: 'calm' },
+        { speaker: 'Эриан', text: '— Тогда пообещай, что не станешь считать людей расходным материалом ради красивого результата. — Не стану.', cam: 'close_up', sound: 'alert', focus: 'erian' }
+      ],
+      fullText: `Глава 9. План кампании
+К началу кампании Маркус подготовил план действий, в котором особое значение имели специальные подразделения, малая гвардия и взаимодействие разных родов войск.
+Его предложения встретили сопротивление, но в итоге план был утверждён.
+Перед началом кампании Эриан встретился с Маркусом.
+— Ты ведь понимаешь, что теперь всё серьёзно?
+— Понимаю.
+— Мне не нужно, чтобы ты обещал победу.
+— Хорошо. Потому что обещать её я не могу.
+Эриан некоторое время смотрел на карту.
+— Тогда пообещай, что не станешь считать людей расходным материалом ради красивого результата.
+Маркус ответил не сразу.
+— Не стану.
+Эриан кивнул. Для него это было важнее любых военных заверений.`
+    },
+    {
+      num: 10, title: 'Глава 10. Первая большая битва',
+      scene: 'battlefield', timeOfDay: 'dusk', cam: 'shake',
+      badge: 'Передовая · Командный пункт',
+      camLabel: 'Камера: вибрация фронта и сводки боя',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: 0, targetX: 0, mood: 'firm', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Противник пошёл в наступление. Специальные подразделения и малая гвардия сдерживали удар, сохраняя маневренность главных сил.', cam: 'shake', sound: 'battle' },
+        { speaker: 'Повествователь', text: 'В командном пункте Маркус координировал части и менял решения по ходу боя, не позволяя напряжению сорвать связь.', cam: 'zoom_in', sound: 'battle', focus: 'markus' },
+        { speaker: 'Повествователь', text: 'Авиационная поддержка переломила ситуацию на ключевых участках, а в завершении пошли конная гвардия и спецподразделения.', cam: 'pan_right', sound: 'battle' },
+        { speaker: 'Маркус', text: 'К вечеру враг отступил. На поздравления офицеров Маркус ответил коротко: — Поблагодарите солдат. Они сделали то, что от них требовалось.', cam: 'slow_in', sound: 'ember', focus: 'markus' }
+      ],
+      fullText: `Глава 10. Первая большая битва
+Противник начал наступление, рассчитывая подавить имперские силы численным превосходством. Однако кампания пошла не по его плану.
+Имперская армия действовала скоординированно. Специальные подразделения и малая гвардия помогали сдерживать давление, а основные силы сохраняли возможность маневрировать.
+Маркус находился в командном пункте. Он следил за поступавшими донесениями, координировал действия частей и корректировал решения в соответствии с изменением обстановки.
+Не всё шло гладко. Несколько подразделений столкнулись с серьёзными трудностями, а отдельные решения пришлось пересматривать прямо во время кампании.
+Важную роль сыграла авиационная поддержка. Её действия помогли имперским силам изменить положение на отдельных участках. В завершении кампании участвовали конная гвардия и специальные подразделения.
+К вечеру армия противника начала отступать. Империя одержала победу.
+Но Маркус не встретил её с торжеством.
+— Поблагодарите солдат, — ответил он на поздравления. — Они сделали то, что от них требовалось.
+Победа изменила его положение. Но не изменила того, что он видел на поле боя.`
+    },
+    {
+      num: 11, title: 'Глава 11. После победы',
+      scene: 'palace_hall', timeOfDay: 'day', cam: 'wide',
+      badge: 'Столица · Церемония и новый статус',
+      camLabel: 'Камера: торжества и личный разговор',
+      chars: [
+        { id: 'erian',  name: 'Эриан',  x: -0.22, targetX: -0.16, mood: 'smile', step: false },
+        { id: 'markus', name: 'Маркус', x: 0.22,  targetX: 0.16,  mood: 'calm',  step: true }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Столица гремела торжествами в честь победителей, но Маркус предпочитал реальные задачи речам.', cam: 'wide', sound: 'city' },
+        { speaker: 'Эриан', text: '— Ты мог бы хотя бы выглядеть довольным. — Я доволен результатом. — По твоему лицу этого не скажешь. — Значит, лицо меня подводит.', cam: 'medium', sound: 'calm' },
+        { speaker: 'Повествователь', text: 'За вклад в победу император предоставил Маркусу отдельную лабораторию во дворцовом комплексе — новое доверие и новую ответственность.', cam: 'zoom_in', sound: 'city', focus: 'markus' }
+      ],
+      fullText: `Глава 11. После победы
+Столица встретила возвращавшуюся армию торжествами. На площадях собрались люди, гвардейские подразделения проходили по центральным улицам, а дворец готовил церемонию в честь победителей.
+Маркус не любил подобные мероприятия. Он предпочитал находиться там, где можно было обсуждать реальные задачи, а не произносить благодарственные речи.
+Эриан встретил его после возвращения.
+— Ты мог бы хотя бы выглядеть довольным.
+— Я доволен результатом.
+— По твоему лицу этого не скажешь.
+— Значит, лицо меня подводит.
+Вскоре разговор стал серьёзнее: обсуждали потери, состояние армии и дальнейшие реформы.
+Император отметил вклад Маркуса и предоставил ему отдельную лабораторию во дворцовом комплексе. Это было новое доверие и новая ответственность.`
+    },
+    {
+      num: 12, title: 'Глава 12. Лаборатория',
+      scene: 'lab_dark', timeOfDay: 'night', cam: 'slow_in',
+      badge: 'Дворцовый комплекс · Закрытая лаборатория',
+      camLabel: 'Камера: полумрак испытательного зала',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.20, targetX: -0.15, mood: 'focused', step: false },
+        { id: 'erian',  name: 'Эриан',  x: 0.24,  targetX: 0.18,  mood: 'calm',    step: true }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'В новой лаборатории чертежи, оборудование и испытательные зоны были разделены по задачам. Маркус работал на пределе сил.', cam: 'pan_right', sound: 'lab' },
+        { speaker: 'Эриан', text: '— Ты опять здесь ночевал? — Нет. — А выглядишь так, будто собирался. — У меня много работы.', cam: 'medium', sound: 'lab' },
+        { speaker: 'Маркус', text: '— Что на этот раз? — Разработка защитной системы. Для человека, которому придётся действовать там, где обычного снаряжения недостаточно.', cam: 'zoom_in', sound: 'lab', focus: 'markus' },
+        { speaker: 'Повествователь', text: 'Перед Маркусом стояла задача, способная изменить не только армию, но и его собственную жизнь.', cam: 'slow_in', sound: 'lab' }
+      ],
+      fullText: `Глава 12. Лаборатория
+Лаборатория стала для Маркуса местом, где он мог работать над самыми сложными идеями. Он организовал пространство так, чтобы отдельные технические задачи не мешали друг другу. Чертежи, оборудование и испытательные зоны находились в разных частях помещения.
+Работа была напряжённой. Маркус мог быть требовательным к себе до излишества.
+Однажды Эриан посетил лабораторию.
+— Ты опять здесь ночевал?
+— Нет.
+— А выглядишь так, будто собирался.
+— У меня много работы.
+Эриан осмотрел чертежи.
+— Что на этот раз?
+— Разработка защитной системы.
+— Для армии?
+— Для человека, которому придётся действовать в условиях, где обычного снаряжения будет недостаточно.
+Эриан понял, что не стоит настаивать на деталях, и напомнил другу, что тот не обязан решать всё в одиночку.`
+    },
+    {
+      num: 13, title: 'Глава 13. Проект «Каратель»',
+      scene: 'lab_dark', timeOfDay: 'night', cam: 'medium',
+      badge: 'Секретный проект · «Каратель»',
+      camLabel: 'Камера: каркас экзоскелета в тени',
+      chars: [
+        { id: 'markus', name: 'Маркус', x: -0.22, targetX: -0.16, mood: 'firm', step: false },
+        { id: 'erian',  name: 'Эриан',  x: 0.22,  targetX: 0.16,  mood: 'calm', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'Проект «Каратель» начинался как экзоскелет, но вырос в единую систему тяжёлой брони, внутренних механизмов и управления.', cam: 'zoom_in', sound: 'lab' },
+        { speaker: 'Эриан', text: '— Ты уверен, что эта машина не станет проблемой? — Любая новая технология может стать проблемой. — Тогда зачем ты продолжаешь? — Потому что возможность проблемы не означает отказ от разработки.', cam: 'medium', sound: 'lab' },
+        { speaker: 'Эриан', text: '— Ты всегда так говоришь, когда не хочешь признавать, что сомневаешься? — Иногда. — Хотя бы честно.', cam: 'close_up', sound: 'lab', focus: 'markus' }
+      ],
+      fullText: `Глава 13. Проект «Каратель»
+Разработка получила название «Каратель». Изначально Маркус рассматривал её как сложный экзоскелет, способный обеспечить человеку дополнительную защиту и расширить его возможности.
+Но постепенно проект превратился в гораздо более сложную систему. Массивная броня, внутренние механизмы и управление должны были работать как единое целое.
+Маркус не раз возвращался к готовым решениям, если находил недостатки: машина не должна была лишь впечатлять внешне — она обязана была выдерживать реальные испытания.
+— Ты уверен, что эта машина не станет проблемой? — спросил однажды Эриан.
+— Любая новая технология может стать проблемой.
+— Тогда зачем ты продолжаешь?
+— Потому что возможность проблемы не означает, что от разработки нужно отказаться.
+— Ты всегда так говоришь, когда не хочешь признавать, что сомневаешься?
+— Иногда.
+— Хотя бы честно.
+На этом разговор закончился. Маркус продолжил работу.`
+    },
+    {
+      num: 14, title: 'Глава 14. Красные глаза',
+      scene: 'red_eyes', timeOfDay: 'night', cam: 'close_up',
+      badge: 'Финал Тома I · Активация «Карателя»',
+      camLabel: 'Камера: медленный наезд на красные оптические сенсоры',
+      chars: [
+        { id: 'karatel', name: 'Каратель', x: 0, targetX: 0, mood: 'red_eyes', step: false }
+      ],
+      beats: [
+        { speaker: 'Повествователь', text: 'В отдельном зале стоял массивный экзоскелет — самостоятельная боевая система. Маркус проверил механизмы и активировал управление: система откликнулась.', cam: 'zoom_in', sound: 'mech_on', focus: 'karatel' },
+        { speaker: 'Повествователь', text: 'Император осмотрел разработку. На рекомендацию пока не применять её в бою ответил коротко: «Разумно. Помни: ответственность всегда остаётся на человеке».', cam: 'medium', sound: 'lab' },
+        { speaker: 'Повествователь', text: 'Маркус снова активировал систему. В темноте загорелись два красных глаза. Каратель стоял неподвижно — символ военной мощи империи, тесно связанный с создателем.', cam: 'close_up', sound: 'red_pulse', focus: 'karatel' },
+        { speaker: 'Повествователь', text: 'Маркус выключил систему. Красные глаза погасли. Первый этап завершён. Каратель создан — но его настоящая история ещё не началась. КОНЕЦ ПЕРВОГО ТОМА.', cam: 'slow_in', sound: 'mech_off', focus: 'karatel' }
+      ],
+      fullText: `Глава 14. Красные глаза
+Последние испытания проходили в отдельном помещении лаборатории. К этому моменту конструкция была практически завершена.
+Перед Маркусом стоял массивный экзоскелет. Его внешний вид заметно отличался от обычного военного снаряжения. Броня скрывала сложные механизмы, а сама машина выглядела скорее самостоятельной боевой системой, чем дополнением к человеческому телу.
+Маркус проверил основные элементы. Затем активировал управление. Сначала ничего не происходило. Потом заработали внутренние механизмы. Конструкция отвечала на команды. Испытание прошло успешно.
+Позднее в лабораторию прибыл император.
+— Значит, испытания прошли успешно?
+— Основные системы работают. Но необходимы дополнительные проверки.
+— Ты считаешь, что она сможет выполнять боевые задачи?
+— Да. Но пока я не рекомендую использовать её в настоящем бою.
+— Разумно, — ответил император. — Помни, что технология не принимает решений сама по себе. Ответственность всегда остаётся на человеке.
+Император ушёл. Маркус остался в лаборатории.
+Он ещё раз активировал систему.
+В темноте загорелись два красных глаза.
+Каратель стоял неподвижно. Для всех, кто когда-нибудь увидит эту машину, она станет символом военной мощи империи. Её будут считать самостоятельной боевой системой, не подозревая, насколько тесно она связана с создателем.
+Но пока об этом не знал почти никто.
+Маркус выключил систему. Красные глаза погасли.
+Первый этап был завершён. Каратель был создан. Но его настоящая история ещё не началась.
+КОНЕЦ ПЕРВОГО ТОМА`
+    }
+  ];
+
+  let chIdx = 0, beatIdx = 0, autoTimer = null, soundOn = true, audioCtx = null, rafId = null, tick = 0;
+
+  function ensureAudio() {
+    if (!soundOn) return null;
+    if (!audioCtx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) audioCtx = new AC();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+    return audioCtx;
+  }
+
+  function playCue(type) {
+    const ctx = ensureAudio();
+    if (!ctx) return;
+    try {
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const map = {
+        city: [130, 'sine', 0.03, 0.25],
+        factory: [68, 'sawtooth', 0.025, 0.3],
+        forge: [210, 'triangle', 0.04, 0.22],
+        ember: [92, 'sine', 0.03, 0.35],
+        calm: [174, 'sine', 0.025, 0.3],
+        march: [82, 'square', 0.02, 0.18],
+        alert: [260, 'sawtooth', 0.025, 0.22],
+        battle: [55, 'sawtooth', 0.045, 0.35],
+        lab: [148, 'sine', 0.025, 0.28],
+        mech_on: [110, 'sawtooth', 0.04, 0.45],
+        red_pulse: [62, 'sawtooth', 0.05, 0.5],
+        mech_off: [95, 'sine', 0.03, 0.35]
+      };
+      const [freq, wave, vol, dur] = map[type] || [140, 'sine', 0.025, 0.22];
+      osc.type = wave;
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(Math.max(36, freq * 0.72), now + dur);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(vol, now + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(now); osc.stop(now + dur + 0.02);
+    } catch {}
+  }
+
+  function renderActorSvg(ch, active, stepPhase) {
+    const isK = ch.id === 'karatel';
+    const legSwing = ch.step ? Math.sin(stepPhase) * 9 : 0;
+    const bodyBob = ch.step ? Math.abs(Math.cos(stepPhase)) * -5 : Math.sin(stepPhase * 0.5) * 2;
+    const eyeCol = ch.mood === 'red_eyes' ? '#ff2e4c' : (isK ? '#22d3ee' : '#e2e8f0');
+    const armorFill = isK ? '#1a2030' : (ch.id === 'erian' ? '#2a2246' : '#1e2636');
+    const rimCol = ch.mood === 'red_eyes' ? '#ff2e4c' : (active ? '#22d3ee' : '#64748b');
+
+    return `<svg class="kc-actor-svg" viewBox="0 0 140 180" style="transform:translateY(${bodyBob.toFixed(1)}px);opacity:${active ? 1 : 0.68}">
+      ${ch.mood === 'red_eyes' ? `<ellipse cx="70" cy="48" rx="46" ry="22" fill="#ff2e4c" opacity="0.22"/>` : ''}
+      <!-- Legs -->
+      <line x1="58" y1="116" x2="${54 + legSwing}" y2="166" stroke="${rimCol}" stroke-width="${isK ? 11 : 8}" stroke-linecap="round"/>
+      <line x1="82" y1="116" x2="${86 - legSwing}" y2="166" stroke="${rimCol}" stroke-width="${isK ? 11 : 8}" stroke-linecap="round"/>
+      <!-- Torso -->
+      <rect x="${isK ? 38 : 44}" y="66" width="${isK ? 64 : 52}" height="54" rx="${isK ? 12 : 10}" fill="${armorFill}" stroke="${rimCol}" stroke-width="2.2"/>
+      <!-- Head -->
+      <rect x="${isK ? 44 : 48}" y="22" width="${isK ? 52 : 44}" height="40" rx="${isK ? 10 : 16}" fill="${armorFill}" stroke="${rimCol}" stroke-width="2.2"/>
+      <!-- Eyes / Visor -->
+      <circle cx="59" cy="43" r="${isK ? 5 : 3.5}" fill="${eyeCol}"/>
+      <circle cx="81" cy="43" r="${isK ? 5 : 3.5}" fill="${eyeCol}"/>
+      ${ch.mood === 'smile' ? `<path d="M 62 53 Q 70 59 78 53" fill="none" stroke="#3ddc97" stroke-width="2.2" stroke-linecap="round"/>` : ''}
+    </svg>`;
+  }
+
+  function renderActors(ch, beat) {
+    const stage = $('kcActorStage');
+    if (!stage) return;
+    const focusId = beat?.focus || '';
+    stage.innerHTML = ch.chars.map((c, idx) => {
+      const isFocused = !focusId ? true : c.id === focusId;
+      const offsetPx = c.targetX * 360;
+      const scale = beat?.cam === 'close_up' && isFocused ? 1.18 : (beat?.cam === 'zoom_in' && isFocused ? 1.08 : 1);
+      return `<div class="kc-actor" style="transform:translateX(${offsetPx}px) scale(${scale});margin:0 ${ch.chars.length > 1 ? '18px' : '0'}">
+        ${renderActorSvg(c, isFocused, tick * 0.14 + idx)}
+        <span class="kc-actor-tag">${c.name}</span>
+      </div>`;
+    }).join('');
+  }
+
+  function drawSceneCanvas() {
+    const cv = $('kcCanvas');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const ch = KC_CHAPTERS[chIdx] || KC_CHAPTERS[0];
+    const beat = ch.beats[beatIdx] || ch.beats[0];
+    tick++;
+
+    const camMap = {
+      pan_right: [Math.sin(tick * 0.008) * 28, 0, 1.05],
+      pan_left:  [-Math.sin(tick * 0.008) * 28, 0, 1.05],
+      zoom_in:   [0, -8, 1.12],
+      slow_in:   [0, -6, 1.08 + Math.sin(tick * 0.01) * 0.03],
+      close_up:  [0, -14, 1.2],
+      shake:     [Math.sin(tick * 1.4) * 5, Math.cos(tick * 1.9) * 4, 1.06],
+      wide:      [0, 0, 1.0],
+      medium:    [0, -4, 1.04]
+    };
+    const [ox, oy, z] = camMap[beat?.cam || ch.cam] || [0, 0, 1.03];
+
+    ctx.save();
+    ctx.clearRect(0, 0, W, H);
+    ctx.translate(W / 2 + ox, H / 2 + oy);
+    ctx.scale(z, z);
+    ctx.translate(-W / 2, -H / 2);
+
+    const sky = ctx.createLinearGradient(0, 0, 0, H);
+    if (ch.timeOfDay === 'day') {
+      sky.addColorStop(0, '#1e3a5f'); sky.addColorStop(0.65, '#3b5998'); sky.addColorStop(1, '#141926');
+    } else if (ch.timeOfDay === 'dusk') {
+      sky.addColorStop(0, '#19142c'); sky.addColorStop(0.55, '#5b2c4c'); sky.addColorStop(1, '#121520');
+    } else {
+      sky.addColorStop(0, '#050814'); sky.addColorStop(0.65, '#0e1528'); sky.addColorStop(1, '#070a12');
+    }
+    ctx.fillStyle = sky;
+    ctx.fillRect(-40, -40, W + 80, H + 80);
+
+    // Skyline / architecture silhouettes
+    for (let i = 0; i < 16; i++) {
+      const bx = i * 68 - 20;
+      const bh = ch.scene === 'forge' ? (95 + (i % 3) * 32) : (120 + ((i * 37) % 130));
+      const by = H - 85 - bh;
+      ctx.fillStyle = ch.scene === 'forge' ? '#12141c' : '#0b1020';
+      ctx.fillRect(bx, by, 56, bh + 20);
+      if (ch.scene === 'forge' && i % 4 === 1) {
+        // smokestack & ember glow
+        ctx.fillStyle = '#090b10';
+        ctx.fillRect(bx + 18, by - 44, 18, 44);
+        const glow = ctx.createRadialGradient(bx + 27, by - 48, 2, bx + 27, by - 48, 28);
+        glow.addColorStop(0, 'rgba(251,146,60,0.85)');
+        glow.addColorStop(1, 'rgba(251,146,60,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(bx + 27, by - 48, 28, 0, Math.PI * 2); ctx.fill();
+      } else {
+        // lit windows
+        ctx.fillStyle = ch.mood === 'red_eyes' || ch.scene === 'red_eyes' ? 'rgba(255,46,76,0.28)' : 'rgba(125,211,252,0.22)';
+        for (let wy = by + 14; wy < H - 105; wy += 22) {
+          for (let wx = bx + 10; wx < bx + 44; wx += 14) {
+            if (((wx + wy + i) % 3) === 0) ctx.fillRect(wx, wy, 6, 9);
+          }
+        }
+      }
+    }
+
+    // Ground plane
+    ctx.fillStyle = '#090d18';
+    ctx.fillRect(-40, H - 85, W + 80, 125);
+    ctx.strokeStyle = ch.scene === 'red_eyes' ? 'rgba(255,46,76,0.45)' : 'rgba(34,211,238,0.25)';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(-40, H - 85); ctx.lineTo(W + 40, H - 85); ctx.stroke();
+
+    // Floating particles / sparks / rain
+    for (let p = 0; p < 24; p++) {
+      const px = ((p * 97 + tick * (ch.scene === 'battle' ? 4 : 1.1)) % W);
+      const py = ((p * 53 + tick * (ch.scene === 'forge' ? -1.4 : 0.9) + H) % (H - 80));
+      ctx.fillStyle = ch.scene === 'forge' ? 'rgba(251,146,60,0.65)' : (ch.scene === 'red_eyes' ? 'rgba(255,46,76,0.55)' : 'rgba(226,232,240,0.4)');
+      ctx.beginPath(); ctx.arc(px, py, ch.scene === 'forge' ? 2.2 : 1.5, 0, Math.PI * 2); ctx.fill();
+    }
+
+    ctx.restore();
+    renderActors(ch, beat);
+    rafId = requestAnimationFrame(drawSceneCanvas);
+  }
+
+  function renderBeat() {
+    const ch = KC_CHAPTERS[chIdx] || KC_CHAPTERS[0];
+    const beat = ch.beats[beatIdx] || ch.beats[0];
+    if ($('kcChapterPill')) $('kcChapterPill').textContent = `Глава ${ch.num} / ${KC_CHAPTERS.length}`;
+    if ($('kcBeatPill')) $('kcBeatPill').textContent = `Кадр ${beatIdx + 1} / ${ch.beats.length}`;
+    if ($('kcSceneBadge')) $('kcSceneBadge').textContent = `${ch.title} · ${ch.badge}`;
+    if ($('kcCamBadge')) $('kcCamBadge').textContent = beat.camLabel || ch.camLabel;
+    if ($('kcSpeaker')) $('kcSpeaker').textContent = beat.speaker;
+    if ($('kcBeatText')) $('kcBeatText').textContent = beat.text;
+
+    document.querySelectorAll('#kcChaptersDrawer .kc-ch-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === chIdx);
+    });
+    if (beat.sound) playCue(beat.sound);
+  }
+
+  function stepNext() {
+    const ch = KC_CHAPTERS[chIdx];
+    if (beatIdx + 1 < ch.beats.length) {
+      beatIdx++;
+    } else if (chIdx + 1 < KC_CHAPTERS.length) {
+      chIdx++;
+      beatIdx = 0;
+    } else {
+      stopAuto();
+      window.stormToast?.('🎬 Первый том «Каратель. Начало» завершён!');
+      return;
+    }
+    renderBeat();
+  }
+
+  function stepPrev() {
+    if (beatIdx > 0) {
+      beatIdx--;
+    } else if (chIdx > 0) {
+      chIdx--;
+      beatIdx = KC_CHAPTERS[chIdx].beats.length - 1;
+    }
+    renderBeat();
+  }
+
+  function stopAuto() {
+    clearInterval(autoTimer);
+    autoTimer = null;
+    if ($('kcPlayBtn')) $('kcPlayBtn').textContent = '▶ Авто-кино';
+  }
+
+  function toggleAuto() {
+    if (autoTimer) { stopAuto(); return; }
+    ensureAudio();
+    const mult = parseFloat($('kcSpeedSel')?.value || '1') || 1;
+    const ms = Math.round(4400 / mult);
+    if ($('kcPlayBtn')) $('kcPlayBtn').textContent = '⏸ Пауза';
+    autoTimer = setInterval(stepNext, ms);
+  }
+
+  let kcInited = false;
+  window.initKaratelCinema = function() {
+    if (!kcInited) {
+      kcInited = true;
+      const drawer = $('kcChaptersDrawer');
+      if (drawer) {
+        drawer.innerHTML = KC_CHAPTERS.map((c, i) =>
+          `<button type="button" class="kc-ch-btn${i === 0 ? ' active' : ''}" data-kc-ch="${i}"><b>Гл. ${c.num}.</b> ${c.title.replace(/^Глава \d+\.\s*/, '')}</button>`
+        ).join('');
+        drawer.addEventListener('click', e => {
+          const btn = e.target.closest('[data-kc-ch]');
+          if (!btn) return;
+          stopAuto();
+          chIdx = +btn.dataset.kcCh || 0;
+          beatIdx = 0;
+          drawer.hidden = true;
+          renderBeat();
+        });
+      }
+      $('kcChaptersToggleBtn')?.addEventListener('click', () => {
+        if ($('kcChaptersDrawer')) $('kcChaptersDrawer').hidden = !$('kcChaptersDrawer').hidden;
+      });
+      $('kcSoundBtn')?.addEventListener('click', () => {
+        soundOn = !soundOn;
+        $('kcSoundBtn').textContent = soundOn ? '🔊 Звук: Вкл' : '🔇 Звук: Выкл';
+        if (soundOn) playCue('calm');
+      });
+      $('kcLetterboxBtn')?.addEventListener('click', () => {
+        $('kcCinemaCard')?.classList.toggle('letterbox');
+      });
+      $('kcPrevBtn')?.addEventListener('click', () => { stopAuto(); stepPrev(); });
+      $('kcNextBtn')?.addEventListener('click', () => { stopAuto(); stepNext(); });
+      $('kcPlayBtn')?.addEventListener('click', toggleAuto);
+      $('kcBeatText')?.addEventListener('click', () => { stopAuto(); stepNext(); });
+      const openFull = () => {
+        const ch = KC_CHAPTERS[chIdx];
+        if ($('kcScriptTitle')) $('kcScriptTitle').textContent = ch.title;
+        if ($('kcScriptBody')) $('kcScriptBody').textContent = ch.fullText;
+        if ($('kcScriptBox')) $('kcScriptBox').hidden = false;
+      };
+      $('kcScriptToggleBtn')?.addEventListener('click', () => {
+        if ($('kcScriptBox') && !$('kcScriptBox').hidden) $('kcScriptBox').hidden = true;
+        else openFull();
+      });
+      $('kcFullTextBtn')?.addEventListener('click', openFull);
+      $('kcScriptCloseBtn')?.addEventListener('click', () => { if ($('kcScriptBox')) $('kcScriptBox').hidden = true; });
+    }
+    renderBeat();
+    if (!rafId) rafId = requestAnimationFrame(drawSceneCanvas);
+  };
+
+  // Multi-device ergonomics: Wide PC mode & Mobile Bottom Nav sync
+  function syncDeviceMode() {
+    const w = window.innerWidth;
+    document.body.classList.toggle('wide-workspace', w >= 1441);
+    document.querySelectorAll('#mobBottomNav .mob-bnav-btn').forEach(btn => {
+      const id = btn.dataset.mbnav;
+      btn.classList.toggle('active', state.section === id);
+    });
+  }
+  $('mobBottomNav')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-mbnav]');
+    if (!btn) return;
+    const target = btn.dataset.mbnav;
+    if (target === 'menu') {
+      $('sideNavBtn')?.click();
+      return;
+    }
+    if (target === 'it') state.itMode = state.itMode || 'ide';
+    setSection(target);
+    syncDeviceMode();
+  });
+  window.addEventListener('resize', syncDeviceMode);
+  document.addEventListener('DOMContentLoaded', syncDeviceMode);
+  setTimeout(syncDeviceMode, 100);
+})();
+</script>
+</body></html>`;
 }
 
 function parseCsvRows(text) {
@@ -10477,18 +11390,13 @@ function buildFlowSvg(nodes) {
   const cx = W / 2;
   const H = padY * 2 + nodes.length * boxH + (nodes.length - 1) * gap;
   const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  const gost = $('sfGostPaper')?.checked;
-  const bg = gost ? '#ffffff' : '#090c14';
-  const strokeMain = gost ? '#111827' : '#7c5cff';
-  const textCol = gost ? '#111827' : '#e2e8f0';
-  const fillBox = gost ? '#ffffff' : '#141a2b';
   let body = `<defs>
     <marker id="sfArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="${strokeMain}"/>
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c5cff"/>
     </marker>
-    <linearGradient id="sfTermG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${gost ? '#111827' : '#7c5cff'}"/><stop offset="100%" stop-color="${gost ? '#111827' : '#22d3ee'}"/></linearGradient>
+    <linearGradient id="sfTermG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient>
   </defs>
-  <rect width="${W}" height="${H}" rx="12" fill="${bg}"/>`;
+  <rect width="${W}" height="${H}" rx="12" fill="#090c14"/>`;
 
   nodes.forEach((n, i) => {
     const y = padY + i * (boxH + gap);
@@ -10498,33 +11406,33 @@ function buildFlowSvg(nodes) {
 
     if (i > 0) {
       const prevBottom = padY + (i - 1) * (boxH + gap) + boxH;
-      body += `<line x1="${cx}" y1="${prevBottom}" x2="${cx}" y2="${y - 2}" stroke="${strokeMain}" stroke-width="1.8" marker-end="url(#sfArr)"/>`;
+      body += `<line x1="${cx}" y1="${prevBottom}" x2="${cx}" y2="${y - 2}" stroke="#7c5cff" stroke-width="2" marker-end="url(#sfArr)"/>`;
     }
     if (n.type === 'term') {
-      body += `<rect x="${cx - 95}" y="${y}" width="190" height="${boxH}" rx="22" fill="${gost ? '#ffffff' : 'url(#sfTermG)'}" fill-opacity="${gost ? '1' : '0.22'}" stroke="${gost ? '#111827' : '#22d3ee'}" stroke-width="1.8"/>`;
+      body += `<rect x="${cx - 95}" y="${y}" width="190" height="${boxH}" rx="22" fill="url(#sfTermG)" fill-opacity="0.22" stroke="#22d3ee" stroke-width="2"/>`;
     } else if (n.type === 'dec') {
       const hw = 148, hh = boxH / 2 + 4;
-      body += `<polygon points="${cx},${midY - hh} ${cx + hw},${midY} ${cx},${midY + hh} ${cx - hw},${midY}" fill="${gost ? '#ffffff' : '#f59e0b1f'}" stroke="${gost ? '#111827' : '#f59e0b'}" stroke-width="1.8"/>`;
-      body += `<text x="${cx + hw + 10}" y="${midY + 4}" fill="${gost ? '#111827' : '#3ddc97'}" font-size="11" font-family="Inter,sans-serif">Да ↓</text>`;
-      body += `<text x="${cx - hw - 34}" y="${midY + 4}" fill="${gost ? '#111827' : '#ff6b81'}" font-size="11" font-family="Inter,sans-serif">Нет</text>`;
+      body += `<polygon points="${cx},${midY - hh} ${cx + hw},${midY} ${cx},${midY + hh} ${cx - hw},${midY}" fill="#f59e0b1f" stroke="#f59e0b" stroke-width="2"/>`;
+      body += `<text x="${cx + hw + 10}" y="${midY + 4}" fill="#3ddc97" font-size="11" font-family="Inter,sans-serif">Да ↓</text>`;
+      body += `<text x="${cx - hw - 34}" y="${midY + 4}" fill="#ff6b81" font-size="11" font-family="Inter,sans-serif">Нет</text>`;
     } else if (n.type === 'io') {
       const sk = 16;
-      body += `<polygon points="${x + sk},${y} ${x + boxW},${y} ${x + boxW - sk},${y + boxH} ${x},${y + boxH}" fill="${gost ? '#ffffff' : '#22d3ee1c'}" stroke="${gost ? '#111827' : '#22d3ee'}" stroke-width="1.8"/>`;
-    } else if (n.type === 'loop') {
+      body += `<polygon points="${x + sk},${y} ${x + boxW},${y} ${x + boxW - sk},${y + boxH} ${x},${y + boxH}" fill="#22d3ee1c" stroke="#22d3ee" stroke-width="2"/>`;
+        } else if (n.type === 'loop') {
       const sk = 18;
-      body += `<polygon points="${x + sk},${y} ${x + boxW - sk},${y} ${x + boxW},${midY} ${x + boxW - sk},${y + boxH} ${x + sk},${y + boxH} ${x},${midY}" fill="${gost ? '#ffffff' : '#a855f724'}" stroke="${gost ? '#111827' : '#a855f7'}" stroke-width="1.8"/>`;
+      body += `<polygon points="${x + sk},${y} ${x + boxW - sk},${y} ${x + boxW},${midY} ${x + boxW - sk},${y + boxH} ${x + sk},${y + boxH} ${x},${midY}" fill="#a855f724" stroke="#a855f7" stroke-width="2"/>`;
       if (i + 1 < nodes.length - 1) {
         const nextMid = padY + (i + 1) * (boxH + gap) + boxH / 2;
         const lx = x - 34;
-        body += `<path d="M ${x} ${nextMid} L ${lx} ${nextMid} L ${lx} ${midY} L ${x - 2} ${midY}" fill="none" stroke="${gost ? '#111827' : '#a855f7'}" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#sfArr)"/>`;
-        body += `<text x="${lx - 6}" y="${(midY + nextMid) / 2}" text-anchor="end" fill="${gost ? '#111827' : '#c084fc'}" font-size="10.5" font-family="Inter,sans-serif">повтор</text>`;
+        body += `<path d="M ${x} ${nextMid} L ${lx} ${nextMid} L ${lx} ${midY} L ${x - 2} ${midY}" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#sfArr)"/>`;
+        body += `<text x="${lx - 6}" y="${(midY + nextMid) / 2}" text-anchor="end" fill="#c084fc" font-size="10.5" font-family="Inter,sans-serif">повтор</text>`;
       }
     } else if (n.type === 'note') {
-      body += `<rect x="${cx - 70}" y="${y + 6}" width="140" height="${boxH - 12}" rx="8" fill="${gost ? '#f8fafc' : '#1e293b'}" stroke="${gost ? '#475569' : '#64748b'}" stroke-dasharray="4 3"/>`;
+      body += `<rect x="${cx - 70}" y="${y + 6}" width="140" height="${boxH - 12}" rx="8" fill="#1e293b" stroke="#64748b" stroke-dasharray="4 3"/>`;
     } else {
-      body += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="${gost ? '0' : '6'}" fill="${fillBox}" stroke="${strokeMain}" stroke-width="1.8"/>`;
+      body += `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="6" fill="#141926" stroke="#7c5cff" stroke-width="2"/>`;
     }
-    body += `<text x="${cx}" y="${midY + 4}" text-anchor="middle" fill="${textCol}" font-size="12.5" font-family="JetBrains Mono,monospace">${label}</text>`;
+    body += `<text x="${cx}" y="${midY + 4}" text-anchor="middle" fill="#e2e8f0" font-size="12.5" font-family="JetBrains Mono,monospace">${label}</text>`;
   });
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${body}</svg>`;
 }
@@ -11461,8 +12369,7 @@ const STORM_LIBS = {
   mermaid: 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js'
 ,
   pdfjs: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-  mammoth: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js',
-  jszip: 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js'
+  mammoth: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js'
 };
 const stormLibPromises = {};
 function ensureLib(name) {
@@ -13482,7 +14389,6 @@ renderQuickHub();
   const PX_PER_MM = 4; // 1 мм = 4 px (сетка 5 мм = 20 px)
   let drawTool = 'line';
   let drawItems = [];
-  window.getStormCadDrawItems = () => drawItems;
   let draftItem = null;
 
   function getDrawTheme() {
@@ -13506,17 +14412,6 @@ renderQuickHub();
     if (it.type === 'line') {
       applyLineStyle(ctx, it.style, th);
       ctx.beginPath(); ctx.moveTo(it.x1, it.y1); ctx.lineTo(it.x2, it.y2); ctx.stroke();
-    } else if (it.type === 'hatch') {
-      const rx = Math.min(it.x1, it.x2), ry = Math.min(it.y1, it.y2);
-      const rw = Math.abs(it.x2 - it.x1), rh = Math.abs(it.y2 - it.y1);
-      ctx.save();
-      ctx.beginPath(); ctx.rect(rx, ry, rw, rh); ctx.clip();
-      ctx.strokeStyle = th.fg; ctx.lineWidth = 1; ctx.setLineDash([]);
-      const step = 10;
-      for (let d = -rh; d < rw + rh; d += step) {
-        ctx.beginPath(); ctx.moveTo(rx + d, ry); ctx.lineTo(rx + d - rh, ry + rh); ctx.stroke();
-      }
-      ctx.restore();
     } else if (it.type === 'rect') {
       applyLineStyle(ctx, it.style, th);
       ctx.strokeRect(it.x1, it.y1, it.x2 - it.x1, it.y2 - it.y1);
@@ -13653,14 +14548,7 @@ renderQuickHub();
       const sw = it.style === 'thick' ? 2.6 : 1.3;
       const col = it.style === 'axis' ? th.axis : th.fg;
       if (it.type === 'line') s += `<line x1="${it.x1}" y1="${it.y1}" x2="${it.x2}" y2="${it.y2}" stroke="${col}" stroke-width="${sw}"${dash}/>`;
-      else if (it.type === 'hatch') {
-        const rx = Math.min(it.x1, it.x2), ry = Math.min(it.y1, it.y2), rw = Math.abs(it.x2 - it.x1), rh = Math.abs(it.y2 - it.y1);
-        for (let d = -rh; d < rw + rh; d += 10) {
-          const ax = Math.max(rx, Math.min(rx + rw, rx + d)), ay = ry + Math.max(0, (rx + d) - (rx + rw));
-          const bx = Math.max(rx, Math.min(rx + rw, rx + d - rh)), by = ry + Math.min(rh, (rx + d) - rx);
-          if (ax !== bx || ay !== by) s += `<line x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${th.fg}" stroke-width="1"/>`;
-        }
-      } else if (it.type === 'rect') s += `<rect x="${Math.min(it.x1,it.x2)}" y="${Math.min(it.y1,it.y2)}" width="${Math.abs(it.x2-it.x1)}" height="${Math.abs(it.y2-it.y1)}" fill="none" stroke="${col}" stroke-width="${sw}"${dash}/>`;
+      else if (it.type === 'rect') s += `<rect x="${Math.min(it.x1,it.x2)}" y="${Math.min(it.y1,it.y2)}" width="${Math.abs(it.x2-it.x1)}" height="${Math.abs(it.y2-it.y1)}" fill="none" stroke="${col}" stroke-width="${sw}"${dash}/>`;
       else if (it.type === 'circle') {
         const r = Math.hypot(it.x2 - it.x1, it.y2 - it.y1);
         s += `<circle cx="${it.x1}" cy="${it.y1}" r="${r.toFixed(1)}" fill="none" stroke="${col}" stroke-width="${sw}"${dash}/>`;
@@ -13845,30 +14733,6 @@ A-B
 Заголовок документа
 ---
 Текст в Markdown
-\`\`\`
-4) Создать карточки для заучивания (в колоду Ежедневника) — добавь блок (по 1 карточке на строку):
-\`\`\`action:cards
-Вопрос 1 | Ответ 1
-Вопрос 2 | Ответ 2
-\`\`\`
-5) Записать доход или расход в Финансы (Учёт трат) — добавь блок (exp или inc | сумма | категория | контрагент | ставка НДС | комментарий):
-\`\`\`action:tx
-exp | 3500 | IT и сервисы | Магазин | 0 | Покупка мышки
-\`\`\`
-6) Добавить бухгалтерскую проводку 1С (Дт | Кт | сумма | описание) — добавь блок:
-\`\`\`action:1c
-51 | 62 | 85000 | Оплата от покупателя на р/с
-\`\`\`
-7) Построить 2D-график функции в StormMath — добавь блок (до 3 формул f(x) по строкам):
-\`\`\`action:plot
-sin(x) * 2
-0.25*x^2 - 2
-\`\`\`
-8) Построить блок-схему по ГОСТ в StormFlow — добавь блок (первая строка lang:cpp или lang:py, далее код):
-\`\`\`action:flow
-lang:py
-n = int(input())
-print(n * 2)
 \`\`\``;
 
   // Загрузка и сохранение настроек роли, памяти и температуры
@@ -13965,7 +14829,7 @@ print(n * 2)
   // Выполнение агентских команд action:epur / action:task / action:pdf
   function extractAndRunActions(text) {
     const actions = [];
-    const cleaned = text.replace(/```action:([a-z0-9]+)\n([\s\S]*?)```/gi, (_, type, body) => {
+    const cleaned = text.replace(/```action:([a-z]+)\n([\s\S]*?)```/gi, (_, type, body) => {
       const t = type.toLowerCase();
       actions.push({ type: t, body: body.trim() });
       return '';
@@ -14004,99 +14868,6 @@ print(n * 2)
       setSection('it');
       $('pdfTitle')?.dispatchEvent(new Event('input'));
       return '📄 Открыто в PDF-конструкторе';
-    }
-    if (act.type === 'cards') {
-      const rows = act.body.split(/\r?\n/).map(l => l.split('|').map(s => s.trim())).filter(r => r[0] && r[1]);
-      if (rows.length) {
-        let arr = [];
-        try { arr = JSON.parse(localStorage.getItem('storm_cards_v1') || '[]'); } catch {}
-        rows.forEach(([q, a]) => arr.push({ q, a }));
-        try { localStorage.setItem('storm_cards_v1', JSON.stringify(arr)); } catch {}
-        if (typeof window.refreshStormCards === 'function') window.refreshStormCards();
-        window.stormToast?.(`🎓 Добавлено карточек в колоду: ${rows.length}`);
-        return `🎓 Добавлено ${rows.length} карточек`;
-      }
-    }
-    if (act.type === 'tx') {
-      const rows = act.body.split(/\r?\n/).map(l => l.split('|').map(s => s.trim())).filter(r => r.length >= 2);
-      if (rows.length) {
-        let arr = [];
-        try { arr = JSON.parse(localStorage.getItem('storm_buh_tx_v1') || '[]'); } catch {}
-        const today = new Date().toISOString().slice(0, 10);
-        let added = 0;
-        rows.forEach(r => {
-          const isInc = /^(inc|доход|\+)/i.test(r[0]);
-          const amt = parseFloat(String(r[1]).replace(',', '.').replace(/[^\d.]/g, ''));
-          if (!Number.isFinite(amt) || amt <= 0) return;
-          arr.unshift({
-            id: Date.now() + added,
-            date: today,
-            type: isInc ? 'inc' : 'exp',
-            cat: r[2] || (isInc ? 'Продажи / Услуги' : 'Прочее'),
-            partner: r[3] || '—',
-            amount: amt,
-            vatRate: parseInt(r[4] || '0', 10) || 0,
-            note: r[5] || 'Через Шторм AI'
-          });
-          added++;
-        });
-        if (added) {
-          try { localStorage.setItem('storm_buh_tx_v1', JSON.stringify(arr)); } catch {}
-          if (typeof window.refreshStormBuh === 'function') window.refreshStormBuh();
-          window.stormToast?.(`💰 Записано операций в Финансы: ${added}`);
-          return `💰 Добавлено операций: ${added}`;
-        }
-      }
-    }
-    if (act.type === '1c') {
-      const rows = act.body.split(/\r?\n/).map(l => l.split('|').map(s => s.trim())).filter(r => r.length >= 3);
-      if (rows.length) {
-        let arr = [];
-        try { arr = JSON.parse(localStorage.getItem('storm_buh_1c_v1') || '[]'); } catch {}
-        const today = new Date().toISOString().slice(0, 10);
-        let added = 0;
-        rows.forEach(r => {
-          const sum = parseFloat(String(r[2]).replace(',', '.').replace(/[^\d.]/g, ''));
-          if (!Number.isFinite(sum) || sum <= 0) return;
-          arr.unshift({ id: Date.now() + added, date: today, dt: r[0], kt: r[1], sum, desc: r[3] || 'Проводка от Шторм AI' });
-          added++;
-        });
-        if (added) {
-          try { localStorage.setItem('storm_buh_1c_v1', JSON.stringify(arr)); } catch {}
-          if (typeof window.refreshStormBuh === 'function') window.refreshStormBuh();
-          window.stormToast?.(`📒 Проведено проводок 1С: ${added}`);
-          return `📒 Проводок 1С добавлено: ${added}`;
-        }
-      }
-    }
-    if (act.type === 'plot') {
-      const fns = act.body.split(/\r?\n/).map(s => s.trim()).filter(Boolean).slice(0, 3);
-      if (fns.length) {
-        if ($('smFn1')) $('smFn1').value = fns[0] || '';
-        if ($('smFn2')) $('smFn2').value = fns[1] || '';
-        if ($('smFn3')) $('smFn3').value = fns[2] || '';
-        state.itMode = 'math';
-        setSection('it');
-        $('smSubTabs')?.querySelector('[data-sm="plot"]')?.click();
-        $('smPlotBtn')?.click();
-        return '📈 График построен в StormMath';
-      }
-    }
-    if (act.type === 'flow') {
-      const lines = act.body.split(/\r?\n/);
-      let lang = 'cpp';
-      if (/^lang:\s*(py|python)/i.test(lines[0] || '')) { lang = 'py'; lines.shift(); }
-      else if (/^lang:\s*(cpp|c\+\+)/i.test(lines[0] || '')) { lang = 'cpp'; lines.shift(); }
-      const code = lines.join('\n').trim();
-      if (code) {
-        if ($('sfLang')) $('sfLang').value = lang;
-        if ($('sfCode')) $('sfCode').value = code;
-        state.itMode = 'flow';
-        setSection('it');
-        $('sfSubTabs')?.querySelector('[data-sf="flowchart"]')?.click();
-        $('sfBuildBtn')?.click();
-        return '🔀 Блок-схема построена в StormFlow';
-      }
     }
     return '';
   }
@@ -14137,53 +14908,6 @@ print(n * 2)
         } catch {
           appendAiMsg('bot', `Не удалось прочитать DOCX ${file.name}.`);
         }
-      } else if (ext === 'pptx') {
-        try {
-          $('aiStatusText').textContent = `📽️ Читаю презентацию ${file.name}…`;
-          await ensureLib('jszip');
-          const zip = await window.JSZip.loadAsync(await file.arrayBuffer());
-          const slideNames = Object.keys(zip.files)
-            .filter(n => /^ppt\/slides\/slide\d+\.xml$/i.test(n))
-            .sort((a, b) => parseInt(a.match(/slide(\d+)/i)[1], 10) - parseInt(b.match(/slide(\d+)/i)[1], 10));
-          let txt = '';
-          for (let i = 0; i < slideNames.length; i++) {
-            const xml = await zip.files[slideNames[i]].async('string');
-            const parts = Array.from(xml.matchAll(/<a:t[^>]*>([\s\S]*?)<\/a:t>/gi)).map(m => m[1].replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'));
-            if (parts.length) txt += `
---- Слайд ${i + 1} ---
-` + parts.join(' ');
-          }
-          aiPendingAtts.push({ name: file.name, kind: 'text', text: (txt.trim() || 'Пустая презентация').slice(0, 20000) });
-          $('aiStatusText').textContent = `PPTX прочитан (${slideNames.length} сл.) ✓`;
-          window.stormToast?.(`📽️ Прочитано слайдов: ${slideNames.length}`);
-        } catch {
-          appendAiMsg('bot', `Не удалось прочитать презентацию ${file.name}.`);
-        }
-      } else if (ext === 'zip') {
-        try {
-          $('aiStatusText').textContent = `📦 Распаковываю архив ${file.name}…`;
-          await ensureLib('jszip');
-          const zip = await window.JSZip.loadAsync(await file.arrayBuffer());
-          const textExts = new Set(['txt','md','py','cpp','c','h','hpp','cs','java','go','rs','js','ts','jsx','tsx','html','css','scss','json','xml','yaml','yml','sql','bsl','csv','tex','bat','ps1','sh','ini','conf','env','log','cfg']);
-          let out = '', count = 0;
-          for (const [path, entry] of Object.entries(zip.files)) {
-            if (entry.dir || /(__MACOSX|\.git\/|node_modules\/)/i.test(path)) continue;
-            const fext = (path.split('.').pop() || '').toLowerCase();
-            if (!textExts.has(fext)) continue;
-            const content = await entry.async('string');
-            out += `
-=== ${path} ===
-${content.slice(0, 4000)}
-`;
-            count++;
-            if (count >= 25 || out.length >= 22000) break;
-          }
-          aiPendingAtts.push({ name: file.name, kind: 'text', text: (out.trim() || 'В архиве не найдено текстовых файлов/кода.').slice(0, 22000) });
-          $('aiStatusText').textContent = `ZIP прочитан (${count} ф.) ✓`;
-          window.stormToast?.(`📦 Извлечено файлов из ZIP: ${count}`);
-        } catch {
-          appendAiMsg('bot', `Не удалось распаковать архив ${file.name}.`);
-        }
       } else {
         rest.push(file);
       }
@@ -14209,17 +14933,7 @@ ${content.slice(0, 4000)}
       actions.forEach(act => {
         const chip = document.createElement('div');
         chip.className = 'ai-file-chip';
-        const ACTION_LABELS = {
-          epur: '📐 Построить Эпюр Монжа в StormCAD',
-          task: '📝 Добавить задачу в Ежедневник',
-          pdf: '📄 Открыть в PDF-конструкторе',
-          cards: '🎓 Загрузить карточки в колоду',
-          tx: '💰 Записать операцию в Финансы',
-          '1c': '📒 Провести проводку в 1С',
-          plot: '📈 Построить график в StormMath',
-          flow: '🔀 Построить блок-схему в StormFlow'
-        };
-        const label = ACTION_LABELS[act.type] || ('⚡ Выполнить: ' + act.type);
+        const label = act.type === 'epur' ? '📐 Построить Эпюр Монжа в StormCAD' : act.type === 'task' ? '📝 Добавить задачу в Ежедневник' : '📄 Открыть в PDF-конструкторе';
         const sp = document.createElement('span'); sp.textContent = label;
         const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = 'Выполнить ▶';
         btn.onclick = () => { const msg = applySiteAction(act); if (msg) btn.textContent = 'Готово ✓'; };
@@ -14227,39 +14941,6 @@ ${content.slice(0, 4000)}
         chip.append(sp, actsDiv);
         fWrap.append(chip);
       });
-      if (files.length >= 2) {
-        const zChip = document.createElement('div');
-        zChip.className = 'ai-file-chip';
-        zChip.style.borderColor = '#7c5cff88';
-        const zLbl = document.createElement('span');
-        zLbl.textContent = `📦 Весь проект (${files.length} файлов)`;
-        const zBtn = document.createElement('button');
-        zBtn.type = 'button';
-        zBtn.textContent = 'Скачать .zip';
-        zBtn.onclick = async () => {
-          try {
-            zBtn.textContent = 'Сборка…';
-            await ensureLib('jszip');
-            const zip = new window.JSZip();
-            files.forEach(f => zip.file(f.name.replace(/^\/+/, ''), f.content));
-            const blob = await zip.generateAsync({ type: 'blob' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'storm-project.zip';
-            a.click();
-            setTimeout(() => URL.revokeObjectURL(a.href), 1500);
-            zBtn.textContent = 'Готово ✓';
-            window.stormToast?.(`📦 Архив storm-project.zip (${files.length} ф.) скачан`);
-          } catch {
-            zBtn.textContent = 'Ошибка';
-          }
-        };
-        const zActs = document.createElement('div');
-        zActs.className = 'ai-file-actions';
-        zActs.append(zBtn);
-        zChip.append(zLbl, zActs);
-        fWrap.append(zChip);
-      }
       wrap.append(fWrap);
     }
 
@@ -14846,12 +15527,6 @@ ${content.slice(0, 4000)}
     askAiAccountant(q);
   });
 
-  window.refreshStormBuh = function() {
-    try { txList = JSON.parse(localStorage.getItem(TX_KEY) || '[]'); } catch {}
-    try { p1cList = JSON.parse(localStorage.getItem(P1C_KEY) || '[]'); } catch {}
-    renderLedger();
-    render1c();
-  };
   renderLedger();
   render1c();
   renderAccounts();
@@ -15098,9 +15773,8 @@ ${content.slice(0, 4000)}
   }
   $('focusToggleBtn')?.addEventListener('click', () => {
     const d = $('focusDock');
-    if (d) { d.hidden = !d.hidden; if (!d.hidden && $('mpDock')) $('mpDock').hidden = true; }
+    if (d) d.hidden = !d.hidden;
   });
-  $('mpToggleBtn')?.addEventListener('click', () => { if ($('focusDock')) $('focusDock').hidden = true; });
   $('focusHideBtn')?.addEventListener('click', () => { if ($('focusDock')) $('focusDock').hidden = true; });
   $('focusPresets')?.addEventListener('click', e => {
     const b = e.target.closest('[data-fmin]');
@@ -15229,18 +15903,12 @@ ${content.slice(0, 4000)}
     saveFc(); renderFc();
     window.stormToast('Карточка добавлена ✓');
   });
-  window.refreshStormCards = function() {
-    try { fcList = JSON.parse(localStorage.getItem(FC_KEY) || '[]'); } catch {}
-    fcIdx = Math.max(0, fcList.length - 1);
-    fcFlipped = false;
-    renderFc();
-  };
   $('fcAiGenBtn')?.addEventListener('click', () => {
     const topic = prompt('По какой теме сделать карточки для учёбы?', 'C++ указатели и ссылки');
     if (!topic) return;
     if ($('aiRoleSelect')) $('aiRoleSelect').value = 'study';
     setSection('stormai');
-    setTimeout(() => window.sendAiPrompt(`Сделай 6 коротких карточек для заучивания по теме: ${topic}. Обязательно оформи их в блок action:cards (каждая строка: Вопрос | Ответ), чтобы я мог добавить их в колоду в 1 клик.`, false), 150);
+    setTimeout(() => window.sendAiPrompt(`Сделай 6 коротких карточек для заучивания (Вопрос — Ответ) по теме: ${topic}`, false), 150);
   });
   renderFc();
 
@@ -15258,242 +15926,6 @@ ${content.slice(0, 4000)}
       setTimeout(() => { if ($('whatsNewBackdrop')) $('whatsNewBackdrop').hidden = false; }, 650);
     }
   } catch {}
-})();
-</script>
-<script>
-// =========================================================================
-// === EXTENSIONS PACK: EXPORT CHAT (.MD/.PDF) + STORMCAD DXF EXPORT =======
-// =========================================================================
-(function() {
-  // --- 1. Экспорт текущего чата Шторм AI в .md или .pdf ---
-  function buildChatMarkdown() {
-    const msgs = (typeof aiHistory !== 'undefined' ? aiHistory : []).filter(m => m.role !== 'system');
-    if (!msgs.length) return '';
-    const dt = new Date().toLocaleString('ru-RU');
-    let md = `# Диалог с Шторм AI\n\nДата экспорта: ${dt}\n\n---\n\n`;
-    msgs.forEach(m => {
-      const who = m.role === 'user' ? '## Пользователь' : '## Шторм AI';
-      const body = Array.isArray(m.content)
-        ? m.content.filter(p => p.type === 'text').map(p => p.text).join('\n')
-        : String(m.content || '');
-      md += `${who}\n\n${body.trim()}\n\n`;
-    });
-    return md;
-  }
-
-  $('aiExportMdBtn')?.addEventListener('click', () => {
-    const md = buildChatMarkdown();
-    if (!md) { window.stormToast?.('Чат пока пуст', 'warn'); return; }
-    downloadVirtualFile(`stormai-chat-${new Date().toISOString().slice(0,10)}.md`, md);
-    window.stormToast?.('📝 Чат сохранён в Markdown (.md)');
-  });
-
-  $('aiExportPdfBtn')?.addEventListener('click', () => {
-    const md = buildChatMarkdown();
-    if (!md) { window.stormToast?.('Чат пока пуст', 'warn'); return; }
-    downloadVirtualFile(`stormai-chat-${new Date().toISOString().slice(0,10)}.pdf`, md);
-    window.stormToast?.('📑 Формирую PDF из чата…');
-  });
-
-  // --- 2. Генератор ASCII DXF R12 (AutoCAD / Компас-3D / LibreCAD) ---
-  function makeDxfBuilder() {
-    const ents = [];
-    const n = v => Number(v || 0).toFixed(3);
-    return {
-      line(x1, y1, x2, y2, layer = 'MAIN', color = 7) {
-        ents.push(`0\nLINE\n8\n${layer}\n62\n${color}\n10\n${n(x1)}\n20\n${n(y1)}\n30\n0.0\n11\n${n(x2)}\n21\n${n(y2)}\n31\n0.0`);
-      },
-      circle(cx, cy, r, layer = 'MAIN', color = 7) {
-        ents.push(`0\nCIRCLE\n8\n${layer}\n62\n${color}\n10\n${n(cx)}\n20\n${n(cy)}\n30\n0.0\n40\n${n(r)}`);
-      },
-      rect(x1, y1, x2, y2, layer = 'MAIN', color = 7) {
-        this.line(x1, y1, x2, y1, layer, color);
-        this.line(x2, y1, x2, y2, layer, color);
-        this.line(x2, y2, x1, y2, layer, color);
-        this.line(x1, y2, x1, y1, layer, color);
-      },
-      text(x, y, txt, h = 3.5, layer = 'TEXT', color = 7) {
-        const clean = String(txt || '').replace(/\r?\n/g, ' ');
-        ents.push(`0\nTEXT\n8\n${layer}\n62\n${color}\n10\n${n(x)}\n20\n${n(y)}\n30\n0.0\n40\n${n(h)}\n1\n${clean}`);
-      },
-      build() {
-        return `0\nSECTION\n2\nHEADER\n9\n$ACADVER\n1\nAC1009\n9\n$INSUNITS\n70\n4\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n${ents.join('\n')}\n0\nENDSEC\n0\nEOF\n`;
-      }
-    };
-  }
-
-  function downloadDxf(filename, dxfContent) {
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([dxfContent], { type: 'application/dxf;charset=utf-8' }));
-    a.download = filename;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1500);
-    window.stormToast?.(`📐 Файл ${filename} готов (AutoCAD / Компас-3D)`);
-  }
-
-  // DXF для Эпюра Монжа (в реальных мм!)
-  $('cadEpurDxf')?.addEventListener('click', () => {
-    const ptsText = ($('cadPointsIn')?.value || '').trim();
-    const edgesText = ($('cadEdgesIn')?.value || '').trim();
-    const pts = [];
-    ptsText.split(/\r?\n/).forEach(line => {
-      const m = line.trim().match(/^([A-Za-zА-Яа-я0-9']+)[,;\s]+(-?\d+(?:\.\d+)?)[,;\s]+(-?\d+(?:\.\d+)?)[,;\s]+(-?\d+(?:\.\d+)?)/);
-      if (m) pts.push({ name: m[1], x: +m[2], y: +m[3], z: +m[4] });
-    });
-    const map = Object.fromEntries(pts.map(p => [p.name, p]));
-    const edges = [];
-    edgesText.split(/\r?\n/).forEach(line => {
-      const m = line.trim().match(/^([A-Za-zА-Яа-я0-9']+)\s*[-–—]\s*([A-Za-zА-Яа-я0-9']+)/);
-      if (m && map[m[1]] && map[m[2]]) edges.push([map[m[1]], map[m[2]]]);
-    });
-
-    const dxf = makeDxfBuilder();
-    const maxC = Math.max(70, ...pts.flatMap(p => [Math.abs(p.x), Math.abs(p.y), Math.abs(p.z)])) + 15;
-    // Оси X, Y1, Y3, Z в мм (центр 0,0)
-    dxf.line(-maxC, 0, maxC, 0, 'AXES', 8);
-    dxf.line(0, -maxC, 0, maxC, 'AXES', 8);
-    dxf.text(-maxC + 2, 2, 'X', 4, 'AXES', 8);
-    dxf.text(2, maxC - 5, 'Z', 4, 'AXES', 8);
-    dxf.text(2, -maxC + 2, 'Y1', 4, 'AXES', 8);
-    dxf.text(maxC - 8, 2, 'Y3', 4, 'AXES', 8);
-
-    // Точки и линии связи (в DXF ось Y вверх: Π2=(-x, z), Π1=(-x, -y), Π3=(y, z))
-    pts.forEach(p => {
-      const x2 = -p.x, y2 = p.z;
-      const x1 = -p.x, y1 = -p.y;
-      const x3 = p.y,  y3 = p.z;
-      dxf.line(x2, y2, x1, y1, 'LINKS', 9);
-      dxf.line(x2, y2, x3, y3, 'LINKS', 9);
-      dxf.line(x1, y1, 0, y1, 'LINKS', 9);
-      dxf.line(0, y1, x3, 0, 'LINKS', 9);
-      dxf.line(x3, 0, x3, y3, 'LINKS', 9);
-      dxf.circle(x2, y2, 1.0, 'PROJ_P2', 4);
-      dxf.circle(x1, y1, 1.0, 'PROJ_P1', 3);
-      dxf.circle(x3, y3, 1.0, 'PROJ_P3', 6);
-      dxf.text(x2 + 1.8, y2 + 1.8, `${p.name}2`, 3.2, 'PROJ_P2', 4);
-      dxf.text(x1 + 1.8, y1 - 3.5, `${p.name}1`, 3.2, 'PROJ_P1', 3);
-      dxf.text(x3 + 1.8, y3 + 1.8, `${p.name}3`, 3.2, 'PROJ_P3', 6);
-    });
-
-    // Отрезки на всех 3 проекциях
-    edges.forEach(([a, b]) => {
-      dxf.line(-a.x, a.z, -b.x, b.z, 'PROJ_P2', 4);
-      dxf.line(-a.x, -a.y, -b.x, -b.y, 'PROJ_P1', 3);
-      dxf.line(a.y, a.z, b.y, b.z, 'PROJ_P3', 6);
-    });
-
-    downloadDxf('stormcad-epur.dxf', dxf.build());
-  });
-
-  // DXF для 2D-Чертёжника ГОСТ (читаем из сохранённого canvas-чертежа / storm_cad_draw_v1)
-  $('cadDrawDxf')?.addEventListener('click', () => {
-    const c = $('cadDrawCanvas');
-    const W = c ? c.width : 900, H = c ? c.height : 580;
-    const PX_PER_MM = 5;
-    const items = (typeof window.getStormCadDrawItems === 'function' ? window.getStormCadDrawItems() : []) || [];
-    const dxf = makeDxfBuilder();
-    const toX = px => px / PX_PER_MM;
-    const toY = py => (H - py) / PX_PER_MM;
-
-    if ($('cadStamp')?.checked) {
-      dxf.rect(toX(36), toY(H - 14), toX(W - 14), toY(14), 'STAMP', 7);
-    }
-    items.forEach(it => {
-      const layer = it.style === 'axis' ? 'AXIS' : it.style === 'dash' ? 'DASH' : it.style === 'thin' ? 'THIN' : 'MAIN';
-      const col = it.style === 'axis' ? 1 : 7;
-      if (it.type === 'line') {
-        dxf.line(toX(it.x1), toY(it.y1), toX(it.x2), toY(it.y2), layer, col);
-      } else if (it.type === 'hatch') {
-        const rx = Math.min(it.x1, it.x2), ry = Math.min(it.y1, it.y2), rw = Math.abs(it.x2 - it.x1), rh = Math.abs(it.y2 - it.y1);
-        for (let d = -rh; d < rw + rh; d += 10) {
-          const ax = Math.max(rx, Math.min(rx + rw, rx + d)), ay = ry + Math.max(0, (rx + d) - (rx + rw));
-          const bx = Math.max(rx, Math.min(rx + rw, rx + d - rh)), by = ry + Math.min(rh, (rx + d) - rx);
-          if (ax !== bx || ay !== by) dxf.line(toX(ax), toY(ay), toX(bx), toY(by), 'HATCH', 8);
-        }
-      } else if (it.type === 'rect') {
-        dxf.rect(toX(it.x1), toY(it.y1), toX(it.x2), toY(it.y2), layer, col);
-      } else if (it.type === 'circle') {
-        const r = Math.hypot(it.x2 - it.x1, it.y2 - it.y1) / PX_PER_MM;
-        dxf.circle(toX(it.x1), toY(it.y1), r, layer, col);
-      } else if (it.type === 'dim') {
-        const mm = (Math.hypot(it.x2 - it.x1, it.y2 - it.y1) / PX_PER_MM).toFixed(1);
-        dxf.line(toX(it.x1), toY(it.y1), toX(it.x2), toY(it.y2), 'DIM', 4);
-        dxf.text(toX((it.x1 + it.x2) / 2), toY((it.y1 + it.y2) / 2) + 2, mm, 3.5, 'DIM', 4);
-      } else if (it.type === 'text') {
-        dxf.text(toX(it.x1), toY(it.y1), it.text || '', 4, 'TEXT', 7);
-      }
-    });
-    downloadDxf('stormcad-drawing.dxf', dxf.build());
-  });
-})();
-</script>
-<script>
-// =========================================================================
-// === GOST ЕСКД UPGRADE: ШАБЛОНЫ ЛИСТА А4, ШТРИХОВКА 45°, СТРЕЛКИ ГОСТ ====
-// =========================================================================
-(function() {
-  const SHEET_PRESETS = {
-    empty: { title: 'Лист А4 · ГОСТ 2.104', items: [] },
-    plate: {
-      title: 'Пластина с отверстием',
-      items: [
-        { type: 'rect', style: 'thick', x1: 220, y1: 140, x2: 520, y2: 340 },
-        { type: 'circle', style: 'thick', x1: 370, y1: 240, x2: 425, y2: 240 },
-        { type: 'line', style: 'axis', x1: 195, y1: 240, x2: 545, y2: 240 },
-        { type: 'line', style: 'axis', x1: 370, y1: 115, x2: 370, y2: 365 },
-        { type: 'dim', style: 'thin', x1: 220, y1: 105, x2: 520, y2: 105 },
-        { type: 'dim', style: 'thin', x1: 560, y1: 140, x2: 560, y2: 340 },
-        { type: 'text', style: 'thin', x1: 432, y1: 195, text: 'Ø22' }
-      ]
-    },
-    shaft: {
-      title: 'Вал ступенчатый',
-      items: [
-        { type: 'rect', style: 'thick', x1: 160, y1: 210, x2: 280, y2: 290 },
-        { type: 'rect', style: 'thick', x1: 280, y1: 180, x2: 520, y2: 320 },
-        { type: 'rect', style: 'thick', x1: 520, y1: 210, x2: 640, y2: 290 },
-        { type: 'line', style: 'axis', x1: 135, y1: 250, x2: 665, y2: 250 },
-        { type: 'dim', style: 'thin', x1: 160, y1: 145, x2: 640, y2: 145 },
-        { type: 'dim', style: 'thin', x1: 280, y1: 355, x2: 520, y2: 355 },
-        { type: 'text', style: 'thin', x1: 115, y1: 245, text: 'Ø16' },
-        { type: 'text', style: 'thin', x1: 385, y1: 170, text: 'Ø28' }
-      ]
-    },
-    bracket: {
-      title: 'Уголок (вид + разрез)',
-      items: [
-        { type: 'line', style: 'thick', x1: 220, y1: 130, x2: 220, y2: 360 },
-        { type: 'line', style: 'thick', x1: 220, y1: 360, x2: 520, y2: 360 },
-        { type: 'line', style: 'thick', x1: 520, y1: 360, x2: 520, y2: 310 },
-        { type: 'line', style: 'thick', x1: 520, y1: 310, x2: 270, y2: 310 },
-        { type: 'line', style: 'thick', x1: 270, y1: 310, x2: 270, y2: 130 },
-        { type: 'line', style: 'thick', x1: 270, y1: 130, x2: 220, y2: 130 },
-        { type: 'hatch', style: 'thin', x1: 220, y1: 130, x2: 270, y2: 360 },
-        { type: 'hatch', style: 'thin', x1: 270, y1: 310, x2: 520, y2: 360 },
-        { type: 'dim', style: 'thin', x1: 220, y1: 395, x2: 520, y2: 395 },
-        { type: 'dim', style: 'thin', x1: 185, y1: 130, x2: 185, y2: 360 }
-      ]
-    }
-  };
-
-  $('sfGostPaper')?.addEventListener('change', () => $('sfBuildBtn')?.click());
-
-  $('cadSheetPreset')?.addEventListener('change', () => {
-    const key = $('cadSheetPreset').value;
-    const p = SHEET_PRESETS[key];
-    if (!p) return;
-    const arr = typeof window.getStormCadDrawItems === 'function' ? window.getStormCadDrawItems() : null;
-    if (Array.isArray(arr)) {
-      arr.length = 0;
-      p.items.forEach(it => arr.push({ ...it }));
-    }
-    if ($('cadStampTitle')) $('cadStampTitle').value = p.title;
-    $('cadPaper') && ($('cadPaper').checked = true);
-    $('cadStamp') && ($('cadStamp').checked = true);
-    $('cadStampTitle')?.dispatchEvent(new Event('input'));
-    $('cadSheetPreset').value = '';
-    window.stormToast?.(`📐 Загружен шаблон: «${p.title}»`);
-  });
 })();
 </script>
 </body>
