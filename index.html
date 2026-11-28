@@ -2488,7 +2488,7 @@ body.light-mode .side-toggle-btn{background:#f1f5f9 !important;color:#0f172a !im
 
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<link rel="stylesheet" href="css/storm-glass.css">
+<link rel="stylesheet" href="storm-glass.css">
 </head>
 <body>
 <div class="storm-garland-bar" id="stormGarlandBar" aria-hidden="true"><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span><span class="g-bulb"></span></div>
@@ -13315,7 +13315,7 @@ renderQuickHub();
   function renderWsQuickBar() {
     const bar = $('wsQuickToggleBar');
     if (!bar) return;
-    const p = activeProj();
+    const p = curProj();
     bar.replaceChildren();
     const lbl = document.createElement('span');
     lbl.className = 'quick-hub-lbl';
@@ -13329,7 +13329,7 @@ renderQuickHub();
       btn.textContent = (exists ? '✓ ' : '+ ') + item.icon + ' ' + item.name.split(' ')[0];
       btn.title = item.name + ' — ' + item.desc;
       btn.addEventListener('click', () => {
-        const cur = activeProj();
+        const cur = curProj();
         const idx = cur.widgets.findIndex(w => w.type === item.type);
         if (idx >= 0) cur.widgets.splice(idx, 1);
         else cur.widgets.push({ id: 'w_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), type: item.type, wide: false, collapsed: false });
@@ -15843,6 +15843,6 @@ ${code ? '<h2>3. Листинг программы</h2><pre>' + code + '</pre>' 
 </script>
 
 
-<script src="js/storm-v26.js" defer></script>
+<script src="storm-v26.js" defer></script>
 </body>
 </html>
