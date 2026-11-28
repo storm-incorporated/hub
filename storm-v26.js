@@ -846,3 +846,87 @@
     else if (typeof loadAllWeather === 'function') loadAllWeather(true);
   });
 })();
+
+/* ===== v38: ледяной объёмный заголовок по эскизу ===== */
+(function () {
+  const svg = document.querySelector('.storm-frost-svg');
+  if (!svg) return;
+  const font = document.createElement('link');
+  font.rel = 'stylesheet';
+  font.href = 'https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap';
+  document.head.append(font);
+
+  const rnd = n => { const x = Math.sin(n * 91.7) * 4375.5; return x - Math.floor(x); };
+  const words = (cls, extra = '') =>
+    `<g class="${cls}" ${extra}><text x="460" y="146" textLength="470" lengthAdjust="spacingAndGlyphs" class="ice-w ice-w1">Storm</text>` +
+    `<text x="460" y="262" textLength="640" lengthAdjust="spacingAndGlyphs" class="ice-w ice-w2">Incorporated</text></g>`;
+
+  // еловые ветки
+  let pine = '';
+  for (let b = 0; b < 46; b++) {
+    const x = 110 + b * 15.5 + rnd(b) * 14, y = 158 + Math.sin(b * .55) * 26 + rnd(b + 7) * 18, a = (rnd(b + 3) - .5) * 70 + (x < 460 ? 180 : 0);
+    let n = '';
+    for (let k = 0; k < 9; k++) n += `M${k * 6} 0l12 ${-13 + k}M${k * 6} 0l12 ${13 - k}`;
+    pine += `<path transform="translate(${x} ${y}) rotate(${a})" d="M0 0H58${n}" stroke="${b % 3 ? '#1f6b4a' : '#2f8a5c'}" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
+  }
+  const colors = ['red', 'gold', 'green', 'blue'];
+  const balls = [[150, 168, 22], [212, 205, 15], [236, 92, 15], [686, 94, 17], [722, 196, 15], [776, 150, 23], [118, 232, 14], [808, 232, 16], [128, 108, 12], [796, 84, 12]]
+    .map(([x, y, r], i) => `<g class="ice-ball"><path d="M${x} ${y - r - 14}V${y - r}" stroke="#dbeafe" stroke-width="1.5"/><rect x="${x - 6}" y="${y - r - 5}" width="12" height="8" rx="2" fill="#e9c46a"/><circle cx="${x}" cy="${y}" r="${r}" fill="url(#ib-${colors[i % 4]})"/><ellipse cx="${x - r * .35}" cy="${y - r * .38}" rx="${r * .24}" ry="${r * .16}" fill="#fff" opacity=".75"/></g>`).join('');
+  let lights = '';
+  for (let i = 0; i < 38; i++) {
+    const x = 118 + i * 18.5, y = 190 + Math.sin(i * .8) * 34 + (i % 2) * 12;
+    lights += `<g class="ice-light" style="animation-delay:${(i % 5) * .32}s;color:${['#ff6b6b', '#ffd166', '#4ade80', '#60a5fa', '#f0abfc'][i % 5]}"><circle cx="${x}" cy="${y}" r="9" fill="currentColor" opacity=".28"/><circle cx="${x}" cy="${y}" r="3.8" fill="currentColor"/></g>`;
+  }
+  const icicle = (x, y, len, w) => `<path d="M${x - w} ${y}Q${x - w * .3} ${y + len * .45} ${x} ${y + len}Q${x + w * .35} ${y + len * .4} ${x + w} ${y}Z"/>`;
+  let ice = '';
+  [[246, 46], [262, 22], [338, 30], [425, 52], [512, 26], [660, 38]].forEach(([x, l]) => ice += icicle(x, 142, l, 5));
+  [[152, 40], [170, 20], [226, 58], [292, 28], [346, 44], [398, 68], [452, 24], [514, 50], [568, 34], [622, 62], [676, 26], [724, 46], [762, 22]].forEach(([x, l]) => ice += icicle(x, 262, l, 5.5));
+  const drops = [210, 322, 438, 560, 690].map((x, i) => `<path class="ice-drop" style="animation-delay:${i * .45}s" d="M${x} 268q9 13 0 18q-9 -5 0 -18z"/>`).join('');
+  let flakes = '';
+  for (let i = 0; i < 90; i++) flakes += `<circle cx="${60 + rnd(i) * 800}" cy="${30 + rnd(i + 40) * 300}" r="${1 + rnd(i + 80) * 3.2}"/>`;
+  const stop = a => a.map((c, i) => `<stop offset="${i / (a.length - 1)}" stop-color="${c}"/>`).join('');
+  const ball = (id, a) => `<radialGradient id="ib-${id}" cx=".35" cy=".3" r=".8">${stop(a)}</radialGradient>`;
+  // снег: берём верхний край каждой буквы (буква минус она же, сдвинутая вниз) и делаем его пухлым
+  const snow = (id, shift, grow) => `<filter id="${id}" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB">
+    <feOffset in="SourceAlpha" dy="${shift}" result="o"/><feComposite in="SourceAlpha" in2="o" operator="out" result="top"/>
+    <feMorphology in="top" operator="dilate" radius="${grow}" result="fat"/>
+    <feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="fat" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation=".9" result="soft"/>
+    <feFlood flood-color="#fff"/><feComposite in2="soft" operator="in" result="white"/>
+    <feDropShadow in="white" dx="0" dy="3" stdDeviation="1.6" flood-color="#2563a8" flood-opacity=".75"/></filter>`;
+
+  svg.setAttribute('viewBox', '60 40 800 300');
+  svg.innerHTML = `<defs>
+    <linearGradient id="ice-fill" gradientUnits="userSpaceOnUse" x1="0" y1="60" x2="0" y2="270">${stop(['#e0f6ff', '#7cc8f5', '#2f86d6', '#bfe9ff', '#4aa8ea', '#1c5fae'])}</linearGradient>
+    ${ball('red', ['#ff9a9a', '#d61f3c', '#6d0b1d'])}${ball('gold', ['#fff3b0', '#e9a81b', '#7a4d05'])}${ball('green', ['#b7f7c4', '#1f9d55', '#07431f'])}${ball('blue', ['#bfe3ff', '#2563eb', '#0b1f6b'])}
+    ${snow('ice-snow-a', 9, 2.4)}${snow('ice-snow-b', 5, 1.5)}
+  </defs>
+  <g class="ice-pine">${pine}</g>
+  ${words('ice-depth', 'transform="translate(0 8)"')}
+  <g class="ice-hang" fill="url(#ice-fill)" stroke="#e0f2fe" stroke-width="1">${ice}</g>
+  ${words('ice-face')}
+  ${words('ice-cap ice-cap-a', 'filter="url(#ice-snow-a)"')}
+  ${words('ice-cap ice-cap-b', 'filter="url(#ice-snow-b)"')}
+  <g class="ice-lights">${lights}</g>
+  <g class="ice-balls">${balls}</g>
+  <g class="ice-flakes" fill="#fff">${flakes}</g>
+  <g class="ice-drops" fill="#bae6fd">${drops}</g>`;
+
+  // ползунки в сезонном пульте
+  const box = document.getElementById('holidayPanelBox'), note = box && box.querySelector('.holiday-cal-note');
+  if (!box) return;
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('storm_ice_v1') || '{}') || {}; } catch {}
+  const wrap = document.createElement('div');
+  wrap.className = 'ice-sliders';
+  [['snow', '❄️ Снег на буквах', '--ice-snow'], ['hang', '🧊 Сосульки', '--ice-hang'], ['light', '✨ Яркость гирлянд', '--ice-light']].forEach(([key, title, css]) => {
+    const label = document.createElement('label'), input = document.createElement('input');
+    input.type = 'range'; input.min = 0; input.max = 100; input.value = Number.isFinite(+saved[key]) ? +saved[key] : 100;
+    const apply = () => document.documentElement.style.setProperty(css, input.value / 100);
+    input.oninput = () => { apply(); saved[key] = +input.value; try { localStorage.setItem('storm_ice_v1', JSON.stringify(saved)); } catch {} };
+    apply();
+    label.append(title, input); wrap.append(label);
+  });
+  box.insertBefore(wrap, note);
+})();

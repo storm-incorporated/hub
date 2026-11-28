@@ -1065,3 +1065,59 @@ body.light-mode .quick-hub{
 
 /* Ensure [hidden] always wins over any display override */
 [hidden], .hero-glass-v26[hidden]{ display: none !important; }
+
+
+/* ===== v38: эскиз «ледяная зима» ===== */
+.storm-frost-svg{ overflow:visible; max-width:640px; margin:0 auto; }
+.title-garland-layer, .title-drops-layer{ display:none !important; }
+.ice-w{ font-family:'Fredoka','Baloo 2','Unbounded',system-ui,sans-serif; font-weight:700; text-anchor:middle; }
+.ice-w1{ font-size:132px; } .ice-w2{ font-size:112px; }
+.ice-face .ice-w{ fill:url(#ice-fill); stroke:#eaf8ff; stroke-width:2.5px; paint-order:stroke; }
+.ice-depth .ice-w{ fill:#0b3a74; stroke:#0b3a74; stroke-width:9px; stroke-linejoin:round; }
+.ice-cap, .ice-flakes, .ice-drops, .ice-pine, .ice-balls, .ice-lights, .ice-hang{ display:none; }
+.ice-cap{ opacity:var(--ice-snow,1); }
+.ice-hang{ opacity:var(--ice-hang,1); }
+body:not([data-fx="off"])[data-holiday-stage="snow"] :is(.ice-cap-a,.ice-hang),
+body:not([data-fx="off"])[data-holiday-stage="decorated"] :is(.ice-cap-b,.ice-pine,.ice-balls),
+body:not([data-fx="off"])[data-holiday-stage="blizzard"] :is(.ice-cap-a,.ice-pine,.ice-balls,.ice-flakes),
+body:not([data-fx="off"])[data-holiday-stage="melting"] :is(.ice-cap-b,.ice-hang,.ice-drops){ display:inline; }
+body:not([data-fx="off"]):not(.holiday-decor-on) :is(.ice-cap,.ice-pine,.ice-balls,.ice-hang){ display:none !important; }
+body:not([data-fx="off"]):is([data-holiday-stage="decorated"],[data-holiday-stage="blizzard"]) .ice-lights{ display:inline; opacity:var(--ice-light,1); }
+.ice-light{ animation:iceBlink 1.6s ease-in-out infinite; }
+.ice-drop{ animation:iceDrip 2.2s ease-in infinite; }
+@keyframes iceBlink{ 50%{ opacity:.35; } }
+@keyframes iceDrip{ 0%{ transform:translateY(0); opacity:0; } 25%{ opacity:1; } 100%{ transform:translateY(46px); opacity:0; } }
+@media (prefers-reduced-motion:reduce){ .ice-light,.ice-drop{ animation:none; } }
+html.tab-hidden :is(.ice-light,.ice-drop){ animation-play-state:paused; }
+
+/* стекло */
+body:not(.light-mode) .hero-glass-v26, body:not(.light-mode) .showcase-card, body:not(.light-mode) .news-col{
+  background:linear-gradient(155deg,rgba(186,220,255,.17),rgba(80,130,190,.07) 45%,rgba(124,92,255,.10)) !important;
+  border:1px solid rgba(210,235,255,.26) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 18px 40px rgba(0,8,24,.45) !important;
+}
+@media (min-width:861px){
+  body .hero-glass-v26, body .showcase-card, body .news-col{
+    backdrop-filter:blur(14px) saturate(150%) !important; -webkit-backdrop-filter:blur(14px) saturate(150%) !important; contain:none !important;
+  }
+}
+/* снег на карточках и сосульки по углам главного блока */
+body:not([data-fx="off"]).holiday-decor-on:not([data-holiday-stage="clear"]) .showcase-card,
+body:not([data-fx="off"]).holiday-decor-on:not([data-holiday-stage="clear"]) .news-col{ position:relative; overflow:visible !important; }
+body:not([data-fx="off"]).holiday-decor-on:not([data-holiday-stage="clear"]) .showcase-card::before,
+body:not([data-fx="off"]).holiday-decor-on:not([data-holiday-stage="clear"]) .news-col::before{
+  content:"" !important; position:absolute !important; left:6px !important; right:6px !important; top:-9px !important; width:auto !important; height:28px !important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 34' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 14Q6 0 30 4T78 3T130 5T182 2T236 5T282 3Q300 4 300 15Q292 22 284 15Q279 11 274 16V24Q270 32 266 24V16Q254 10 240 17Q226 22 214 14Q196 10 184 17V27Q180 34 176 27V17Q160 11 146 16Q132 23 118 14Q104 10 94 16V22Q90 29 86 22V16Q70 10 56 17Q42 23 30 15Q22 11 16 18V25Q12 31 8 25V18Q2 20 0 14Z'/%3E%3C/svg%3E") center top/100% 100% no-repeat !important; opacity:var(--ice-snow,1) !important; pointer-events:none; z-index:5; border:0 !important; box-shadow:none !important; border-radius:0 !important;
+}
+.hero-glass-v26{ position:relative; }
+body:not([data-fx="off"]).holiday-decor-on:is([data-holiday-stage="snow"],[data-holiday-stage="decorated"],[data-holiday-stage="blizzard"]) .hero-glass-v26::before,
+body:not([data-fx="off"]).holiday-decor-on:is([data-holiday-stage="snow"],[data-holiday-stage="decorated"],[data-holiday-stage="blizzard"]) .hero-glass-v26::after{
+  content:"" !important; position:absolute !important; top:0 !important; bottom:auto !important; width:clamp(56px,9vw,120px) !important; height:clamp(70px,11vw,150px) !important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 150'%3E%3Cpath fill='%23bfe6ff' fill-opacity='.85' d='M0 0H120Q112 14 104 8L99 52L94 10Q86 16 78 11L71 94L64 12Q57 18 50 13L45 60L40 14Q34 20 28 15L20 140L12 14Q6 20 0 16Z'/%3E%3C/svg%3E") top/100% 100% no-repeat !important; opacity:var(--ice-hang,1) !important; pointer-events:none; z-index:2;
+}
+.hero-glass-v26::before{ left:8px !important; right:auto !important; }
+.hero-glass-v26::after{ right:8px !important; left:auto !important; transform:scaleX(-1) !important; }
+.ice-sliders{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin:10px 0; font-size:12.5px; }
+.ice-sliders label{ display:flex; flex-direction:column; gap:4px; }
+.ice-sliders input{ width:100%; accent-color:#38bdf8; }
+@media (max-width:860px){ body .hero-glass-v26::before, body .hero-glass-v26::after{ height:44px !important; width:48px !important; } }
