@@ -1,5 +1,5 @@
 // офлайн-режим: сначала сеть (чтобы обновления приходили сразу), без сети берём сохранённую копию
-const CACHE = 'storm-hub-v2.7-v19';
+const CACHE = 'storm-hub-v5.2-v37';
 const FONTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', e => {
